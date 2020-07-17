@@ -80,10 +80,11 @@ class Language{
 
     /**
      * @param string $locale
+     * @param bool   $noticeSelected for notice "Selected"
      *
      * @return bool
      */
-    public function setLocale(string $locale) : bool{
+    public function setLocale(string $locale, bool $noticeSelected = false) : bool{
         $localeList = $this->getLocales();
         $locale = strtolower($locale);
         $file = "{$this->plugin->getDataFolder()}lang/$locale.ini";
@@ -94,12 +95,14 @@ class Language{
 
         $this->locale = strtolower($locale);
         $this->lang = array_map("stripcslashes", parse_ini_file($file, false, INI_SCANNER_RAW));
-        return true;
-    }
 
-    /** @return string */
-    public function getName() : string{
-        return $this->translate("language.name");
+        if($noticeSelected){
+            $this->plugin->getLogger()->notice($this->translate("language.selected", [
+                $this->translate("language.name"),
+                $locale
+            ]));
+        }
+        return true;
     }
 
     /**

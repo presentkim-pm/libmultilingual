@@ -59,6 +59,20 @@ class Language{
         }
     }
 
+    /**
+     * @param string   $id
+     * @param string[] $params
+     *
+     * @return string
+     */
+    public function translate(string $id, array $params = []) : string{
+        $str = $this->lang[$id] ?? $this->fallbackLang[$id] ?? $id;
+        foreach($params as $i => $param){
+            $str = str_replace("{%$i}", (string) $param, $str);
+        }
+        return $str;
+    }
+
     /** @return string */
     public function getLocale() : string{
         return $this->locale;
@@ -83,31 +97,10 @@ class Language{
     }
 
     /**
-     * @param string   $id
-     * @param string[] $params
-     *
-     * @return string
-     */
-    public function translate(string $id, array $params = []) : string{
-        $str = $this->lang[$id] ?? $this->fallbackLang[$id] ?? $id;
-        foreach($params as $i => $param){
-            $str = str_replace("{%$i}", (string) $param, $str);
-        }
-        return $str;
-    }
-
-    /**
      * @return string
      */
     public function getName() : string{
         return $this->translate("language.name");
-    }
-
-    /**
-     * @return string
-     */
-    public function getLocale() : string{
-        return $this->locale;
     }
 
     /**

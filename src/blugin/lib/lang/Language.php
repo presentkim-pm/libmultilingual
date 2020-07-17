@@ -30,15 +30,15 @@ namespace blugin\lib\lang;
 use pocketmine\plugin\PluginBase;
 
 class Language{
-    public const FALLBACK_LANGUAGE = "eng";
+    public const FALLBACK_LOCALE = "eng";
     public const REGEX_ORIGNINAL_FILE = '/^lang\/(.*)\/lang\.ini$/';
     public const REGEX_REPLACED_FILE = '/^lang\/(.*)\.ini$/';
 
-    /** @var string */
-    protected $langName;
-
-    /** @var PluginBase */
+    /** @var PluginBase owner plugin */
     protected $plugin;
+
+    /** @var string locale name */
+    protected $locale;
 
     /** @var string[] */
     protected $lang = [];
@@ -57,14 +57,14 @@ class Language{
      * @param string     $lang
      */
     public function __construct(PluginBase $plugin, string $lang){
-        $this->langName = strtolower($lang);
+        $this->locale = strtolower($lang);
         $this->plugin = $plugin;
 
         //Load required language
         $this->load($lang);
 
         //Load fallback language
-        $resoruce = $plugin->getResource("lang/" . self::FALLBACK_LANGUAGE . "/lang.ini");
+        $resoruce = $plugin->getResource("lang/" . self::FALLBACK_LOCALE . "/lang.ini");
         if($resoruce !== null){
             $this->fallbackLang = array_map("stripcslashes", parse_ini_string(stream_get_contents($resoruce), false, INI_SCANNER_RAW));
         }else{
@@ -79,11 +79,11 @@ class Language{
      */
     public function load(string $lang) : bool{
         if($this->isAvailableLanguage($lang)){
-            $file = "{$this->plugin->getDataFolder()}lang/{$this->langName}.ini";
+            $file = "{$this->plugin->getDataFolder()}lang/{$this->locale}.ini";
             if(file_exists($file)){
                 $this->lang = array_map("stripcslashes", parse_ini_file($file, false, INI_SCANNER_RAW));
             }else{
-                $this->plugin->getLogger()->error("Missing required language file ({$this->langName})");
+                $this->plugin->getLogger()->error("Missing required language file ({$this->locale})");
             }
         }
         return false;
@@ -114,7 +114,7 @@ class Language{
      * @return string
      */
     public function getLang() : string{
-        return $this->langName;
+        return $this->locale;
     }
 
     /**

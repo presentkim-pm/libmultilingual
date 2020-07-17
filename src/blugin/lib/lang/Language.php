@@ -46,9 +46,6 @@ class Language{
     /** @var string[] */
     protected $fallbackLang = [];
 
-    /** @var string[] */
-    protected $languageList;
-
     /**
      * @noinspection PhpMissingParentConstructorInspection
      * PluginLang constructor.
@@ -118,25 +115,23 @@ class Language{
     }
 
     /**
-     * Read available language list from language.list file
+     * Read available language list from plugin data folder
      *
      * @return string[]
      */
     public function getLanguageList() : array{
-        if($this->languageList === null){
-            $this->languageList = [];
-            $dataFolder = $this->plugin->getDataFolder();
-            foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dataFolder)) as $resource){
-                if($resource->isFile()){
-                    $path = str_replace(DIRECTORY_SEPARATOR, "/", substr((string) $resource, strlen($dataFolder)));
-                    if(!preg_match(self::REGEX_REPLACED_FILE, $path, $matches) || !isset($matches[1]))
-                        continue;
-                    $this->languageList[] = $matches[1];
-                }
+        $languageList = [];
+        $dataFolder = $this->plugin->getDataFolder();
+        foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dataFolder)) as $resource){
+            if($resource->isFile()){
+                $path = str_replace(DIRECTORY_SEPARATOR, "/", substr((string) $resource, strlen($dataFolder)));
+                if(!preg_match(self::REGEX_REPLACED_FILE, $path, $matches) || !isset($matches[1]))
+                    continue;
+                $languageList[] = $matches[1];
             }
         }
 
-        return $this->languageList;
+        return $languageList;
     }
 
     /**

@@ -31,6 +31,8 @@ use pocketmine\plugin\PluginBase;
 
 class Language{
     public const FALLBACK_LANGUAGE = "eng";
+    public const REGEX_ORIGNINAL_FILE = '/^lang\/(.*)\/lang\.ini$/';
+    public const REGEX_REPLACED_FILE = '/^lang\/(.*)\.ini$/';
 
     /** @var string */
     protected $langName;
@@ -77,7 +79,7 @@ class Language{
      */
     public function load(string $lang) : bool{
         if($this->isAvailableLanguage($lang)){
-            $file = "{$this->plugin->getDataFolder()}lang/{$this->langName}/lang.ini";
+            $file = "{$this->plugin->getDataFolder()}lang/{$this->langName}.ini";
             if(file_exists($file)){
                 $this->lang = array_map("stripcslashes", parse_ini_file($file, false, INI_SCANNER_RAW));
             }else{
@@ -127,7 +129,7 @@ class Language{
             foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dataFolder)) as $resource){
                 if($resource->isFile()){
                     $path = str_replace(DIRECTORY_SEPARATOR, "/", substr((string) $resource, strlen($dataFolder)));
-                    if(!preg_match('/^lang\/(.*)\/lang\.ini$/', $path, $matches) || !isset($matches[1]))
+                    if(!preg_match(self::REGEX_REPLACED_FILE, $path, $matches) || !isset($matches[1]))
                         continue;
                     $this->languageList[] = $matches[1];
                 }

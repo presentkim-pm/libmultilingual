@@ -28,6 +28,7 @@ declare(strict_types=1);
 namespace blugin\lib\lang;
 
 use pocketmine\plugin\PluginBase;
+use pocketmine\utils\AssumptionFailedError;
 
 /**
  * This trait override most methods in the {@link PluginBase} abstract class.
@@ -52,14 +53,31 @@ trait LanguageTrait{
     }
 
     public function saveLanguageResources(){
+        /** @var \SplFileInfo[] $langFiles */
         $langFiles = array_filter($this->getResources(), function(string $key){
-            return preg_match('/^lang(.*)\.ini$/', $key);
+            return preg_match(Language::REGEX_ORIGNINAL_FILE, $key);
         }, ARRAY_FILTER_USE_KEY);
 
+        $langFolder = $this->getDataFolder() . "lang/";
+        if(!file_exists($langFolder)){
+            mkdir($langFolder, 0755, true);
+        }
         foreach($langFiles as $key => $info){
-            $this->saveResource($key, false);
-            $this->saveResource($key, false);
-            $this->saveResource($key, false);
+            if(!preg_match(Language::REGEX_ORIGNINAL_FILE, $key, $matches) || !isset($matches[1]))
+                continue;
+
+            $out = $langFolder . $matches[1] . ".ini";
+            if(file_exists($out))
+                continue;
+
+            $fp = fopen($out, "wb");
+            if($fp === false)
+                throw new AssumptionFailedError("fopen() should not fail with wb flags");
+
+            $resource = $this->getResource($key);
+            stream_copy_to_stream($resource, $fp);
+            fclose($fp);
+            fclose($resource);
         }
     }
 

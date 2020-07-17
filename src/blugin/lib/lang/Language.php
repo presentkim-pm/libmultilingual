@@ -84,21 +84,20 @@ class Language{
      * @return bool
      */
     public function setLocale(string $locale) : bool{
-        if($this->isAvailableLocale($locale)){
-            $this->locale = strtolower($locale);
-            $file = "{$this->plugin->getDataFolder()}lang/{$this->locale}.ini";
-            if(file_exists($file)){
-                $this->lang = array_map("stripcslashes", parse_ini_file($file, false, INI_SCANNER_RAW));
-            }else{
-                $this->plugin->getLogger()->error("Missing required language file ({$this->locale})");
-            }
+        $localeList = $this->getLocales();
+        $locale = strtolower($locale);
+        $file = "{$this->plugin->getDataFolder()}lang/$locale.ini";
+        if(!in_array($locale, $localeList) || !file_exists($file)){
+            $this->plugin->getLogger()->error("Couldn't find the locale \"{$this->locale}\". (Availables : " . implode(", ", $localeList) . ")");
+            return false;
         }
-        return false;
+
+        $this->locale = strtolower($locale);
+        $this->lang = array_map("stripcslashes", parse_ini_file($file, false, INI_SCANNER_RAW));
+        return true;
     }
 
-    /**
-     * @return string
-     */
+    /** @return string */
     public function getName() : string{
         return $this->translate("language.name");
     }
@@ -121,14 +120,5 @@ class Language{
         }
 
         return $localeList;
-    }
-
-    /**
-     * @param string $locale
-     *
-     * @return bool
-     */
-    public function isAvailableLocale(string $locale) : bool{
-        return in_array(strtolower($locale), $this->getLocales());
     }
 }

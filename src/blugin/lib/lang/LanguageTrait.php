@@ -51,7 +51,7 @@ trait LanguageTrait{
         $this->saveLanguageResources();
         $this->language = new Language($this);
         if(!empty($locale)){
-            $this->language->setLocale($locale);
+            $this->language->setLocale($locale, true);
         }
     }
 

@@ -46,19 +46,9 @@ class Language{
     /** @var string[] */
     protected $fallbackLang = [];
 
-    /**
-     * @noinspection PhpMissingParentConstructorInspection
-     * PluginLang constructor.
-     *
-     * @param PluginBase $plugin
-     * @param string     $locale
-     */
-    public function __construct(PluginBase $plugin, string $locale){
-        $this->locale = strtolower($locale);
+    /** @param PluginBase $plugin */
+    public function __construct(PluginBase $plugin){
         $this->plugin = $plugin;
-
-        //Load required language
-        $this->load($locale);
 
         //Load fallback language
         $resoruce = $plugin->getResource("lang/" . self::FALLBACK_LOCALE . "/lang.ini");
@@ -69,6 +59,11 @@ class Language{
         }
     }
 
+    /** @return string */
+    public function getLocale() : string{
+        return $this->locale;
+    }
+
     /**
      * @param string $locale
      *
@@ -76,6 +71,7 @@ class Language{
      */
     public function setLocale(string $locale) : bool{
         if($this->isAvailableLocale($locale)){
+            $this->locale = strtolower($locale);
             $file = "{$this->plugin->getDataFolder()}lang/{$this->locale}.ini";
             if(file_exists($file)){
                 $this->lang = array_map("stripcslashes", parse_ini_file($file, false, INI_SCANNER_RAW));

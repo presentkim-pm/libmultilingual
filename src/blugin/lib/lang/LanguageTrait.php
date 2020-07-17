@@ -45,11 +45,14 @@ trait LanguageTrait{
     /**
      * Load language with save default language resources
      *
-     * @param string|null $lang
+     * @param string|null $locale
      */
-    public function loadLanguage(?string $lang = null) : void{
+    public function loadLanguage(?string $locale = null) : void{
         $this->saveLanguageResources();
-        $this->language = new Language($this, $lang);
+        $this->language = new Language($this);
+        if(!empty($locale)){
+            $this->language->setLocale($locale);
+        }
     }
 
     public function saveLanguageResources(){

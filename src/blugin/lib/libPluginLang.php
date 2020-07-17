@@ -29,4 +29,4 @@ namespace blugin\lib;
 
 use pocketmine\plugin\PluginBase;
 
-class libPluginLanguage extends PluginBase{}
+class libPluginLang extends PluginBase{}

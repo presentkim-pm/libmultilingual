@@ -1,6 +1,6 @@
 ---
-name: libPluginLanguage
-main: blugin\lib\libPluginLanguage
+name: libPluginLang
+main: blugin\lib\libPluginLang
 version: 1.0.0
 api: [4.0.0]
 authors: ['Blugin-team', 'PresentKim']

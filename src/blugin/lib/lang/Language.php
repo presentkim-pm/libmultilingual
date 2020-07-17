@@ -28,14 +28,14 @@ declare(strict_types=1);
 namespace blugin\lib\lang;
 
 use pocketmine\plugin\PluginBase;
+use pocketmine\plugin\PluginOwnedTrait;
 
 class Language{
+    use PluginOwnedTrait;
+
     public const FALLBACK_LOCALE = "eng";
     public const REGEX_ORIGNINAL_FILE = '/^lang\/(.*)\/lang\.ini$/';
     public const REGEX_REPLACED_FILE = '/^lang\/(.*)\.ini$/';
-
-    /** @var PluginBase owner plugin */
-    protected $plugin;
 
     /** @var string locale name */
     protected $locale;
@@ -46,16 +46,16 @@ class Language{
     /** @var string[] */
     protected $fallbackLang = [];
 
-    /** @param PluginBase $plugin */
-    public function __construct(PluginBase $plugin){
-        $this->plugin = $plugin;
+    /** @param PluginBase $owningPlugin */
+    public function __construct(PluginBase $owningPlugin){
+        $this->owningPlugin = $owningPlugin;
 
         //Load fallback language
-        $resoruce = $plugin->getResource("lang/" . self::FALLBACK_LOCALE . "/lang.ini");
+        $resoruce = $owningPlugin->getResource("lang/" . self::FALLBACK_LOCALE . "/lang.ini");
         if($resoruce !== null){
             $this->fallbackLang = array_map("stripcslashes", parse_ini_string(stream_get_contents($resoruce), false, INI_SCANNER_RAW));
         }else{
-            $plugin->getLogger()->error("Missing fallback language file");
+            $owningPlugin->getLogger()->error("Missing fallback language file");
         }
     }
 
@@ -87,9 +87,9 @@ class Language{
     public function setLocale(string $locale, bool $noticeSelected = false) : bool{
         $localeList = $this->getLocales();
         $locale = strtolower($locale);
-        $file = "{$this->plugin->getDataFolder()}lang/$locale.ini";
+        $file = "{$this->owningPlugin->getDataFolder()}lang/$locale.ini";
         if(!in_array($locale, $localeList) || !file_exists($file)){
-            $this->plugin->getLogger()->error("Couldn't find the locale \"{$this->locale}\". (Availables : " . implode(", ", $localeList) . ")");
+            $this->owningPlugin->getLogger()->error("Couldn't find the locale \"{$this->locale}\". (Availables : " . implode(", ", $localeList) . ")");
             return false;
         }
 
@@ -97,7 +97,7 @@ class Language{
         $this->lang = array_map("stripcslashes", parse_ini_file($file, false, INI_SCANNER_RAW));
 
         if($noticeSelected){
-            $this->plugin->getLogger()->notice($this->translate("language.selected", [
+            $this->owningPlugin->getLogger()->notice($this->translate("language.selected", [
                 $this->translate("language.name"),
                 $locale
             ]));
@@ -112,7 +112,7 @@ class Language{
      */
     public function getLocales() : array{
         $localeList = [];
-        $dataFolder = $this->plugin->getDataFolder();
+        $dataFolder = $this->owningPlugin->getDataFolder();
         foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dataFolder)) as $resource){
             if($resource->isFile()){
                 $path = str_replace(DIRECTORY_SEPARATOR, "/", substr((string) $resource, strlen($dataFolder)));

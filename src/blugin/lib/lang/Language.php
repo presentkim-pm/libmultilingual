@@ -74,7 +74,7 @@ class Language{
      *
      * @return bool
      */
-    public function load(string $locale) : bool{
+    public function setLocale(string $locale) : bool{
         if($this->isAvailableLocale($locale)){
             $file = "{$this->plugin->getDataFolder()}lang/{$this->locale}.ini";
             if(file_exists($file)){

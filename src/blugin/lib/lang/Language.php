@@ -51,14 +51,14 @@ class Language{
      * PluginLang constructor.
      *
      * @param PluginBase $plugin
-     * @param string     $lang
+     * @param string     $locale
      */
-    public function __construct(PluginBase $plugin, string $lang){
-        $this->locale = strtolower($lang);
+    public function __construct(PluginBase $plugin, string $locale){
+        $this->locale = strtolower($locale);
         $this->plugin = $plugin;
 
         //Load required language
-        $this->load($lang);
+        $this->load($locale);
 
         //Load fallback language
         $resoruce = $plugin->getResource("lang/" . self::FALLBACK_LOCALE . "/lang.ini");
@@ -70,12 +70,12 @@ class Language{
     }
 
     /**
-     * @param string $lang
+     * @param string $locale
      *
      * @return bool
      */
-    public function load(string $lang) : bool{
-        if($this->isAvailableLanguage($lang)){
+    public function load(string $locale) : bool{
+        if($this->isAvailableLocale($locale)){
             $file = "{$this->plugin->getDataFolder()}lang/{$this->locale}.ini";
             if(file_exists($file)){
                 $this->lang = array_map("stripcslashes", parse_ini_file($file, false, INI_SCANNER_RAW));
@@ -110,36 +110,36 @@ class Language{
     /**
      * @return string
      */
-    public function getLang() : string{
+    public function getLocale() : string{
         return $this->locale;
     }
 
     /**
-     * Read available language list from plugin data folder
+     * Read available locale list from plugin data folder
      *
      * @return string[]
      */
-    public function getLanguageList() : array{
-        $languageList = [];
+    public function getLocales() : array{
+        $localeList = [];
         $dataFolder = $this->plugin->getDataFolder();
         foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dataFolder)) as $resource){
             if($resource->isFile()){
                 $path = str_replace(DIRECTORY_SEPARATOR, "/", substr((string) $resource, strlen($dataFolder)));
                 if(!preg_match(self::REGEX_REPLACED_FILE, $path, $matches) || !isset($matches[1]))
                     continue;
-                $languageList[] = $matches[1];
+                $localeList[] = $matches[1];
             }
         }
 
-        return $languageList;
+        return $localeList;
     }
 
     /**
-     * @param string $lang
+     * @param string $locale
      *
      * @return bool
      */
-    public function isAvailableLanguage(string $lang) : bool{
-        return in_array(strtolower($lang), $this->getLanguageList());
+    public function isAvailableLocale(string $locale) : bool{
+        return in_array(strtolower($locale), $this->getLocales());
     }
 }

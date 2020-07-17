@@ -44,6 +44,9 @@ class Language{
     /** @var string[] */
     protected $fallbackLang = [];
 
+    /** @var string[] */
+    protected $languageList;
+
     /**
      * @noinspection PhpMissingParentConstructorInspection
      * PluginLang constructor.
@@ -118,7 +121,20 @@ class Language{
      * @return string[]
      */
     public function getLanguageList() : array{
-        return explode("\n", file_get_contents("{$this->plugin->getDataFolder()}lang/language.list"));
+        if($this->languageList === null){
+            $this->languageList = [];
+            $dataFolder = $this->plugin->getDataFolder();
+            foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dataFolder)) as $resource){
+                if($resource->isFile()){
+                    $path = str_replace(DIRECTORY_SEPARATOR, "/", substr((string) $resource, strlen($dataFolder)));
+                    if(!preg_match('/^lang\/(.*)\/lang\.ini$/', $path, $matches) || !isset($matches[1]))
+                        continue;
+                    $this->languageList[] = $matches[1];
+                }
+            }
+        }
+
+        return $this->languageList;
     }
 
     /**

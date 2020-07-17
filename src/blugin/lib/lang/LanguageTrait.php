@@ -54,9 +54,9 @@ trait LanguageTrait{
 
     public function saveLanguageResources(){
         /** @var PluginBase $this */
-        $langFiles = array_filter($this->getResources(), function(\SplFileInfo $info, string $key){
+        $langFiles = array_filter($this->getResources(), function(string $key){
             return preg_match('/^lang(.*)\.ini$/', $key);
-        }, ARRAY_FILTER_USE_BOTH);
+        }, ARRAY_FILTER_USE_KEY);
 
         foreach($langFiles as $key => $info){
             $this->saveResource($key, false);

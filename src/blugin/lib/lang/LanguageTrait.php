@@ -89,7 +89,7 @@ trait LanguageTrait{
     public function saveDefaultConfig() : bool{
         $resource = $this->getResource("lang/{$this->getServer()->getLanguage()->getLang()}/config.yml");
         if($resource === null){
-            $resource = $this->getResource("lang/" . Language::FALLBACK_LANGUAGE . "/config.yml");
+            $resource = $this->getResource("lang/" . Language::FALLBACK_LOCALE . "/config.yml");
         }
 
         $configFile = "{$this->getDataFolder()}config.yml";

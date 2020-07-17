@@ -27,7 +27,6 @@ declare(strict_types=1);
 
 namespace blugin\lib\lang;
 
-use blugin\lifespan\lang\PluginLang;
 use pocketmine\plugin\PluginBase;
 
 /**
@@ -53,7 +52,6 @@ trait LanguageTrait{
     }
 
     public function saveLanguageResources(){
-        /** @var PluginBase $this */
         $langFiles = array_filter($this->getResources(), function(string $key){
             return preg_match('/^lang(.*)\.ini$/', $key);
         }, ARRAY_FILTER_USE_KEY);
@@ -71,13 +69,11 @@ trait LanguageTrait{
      * @return bool
      */
     public function saveDefaultConfig() : bool{
-        /** @var PluginBase $this */
         $resource = $this->getResource("lang/{$this->getServer()->getLanguage()->getLang()}/config.yml");
         if($resource === null){
             $resource = $this->getResource("lang/" . Language::FALLBACK_LANGUAGE . "/config.yml");
         }
 
-        /** @see PluginBase::getDataFolder() */
         $configFile = "{$this->getDataFolder()}config.yml";
         if(!file_exists($configFile)){
             $ret = stream_copy_to_stream($resource, $fp = fopen($configFile, "wb")) > 0;

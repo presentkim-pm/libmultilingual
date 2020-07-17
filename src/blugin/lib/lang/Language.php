@@ -93,7 +93,7 @@ class Language{
             return false;
         }
 
-        $this->locale = strtolower($locale);
+        $this->locale = $locale;
         $this->lang = array_map("stripcslashes", parse_ini_file($file, false, INI_SCANNER_RAW));
 
         if($noticeSelected){

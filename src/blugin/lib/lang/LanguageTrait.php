@@ -49,6 +49,7 @@ trait LanguageTrait{
      */
     public function loadLanguage(?string $locale = null) : void{
         $this->saveLanguageResources();
+        /** @noinspection PhpParamsInspection */
         $this->language = new Language($this);
         if(!empty($locale)){
             $this->language->setLocale($locale, true);

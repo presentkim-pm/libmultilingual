@@ -66,11 +66,15 @@ class Language{
      * @return string
      */
     public function translate(string $id, array $params = []) : string{
-        $str = $this->lang[$id] ?? $this->fallbackLang[$id] ?? $id;
+        $str = $this->get($id);
         foreach($params as $i => $param){
             $str = str_replace("{%$i}", (string) $param, $str);
         }
         return $str;
+    }
+
+    public function get(string $id) : string{
+        return $this->lang[$id] ?? $this->fallbackLang[$id] ?? $id;
     }
 
     /** @return string */

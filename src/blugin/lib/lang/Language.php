@@ -61,7 +61,7 @@ class Language{
 
     /**
      * @param string   $id
-     * @param string[] $params
+     * @param mixed[] $params
      *
      * @return string
      */

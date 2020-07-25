@@ -34,7 +34,7 @@ class Language{
     use PluginOwnedTrait;
 
     public const FALLBACK_LOCALE = "eng";
-    public const REGEX_ORIGNINAL_FILE = '/^lang\/(.*)\/lang\.ini$/';
+    public const REGEX_ORIGINAL_FILE = '/^lang\/(.*)\/lang\.ini$/';
     public const REGEX_REPLACED_FILE = '/^lang\/(.*)\.ini$/';
 
     /** @var string locale name */

@@ -88,16 +88,12 @@ class Language{
      * @return bool
      */
     public function setLocale(string $locale) : bool{
-        $localeList = $this->getAvailableLocales();
-        $locale = strtolower($locale);
-        $file = "{$this->owningPlugin->getDataFolder()}lang/$locale.ini";
-        if(!in_array($locale, $localeList) || !file_exists($file)){
-            $this->owningPlugin->getLogger()->error("Couldn't find the locale \"{$this->locale}\". (Availables : " . implode(", ", $localeList) . ")");
+        $lang = $this->loadLocale($locale);
+        if(!$lang)
             return false;
-        }
 
-        $this->locale = $locale;
-        $this->lang = array_map("stripcslashes", parse_ini_file($file, false, INI_SCANNER_RAW));
+        $this->lang = $lang;
+        $this->locale = strtolower($locale);
         return true;
     }
 
@@ -119,5 +115,22 @@ class Language{
         }
 
         return $localeList;
+    }
+
+    /**
+     * Load locale file from plugin data folder
+     *
+     * @param string $locale
+     *
+     * @return string[]|null
+     */
+    public function loadLocale(string $locale) : ?array{
+        $localeList = $this->getAvailableLocales();
+        $locale = strtolower($locale);
+        $file = "{$this->owningPlugin->getDataFolder()}lang/$locale.ini";
+        if(!in_array($locale, $localeList) || !file_exists($file))
+            return null;
+
+        return array_map("stripcslashes", parse_ini_file($file, false, INI_SCANNER_RAW));
     }
 }

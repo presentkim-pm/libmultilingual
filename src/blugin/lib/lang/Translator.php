@@ -27,11 +27,12 @@ declare(strict_types=1);
 
 namespace blugin\lib\lang;
 
+use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginBase;
-use pocketmine\plugin\PluginOwnedTrait;
 
-class Language{
-    use PluginOwnedTrait;
+class Translator{
+    /** @var Plugin */
+    private $plugin;
 
     public const REGEX_ORIGINAL_FILE = '/^lang\/(.*)\/lang\.ini$/';
     public const REGEX_REPLACED_FILE = '/^lang\/(.*)\.ini$/';
@@ -42,9 +43,12 @@ class Language{
     /** @var string[] */
     protected $lang = [];
 
-    /** @param PluginBase $owningPlugin */
-    public function __construct(PluginBase $owningPlugin){
-        $this->owningPlugin = $owningPlugin;
+    /** @var string[] */
+    protected $fallbackLang = [];
+
+    /** @param PluginBase $plugin */
+    public function __construct(PluginBase $plugin){
+        $this->plugin = $plugin;
 
         $this->loadAllLocale();
     }
@@ -73,7 +77,7 @@ class Language{
     public function get(string $id, ?string $locale = null) : string{
         $locale = $locale ?? $this->getLocale();
         $lang = $this->lang[$locale] ?? [];
-        return $lang[$id] ?? $id;
+        return $lang[$id] ?? $this->fallbackLang[$id] ?? $id;
     }
 
     /** @return string */
@@ -107,7 +111,7 @@ class Language{
      */
     public function getAvailableLocales() : array{
         $localeList = [];
-        $dataFolder = $this->owningPlugin->getDataFolder();
+        $dataFolder = $this->plugin->getDataFolder();
         foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dataFolder)) as $resource){
             if($resource->isFile()){
                 $path = str_replace(DIRECTORY_SEPARATOR, "/", substr((string) $resource, strlen($dataFolder)));
@@ -130,7 +134,7 @@ class Language{
     public function loadLocale(string $locale) : ?array{
         $localeList = $this->getAvailableLocales();
         $locale = strtolower($locale);
-        $file = "{$this->owningPlugin->getDataFolder()}lang/$locale.ini";
+        $file = "{$this->plugin->getDataFolder()}lang/$locale.ini";
         if(!in_array($locale, $localeList) || !file_exists($file))
             return null;
 
@@ -145,5 +149,9 @@ class Language{
         foreach($this->getAvailableLocales() as $_ => $locale){
             $this->lang[$locale] = $this->loadLocale($locale);
         }
+    }
+
+    public function getPlugin() : Plugin{
+        return $this->plugin;
     }
 }

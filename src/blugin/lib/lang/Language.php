@@ -88,7 +88,7 @@ class Language{
      * @return bool
      */
     public function setLocale(string $locale) : bool{
-        $localeList = $this->getLocales();
+        $localeList = $this->getAvailableLocales();
         $locale = strtolower($locale);
         $file = "{$this->owningPlugin->getDataFolder()}lang/$locale.ini";
         if(!in_array($locale, $localeList) || !file_exists($file)){
@@ -106,7 +106,7 @@ class Language{
      *
      * @return string[]
      */
-    public function getLocales() : array{
+    public function getAvailableLocales() : array{
         $localeList = [];
         $dataFolder = $this->owningPlugin->getDataFolder();
         foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dataFolder)) as $resource){

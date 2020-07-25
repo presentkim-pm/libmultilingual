@@ -33,9 +33,6 @@ use pocketmine\plugin\PluginOwnedTrait;
 class Language{
     use PluginOwnedTrait;
 
-    public const REGEX_ORIGINAL_FILE = '/^lang\/(.*)\/lang\.ini$/';
-    public const REGEX_REPLACED_FILE = '/^lang\/(.*)\.ini$/';
-
     /** @var string locale name */
     protected $locale;
 
@@ -111,7 +108,7 @@ class Language{
         foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dataFolder)) as $resource){
             if($resource->isFile()){
                 $path = str_replace(DIRECTORY_SEPARATOR, "/", substr((string) $resource, strlen($dataFolder)));
-                if(!preg_match(self::REGEX_REPLACED_FILE, $path, $matches) || !isset($matches[1]))
+                if(!preg_match('/^lang\/(.*)\.ini$/', $path, $matches) || !isset($matches[1]))
                     continue;
                 $localeList[] = $matches[1];
             }

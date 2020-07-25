@@ -57,24 +57,35 @@ class Language{
         }else{
             $owningPlugin->getLogger()->error("Missing fallback language file");
         }
+
+        $this->loadAllLocale();
     }
 
     /**
-     * @param string  $id
-     * @param mixed[] $params
+     * @param string      $id
+     * @param mixed[]     $params
+     * @param string|null $locale
      *
      * @return string
      */
-    public function translate(string $id, array $params = []) : string{
-        $str = $this->get($id);
+    public function translate(string $id, array $params = [], ?string $locale = null) : string{
+        $str = $this->get($id, $locale);
         foreach($params as $i => $param){
             $str = str_replace("{%$i}", (string) $param, $str);
         }
         return $str;
     }
 
-    public function get(string $id) : string{
-        return $this->lang[$id] ?? $this->fallbackLang[$id] ?? $id;
+    /**
+     * @param string      $id
+     * @param string|null $locale
+     *
+     * @return string
+     */
+    public function get(string $id, ?string $locale = null) : string{
+        $locale = $locale ?? $this->getLocale();
+        $lang = $this->lang[$locale] ?? [];
+        return $lang[$id] ?? $this->fallbackLang[$id] ?? $id;
     }
 
     /** @return string */
@@ -88,11 +99,15 @@ class Language{
      * @return bool
      */
     public function setLocale(string $locale) : bool{
-        $lang = $this->loadLocale($locale);
-        if(!$lang)
-            return false;
+        $locale = strtolower($locale);
+        if(!isset($this->lang[$locale])){
+            $lang = $this->loadLocale($locale);
+            if(!$lang)
+                return false;
 
-        $this->lang = $lang;
+            $this->lang[$locale] = $lang;
+        }
+
         $this->locale = strtolower($locale);
         return true;
     }
@@ -132,5 +147,15 @@ class Language{
             return null;
 
         return array_map("stripcslashes", parse_ini_file($file, false, INI_SCANNER_RAW));
+    }
+
+    /**
+     * Load all locale file from plugin data folder
+     *
+     */
+    public function loadAllLocale() : void{
+        foreach($this->getAvailableLocales() as $_ => $locale){
+            $this->lang[$locale] = $this->loadLocale($locale);
+        }
     }
 }

@@ -52,7 +52,7 @@ trait LanguageTrait{
         /** @noinspection PhpParamsInspection */
         $this->language = new Language($this);
         if(!empty($locale)){
-            $this->language->setLocale($locale, true);
+            $this->setLocale($locale);
         }
     }
 
@@ -83,6 +83,22 @@ trait LanguageTrait{
             fclose($fp);
             fclose($resource);
         }
+    }
+
+    /**
+     * @param string $locale
+     *
+     * @return bool
+     */
+    public function setLocale(string $locale) : bool{
+        $ret = $this->language->setLocale($locale);
+        if($ret){
+            $this->getLogger()->notice($this->language->translate("language.selected", [
+                $this->language->translate("language.name"),
+                $locale
+            ]));
+        }
+        return $ret;
     }
 
     /**

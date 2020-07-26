@@ -89,7 +89,7 @@ class Translator{
      * @return Language|null
      */
     public function getLang(?string $locale = null) : ?Language{
-        $locale = strtolower($locale) ?? $this->getDefaultLocale();
+        $locale = $locale === null ? $this->getDefaultLocale() : strtolower($locale);
         return $this->lang[$locale] ?? null;
     }
 

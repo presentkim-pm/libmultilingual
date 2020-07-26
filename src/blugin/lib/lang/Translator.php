@@ -27,7 +27,10 @@ declare(strict_types=1);
 
 namespace blugin\lib\lang;
 
+use blugin\lib\lang\convert\LocaleConverter;
+use pocketmine\command\CommandSender;
 use pocketmine\lang\LanguageNotFoundException;
+use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 
@@ -65,6 +68,21 @@ class Translator{
             $str = str_replace("{%$i}", (string) $param, $str);
         }
         return $str;
+    }
+
+    /**
+     * @param string        $str
+     * @param mixed[]       $params
+     * @param CommandSender $sender
+     *
+     * @return string
+     */
+    public function translateTo(string $str, array $params, CommandSender $sender) : string{
+        $locale = Server::getInstance()->getLanguage()->getLang();
+        if(!Server::getInstance()->isLanguageForced() && $sender instanceof Player){
+            $locale = LocaleConverter::fromPlayer($sender, $locale);
+        }
+        return $this->translate($str, $params, $locale);
     }
 
     /**

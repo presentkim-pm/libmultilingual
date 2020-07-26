@@ -27,7 +27,7 @@ declare(strict_types=1);
 
 namespace blugin\lib\translator\convert;
 
-use pocketmine\player\Player;
+use pocketmine\command\CommandSender;
 
 class LocaleConverter{
     /**
@@ -75,13 +75,13 @@ class LocaleConverter{
     ];
 
     /**
-     * @param Player $player
-     * @param string $default = "eng"
+     * @param CommandSender $sender
+     * @param string        $default = "eng"
      *
      * @return string
      */
-    public static function fromPlayer(Player $player, string $default = "eng") : string{
-        return self::fromIETF($player->getLocale(), $default);
+    public static function fromSender(CommandSender $sender, string $default = "eng") : string{
+        return method_exists($sender, 'getLocale') ? self::fromIETF($sender->getLocale(), $default) : $default;
     }
 
     /**

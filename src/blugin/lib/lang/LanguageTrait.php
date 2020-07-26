@@ -57,16 +57,12 @@ trait LanguageTrait{
     }
 
     public function saveLanguageResources(){
-        /** @var \SplFileInfo[] $langFiles */
-        $langFiles = array_filter($this->getResources(), function(string $key){
-            return preg_match('/^lang\/(.*)\/lang\.ini$/', $key);
-        }, ARRAY_FILTER_USE_KEY);
-
         $langFolder = $this->getDataFolder() . "lang/";
         if(!file_exists($langFolder)){
             mkdir($langFolder, 0755, true);
         }
-        foreach($langFiles as $key => $info){
+
+        foreach($this->getResources() as $key => $_){
             if(!preg_match('/^lang\/(.*)\/lang\.ini$/', $key, $matches) || !isset($matches[1]))
                 continue;
 

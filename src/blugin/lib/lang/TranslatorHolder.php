@@ -27,11 +27,11 @@ declare(strict_types=1);
 
 namespace blugin\lib\lang;
 
-interface LanguageHolder{
+interface TranslatorHolder{
     /**
-     * Get the Language
+     * Get the Translator
      *
-     * @return Language
+     * @return Translator
      */
-    public function getLanguage() : Language;
+    public function getTranslator() : Translator;
 }

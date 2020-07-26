@@ -27,50 +27,29 @@ declare(strict_types=1);
 
 namespace blugin\lib\lang;
 
-use pocketmine\plugin\PluginBase;
-use pocketmine\plugin\PluginOwnedTrait;
-
 class Language{
-    use PluginOwnedTrait;
-
     /** @var string locale name */
     protected $locale;
 
     /** @var string[] */
-    protected $lang = [];
+    protected $map = [];
 
-    /** @param PluginBase $owningPlugin */
-    public function __construct(PluginBase $owningPlugin){
-        $this->owningPlugin = $owningPlugin;
-
-        $this->loadAllLocale();
+    /**
+     * @param array  $map
+     * @param string $locale
+     */
+    public function __construct(array $map, string $locale){
+        $this->map = $map;
+        $this->locale = $locale;
     }
 
     /**
-     * @param string      $id
-     * @param mixed[]     $params
-     * @param string|null $locale
+     * @param string $id
      *
      * @return string
      */
-    public function translate(string $id, array $params = [], ?string $locale = null) : string{
-        $str = $this->get($id, $locale);
-        foreach($params as $i => $param){
-            $str = str_replace("{%$i}", (string) $param, $str);
-        }
-        return $str;
-    }
-
-    /**
-     * @param string      $id
-     * @param string|null $locale
-     *
-     * @return string
-     */
-    public function get(string $id, ?string $locale = null) : string{
-        $locale = $locale ?? $this->getLocale();
-        $lang = $this->lang[$locale] ?? [];
-        return $lang[$id] ?? $id;
+    public function get(string $id) : string{
+        return $this->map[$id] ?? $id;
     }
 
     /** @return string */
@@ -79,68 +58,17 @@ class Language{
     }
 
     /**
+     * Load language file from plugin data folder
+     *
+     * @param string $path
      * @param string $locale
      *
-     * @return bool
+     * @return Language|null
      */
-    public function setLocale(string $locale) : bool{
-        $locale = strtolower($locale);
-        if(!isset($this->lang[$locale])){
-            $lang = $this->loadLocale($locale);
-            if(!$lang)
-                return false;
-
-            $this->lang[$locale] = $lang;
-        }
-
-        $this->locale = strtolower($locale);
-        return true;
-    }
-
-    /**
-     * Read available locale list from plugin data folder
-     *
-     * @return string[]
-     */
-    public function getAvailableLocales() : array{
-        $localeList = [];
-        $dataFolder = $this->owningPlugin->getDataFolder();
-        foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dataFolder)) as $resource){
-            if($resource->isFile()){
-                $path = str_replace(DIRECTORY_SEPARATOR, "/", substr((string) $resource, strlen($dataFolder)));
-                if(!preg_match('/^lang\/(.*)\.ini$/', $path, $matches) || !isset($matches[1]))
-                    continue;
-                $localeList[] = $matches[1];
-            }
-        }
-
-        return $localeList;
-    }
-
-    /**
-     * Load locale file from plugin data folder
-     *
-     * @param string $locale
-     *
-     * @return string[]|null
-     */
-    public function loadLocale(string $locale) : ?array{
-        $localeList = $this->getAvailableLocales();
-        $locale = strtolower($locale);
-        $file = "{$this->owningPlugin->getDataFolder()}lang/$locale.ini";
-        if(!in_array($locale, $localeList) || !file_exists($file))
+    public static function loadFrom(string $path, string $locale) : ?Language{
+        if(!file_exists($path))
             return null;
 
-        return array_map("stripcslashes", parse_ini_file($file, false, INI_SCANNER_RAW));
-    }
-
-    /**
-     * Load all locale file from plugin data folder
-     *
-     */
-    public function loadAllLocale() : void{
-        foreach($this->getAvailableLocales() as $_ => $locale){
-            $this->lang[$locale] = $this->loadLocale($locale);
-        }
+        return new Language(array_map("stripcslashes", parse_ini_file($path, false, INI_SCANNER_RAW)), strtolower($locale));
     }
 }

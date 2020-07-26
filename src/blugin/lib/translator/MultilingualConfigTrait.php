@@ -32,39 +32,32 @@ use pocketmine\plugin\PluginBase;
 /**
  * This trait override most methods in the {@link PluginBase} abstract class.
  */
-trait TranslatorHolderTrait{
-    /** @var Translator */
-    private $translator;
-
+trait MultilingualConfigTrait{
     /**
-     * Get the Translator
+     * @Override for multilingual support of the config file
      *
-     * @return Translator
+     * @return bool
      */
-    public function getTranslator() : Translator{
-        return $this->translator;
-    }
+    public function saveDefaultConfig() : bool{
+        $configFile = "{$this->getDataFolder()}config.yml";
+        if(file_exists($configFile))
+            return false;
 
-    /**
-     * Load language with save default language resources
-     *
-     * @param string|null $locale
-     */
-    public function loadLanguage(?string $locale = null) : void{
-        $this->saveDefaultLocales();
-
-        /** @noinspection PhpParamsInspection */
-        $this->translator = new Translator($this);
-        if($locale !== null){
-            $this->translator->setDefaultLocale($locale);
-        }
-    }
-
-    public function saveDefaultLocales(){
-        foreach($this->getResources() as $filePath => $info){
-            if(preg_match('/^locale\/[a-zA-Z]{3}\.ini$/', $filePath)){
-                $this->saveResource($filePath);
+        $resource = $this->getResource("locale/{$this->getServer()->getLanguage()->getLang()}.yml");
+        if($resource === null){
+            foreach($this->getResources() as $filePath => $info){
+                if(preg_match('/^locale\/[a-zA-Z]{3}\.yml$/', $filePath)){
+                    $resource = $this->getResource($filePath);
+                    break;
+                }
             }
         }
+        if($resource === null)
+            return false;
+
+        $ret = stream_copy_to_stream($resource, $fp = fopen($configFile, "wb")) > 0;
+        fclose($fp);
+        fclose($resource);
+        return $ret;
     }
 }

@@ -131,7 +131,7 @@ class Translator{
             throw new \RuntimeException("Language directory $path does not exist or is not a directory");
 
         foreach(scandir($path, SCANDIR_SORT_NONE) as $_ => $filename){
-            if(!preg_match('/^([a-zA-Z]){3}\.ini$/', $filename, $matches) || !isset($matches[1]))
+            if(!preg_match('/^([a-zA-Z]{3})\.ini$/', $filename, $matches) || !isset($matches[1]))
                 continue;
 
             $this->lang[$matches[1]] = Language::loadFrom($path . $filename, $matches[1]);

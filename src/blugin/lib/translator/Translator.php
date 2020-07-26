@@ -69,15 +69,15 @@ class Translator{
     }
 
     /**
-     * @param string        $str
-     * @param mixed[]       $params
-     * @param CommandSender $sender
+     * @param string             $str
+     * @param mixed[]            $params
+     * @param CommandSender|null $sender = null
      *
      * @return string
      */
-    public function translateTo(string $str, array $params, CommandSender $sender) : string{
+    public function translateTo(string $str, array $params, ?CommandSender $sender = null) : string{
         $locale = Server::getInstance()->getLanguage()->getLang();
-        if(!Server::getInstance()->isLanguageForced()){
+        if($sender !== null && !Server::getInstance()->isLanguageForced()){
             $locale = LocaleConverter::fromSender($sender, $locale);
         }
         return $this->translate($str, $params, $locale);

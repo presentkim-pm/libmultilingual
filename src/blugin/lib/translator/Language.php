@@ -53,6 +53,11 @@ class Language{
     }
 
     /** @return string */
+    public function getName() : string{
+        return $this->get("language.name");
+    }
+
+    /** @return string */
     public function getLocale() : string{
         return $this->locale;
     }

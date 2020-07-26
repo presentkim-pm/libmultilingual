@@ -27,7 +27,9 @@ declare(strict_types=1);
 
 namespace blugin\lib\lang;
 
+use pocketmine\lang\LanguageNotFoundException;
 use pocketmine\plugin\PluginBase;
+use pocketmine\Server;
 
 class Translator{
     /** @var PluginBase */
@@ -44,6 +46,7 @@ class Translator{
         $this->plugin = $owningPlugin;
 
         $this->loadAllLocale();
+        $this->defaultLocale = Server::getInstance()->getLanguage()->getLang();
     }
 
     /**
@@ -90,14 +93,15 @@ class Translator{
      */
     public function getAvailableLocales() : array{
         $localeList = [];
-        $dataFolder = $this->plugin->getDataFolder();
-        foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dataFolder)) as $resource){
-            if($resource->isFile()){
-                $path = str_replace(DIRECTORY_SEPARATOR, "/", substr((string) $resource, strlen($dataFolder)));
-                if(!preg_match('/^lang\/(.*)\.ini$/', $path, $matches) || !isset($matches[1]))
-                    continue;
-                $localeList[] = $matches[1];
-            }
+        $path = $this->plugin->getDataFolder() . "locales/";
+        if(!is_dir($path))
+            throw new LanguageNotFoundException("Language directory $path does not exist or is not a directory");
+
+        foreach(scandir($path, SCANDIR_SORT_NONE) as $_ => $filename){
+            if(!preg_match('/^[a-zA-Z]{3}\.ini$/', $filename, $matches) || !isset($matches[1]))
+                continue;
+
+            $localeList[] = $matches[1];
         }
 
         return $localeList;
@@ -109,7 +113,7 @@ class Translator{
     public function loadAllLocale() : void{
         $dataFolder = $this->plugin->getDataFolder();
         foreach($this->getAvailableLocales() as $_ => $locale){
-            $path = "{$dataFolder}lang/$locale.ini";
+            $path = "{$dataFolder}locales/$locale.ini";
             $this->lang[$locale] = Language::loadFrom($path, $locale);
         }
     }

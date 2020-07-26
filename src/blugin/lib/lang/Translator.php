@@ -27,62 +27,46 @@ declare(strict_types=1);
 
 namespace blugin\lib\lang;
 
-use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginBase;
+use pocketmine\plugin\PluginOwnedTrait;
 
 class Translator{
-    /** @var Plugin */
-    private $plugin;
-
-    public const REGEX_ORIGINAL_FILE = '/^lang\/(.*)\/lang\.ini$/';
-    public const REGEX_REPLACED_FILE = '/^lang\/(.*)\.ini$/';
+    use PluginOwnedTrait;
 
     /** @var string locale name */
-    protected $locale;
+    protected $defaultLocale;
 
-    /** @var string[] */
+    /** @var Language[] */
     protected $lang = [];
 
-    /** @var string[] */
-    protected $fallbackLang = [];
-
-    /** @param PluginBase $plugin */
-    public function __construct(PluginBase $plugin){
-        $this->plugin = $plugin;
+    /** @param PluginBase $owningPlugin */
+    public function __construct(PluginBase $owningPlugin){
+        $this->owningPlugin = $owningPlugin;
 
         $this->loadAllLocale();
     }
 
     /**
-     * @param string      $id
+     * @param string      $str
      * @param mixed[]     $params
      * @param string|null $locale
      *
      * @return string
      */
-    public function translate(string $id, array $params = [], ?string $locale = null) : string{
-        $str = $this->get($id, $locale);
+    public function translate(string $str, array $params = [], ?string $locale = null) : string{
+        $locale = $locale ?? $this->getDefaultLocale();
+        if(isset($this->lang[$locale])){
+            $str = $this->lang[$locale]->get($str);
+        }
         foreach($params as $i => $param){
             $str = str_replace("{%$i}", (string) $param, $str);
         }
         return $str;
     }
 
-    /**
-     * @param string      $id
-     * @param string|null $locale
-     *
-     * @return string
-     */
-    public function get(string $id, ?string $locale = null) : string{
-        $locale = $locale ?? $this->getLocale();
-        $lang = $this->lang[$locale] ?? [];
-        return $lang[$id] ?? $this->fallbackLang[$id] ?? $id;
-    }
-
     /** @return string */
-    public function getLocale() : string{
-        return $this->locale;
+    public function getDefaultLocale() : string{
+        return $this->defaultLocale;
     }
 
     /**
@@ -90,17 +74,12 @@ class Translator{
      *
      * @return bool
      */
-    public function setLocale(string $locale) : bool{
+    public function setDefaultLocale(string $locale) : bool{
         $locale = strtolower($locale);
-        if(!isset($this->lang[$locale])){
-            $lang = $this->loadLocale($locale);
-            if(!$lang)
+        if(!isset($this->lang[$locale]))
                 return false;
 
-            $this->lang[$locale] = $lang;
-        }
-
-        $this->locale = strtolower($locale);
+        $this->defaultLocale = strtolower($locale);
         return true;
     }
 
@@ -111,11 +90,11 @@ class Translator{
      */
     public function getAvailableLocales() : array{
         $localeList = [];
-        $dataFolder = $this->plugin->getDataFolder();
+        $dataFolder = $this->owningPlugin->getDataFolder();
         foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dataFolder)) as $resource){
             if($resource->isFile()){
                 $path = str_replace(DIRECTORY_SEPARATOR, "/", substr((string) $resource, strlen($dataFolder)));
-                if(!preg_match(self::REGEX_REPLACED_FILE, $path, $matches) || !isset($matches[1]))
+                if(!preg_match('/^lang\/(.*)\.ini$/', $path, $matches) || !isset($matches[1]))
                     continue;
                 $localeList[] = $matches[1];
             }
@@ -125,33 +104,13 @@ class Translator{
     }
 
     /**
-     * Load locale file from plugin data folder
-     *
-     * @param string $locale
-     *
-     * @return string[]|null
-     */
-    public function loadLocale(string $locale) : ?array{
-        $localeList = $this->getAvailableLocales();
-        $locale = strtolower($locale);
-        $file = "{$this->plugin->getDataFolder()}lang/$locale.ini";
-        if(!in_array($locale, $localeList) || !file_exists($file))
-            return null;
-
-        return array_map("stripcslashes", parse_ini_file($file, false, INI_SCANNER_RAW));
-    }
-
-    /**
      * Load all locale file from plugin data folder
-     *
      */
     public function loadAllLocale() : void{
+        $dataFolder = $this->owningPlugin->getDataFolder();
         foreach($this->getAvailableLocales() as $_ => $locale){
-            $this->lang[$locale] = $this->loadLocale($locale);
+            $path = "{$dataFolder}lang/$locale.ini";
+            $this->lang[$locale] = Language::loadFrom($path, $locale);
         }
-    }
-
-    public function getPlugin() : Plugin{
-        return $this->plugin;
     }
 }

@@ -33,13 +33,17 @@ use pocketmine\utils\AssumptionFailedError;
 /**
  * This trait override most methods in the {@link PluginBase} abstract class.
  */
-trait LanguageTrait{
-    /** @var Language */
-    private $language;
+trait TranslatorHolderTrait{
+    /** @var Translator */
+    private $translator;
 
-    /** @return Language */
-    public function getLanguage() : Language{
-        return $this->language;
+    /**
+     * Get the Translator
+     *
+     * @return Translator
+     */
+    public function getTranslator() : Translator{
+        return $this->translator;
     }
 
     /**
@@ -50,9 +54,9 @@ trait LanguageTrait{
     public function loadLanguage(?string $locale = null) : void{
         $this->saveLanguageResources();
         /** @noinspection PhpParamsInspection */
-        $this->language = new Language($this);
+        $this->translator = new Language($this);
         if(!empty($locale)){
-            $this->language->setLocale($locale);
+            $this->translator->setDefaultLocale($locale);
         }
     }
 
@@ -89,7 +93,7 @@ trait LanguageTrait{
     public function saveDefaultConfig() : bool{
         $resource = $this->getResource("lang/{$this->getServer()->getLanguage()->getLang()}/config.yml");
         if($resource === null){
-            $resource = $this->getResource("lang/" . Language::FALLBACK_LOCALE . "/config.yml");
+            $resource = $this->getResource("lang/" . $this->getTranslator()->getAvailableLocales()[0] ?? "" . "/config.yml");
         }
 
         $configFile = "{$this->getDataFolder()}config.yml";

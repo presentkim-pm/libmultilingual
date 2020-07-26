@@ -57,9 +57,9 @@ class Translator{
      * @return string
      */
     public function translate(string $str, array $params = [], ?string $locale = null) : string{
-        $locale = $locale ?? $this->getDefaultLocale();
-        if(isset($this->lang[$locale])){
-            $str = $this->lang[$locale]->get($str);
+        $lang = $this->getLang($locale);
+        if($lang !== null){
+            $str = $lang->get($str);
         }
         foreach($params as $i => $param){
             $str = str_replace("{%$i}", (string) $param, $str);
@@ -67,9 +67,29 @@ class Translator{
         return $str;
     }
 
+    /**
+     * @param string|null $locale
+     *
+     * @return Language|null
+     */
+    public function getLang(?string $locale = null) : ?Language{
+        $locale = strtolower($locale) ?? $this->getDefaultLocale();
+        return $this->lang[$locale] ?? null;
+    }
+
+    /** @return Language[] */
+    public function getLangList() : array{
+        return $this->lang;
+    }
+
     /** @return string */
     public function getDefaultLocale() : string{
         return $this->defaultLocale;
+    }
+
+    /** @return string[] */
+    public function getLocaleList() : array{
+        return array_keys($this->getLangList());
     }
 
     /**

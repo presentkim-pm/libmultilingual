@@ -28,10 +28,10 @@ declare(strict_types=1);
 namespace blugin\lib\lang;
 
 use pocketmine\plugin\PluginBase;
-use pocketmine\plugin\PluginOwnedTrait;
 
 class Translator{
-    use PluginOwnedTrait;
+    /** @var PluginBase */
+    protected $plugin;
 
     /** @var string locale name */
     protected $defaultLocale;
@@ -41,7 +41,7 @@ class Translator{
 
     /** @param PluginBase $owningPlugin */
     public function __construct(PluginBase $owningPlugin){
-        $this->owningPlugin = $owningPlugin;
+        $this->plugin = $owningPlugin;
 
         $this->loadAllLocale();
     }
@@ -77,7 +77,7 @@ class Translator{
     public function setDefaultLocale(string $locale) : bool{
         $locale = strtolower($locale);
         if(!isset($this->lang[$locale]))
-                return false;
+            return false;
 
         $this->defaultLocale = strtolower($locale);
         return true;
@@ -90,7 +90,7 @@ class Translator{
      */
     public function getAvailableLocales() : array{
         $localeList = [];
-        $dataFolder = $this->owningPlugin->getDataFolder();
+        $dataFolder = $this->plugin->getDataFolder();
         foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dataFolder)) as $resource){
             if($resource->isFile()){
                 $path = str_replace(DIRECTORY_SEPARATOR, "/", substr((string) $resource, strlen($dataFolder)));
@@ -107,10 +107,17 @@ class Translator{
      * Load all locale file from plugin data folder
      */
     public function loadAllLocale() : void{
-        $dataFolder = $this->owningPlugin->getDataFolder();
+        $dataFolder = $this->plugin->getDataFolder();
         foreach($this->getAvailableLocales() as $_ => $locale){
             $path = "{$dataFolder}lang/$locale.ini";
             $this->lang[$locale] = Language::loadFrom($path, $locale);
         }
+    }
+
+    /**
+     * @return PluginBase
+     */
+    public function getPlugin() : PluginBase{
+        return $this->plugin;
     }
 }

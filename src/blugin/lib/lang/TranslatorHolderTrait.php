@@ -28,7 +28,6 @@ declare(strict_types=1);
 namespace blugin\lib\lang;
 
 use pocketmine\plugin\PluginBase;
-use pocketmine\utils\AssumptionFailedError;
 
 /**
  * This trait override most methods in the {@link PluginBase} abstract class.
@@ -52,36 +51,20 @@ trait TranslatorHolderTrait{
      * @param string|null $locale
      */
     public function loadLanguage(?string $locale = null) : void{
-        $this->saveLanguageResources();
+        $this->saveDefaultLocales();
+
         /** @noinspection PhpParamsInspection */
         $this->translator = new Language($this);
-        if(!empty($locale)){
+        if($locale !== null){
             $this->translator->setDefaultLocale($locale);
         }
     }
 
-    public function saveLanguageResources(){
-        $langFolder = $this->getDataFolder() . "lang/";
-        if(!file_exists($langFolder)){
-            mkdir($langFolder, 0755, true);
-        }
-
-        foreach($this->getResources() as $key => $_){
-            if(!preg_match('/^lang\/(.*)\/lang\.ini$/', $key, $matches) || !isset($matches[1]))
-                continue;
-
-            $out = $langFolder . $matches[1] . ".ini";
-            if(file_exists($out))
-                continue;
-
-            $fp = fopen($out, "wb");
-            if($fp === false)
-                throw new AssumptionFailedError("fopen() should not fail with wb flags");
-
-            $resource = $this->getResource($key);
-            stream_copy_to_stream($resource, $fp);
-            fclose($fp);
-            fclose($resource);
+    public function saveDefaultLocales(){
+        foreach($this->getResources() as $filePath => $info){
+            if(preg_match('/^locales\/[a-zA-Z]{3}\.ini$/', $filePath)){
+                $this->saveResource($filePath);
+            }
         }
     }
 
@@ -91,18 +74,25 @@ trait TranslatorHolderTrait{
      * @return bool
      */
     public function saveDefaultConfig() : bool{
-        $resource = $this->getResource("lang/{$this->getServer()->getLanguage()->getLang()}/config.yml");
-        if($resource === null){
-            $resource = $this->getResource("lang/" . $this->getTranslator()->getAvailableLocales()[0] ?? "" . "/config.yml");
-        }
-
         $configFile = "{$this->getDataFolder()}config.yml";
-        if(!file_exists($configFile)){
-            $ret = stream_copy_to_stream($resource, $fp = fopen($configFile, "wb")) > 0;
-            fclose($fp);
-            fclose($resource);
-            return $ret;
+        if(file_exists($configFile))
+            return false;
+
+        $resource = $this->getResource("locale/{$this->getServer()->getLanguage()->getLang()}.yml");
+        if($resource === null){
+            foreach($this->getResources() as $filePath => $info){
+                if(preg_match('/^locales\/[a-zA-Z]{3}\.yml$/', $filePath)){
+                    $resource = $this->getResource($filePath);
+                    break;
+                }
+            }
         }
-        return false;
+        if($resource === null)
+            return false;
+
+        $ret = stream_copy_to_stream($resource, $fp = fopen($configFile, "wb")) > 0;
+        fclose($fp);
+        fclose($resource);
+        return $ret;
     }
 }

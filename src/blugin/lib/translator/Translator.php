@@ -29,7 +29,6 @@ namespace blugin\lib\translator;
 
 use blugin\lib\translator\convert\LocaleConverter;
 use pocketmine\command\CommandSender;
-use pocketmine\lang\LanguageNotFoundException;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 
@@ -129,7 +128,7 @@ class Translator{
     public function loadAllLocale() : void{
         $path = $this->plugin->getDataFolder() . "locales/";
         if(!is_dir($path))
-            throw new LanguageNotFoundException("Language directory $path does not exist or is not a directory");
+            throw new \RuntimeException("Language directory $path does not exist or is not a directory");
 
         foreach(scandir($path, SCANDIR_SORT_NONE) as $_ => $filename){
             if(!preg_match('/^([a-zA-Z]){3}\.ini$/', $filename, $matches) || !isset($matches[1]))

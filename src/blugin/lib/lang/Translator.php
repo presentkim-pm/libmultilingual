@@ -87,34 +87,18 @@ class Translator{
     }
 
     /**
-     * Read available locale list from plugin data folder
-     *
-     * @return string[]
+     * Load all locale file from plugin data folder
      */
-    public function getAvailableLocales() : array{
-        $localeList = [];
+    public function loadAllLocale() : void{
         $path = $this->plugin->getDataFolder() . "locales/";
         if(!is_dir($path))
             throw new LanguageNotFoundException("Language directory $path does not exist or is not a directory");
 
         foreach(scandir($path, SCANDIR_SORT_NONE) as $_ => $filename){
-            if(!preg_match('/^[a-zA-Z]{3}\.ini$/', $filename, $matches) || !isset($matches[1]))
+            if(!preg_match('/^([a-zA-Z]){3}\.ini$/', $filename, $matches) || !isset($matches[1]))
                 continue;
 
-            $localeList[] = $matches[1];
-        }
-
-        return $localeList;
-    }
-
-    /**
-     * Load all locale file from plugin data folder
-     */
-    public function loadAllLocale() : void{
-        $dataFolder = $this->plugin->getDataFolder();
-        foreach($this->getAvailableLocales() as $_ => $locale){
-            $path = "{$dataFolder}locales/$locale.ini";
-            $this->lang[$locale] = Language::loadFrom($path, $locale);
+            $this->lang[$matches[1]] = Language::loadFrom($path . $filename, $matches[1]);
         }
     }
 

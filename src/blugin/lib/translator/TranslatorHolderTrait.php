@@ -25,7 +25,7 @@
 
 declare(strict_types=1);
 
-namespace blugin\lib\lang;
+namespace blugin\lib\translator;
 
 use pocketmine\plugin\PluginBase;
 

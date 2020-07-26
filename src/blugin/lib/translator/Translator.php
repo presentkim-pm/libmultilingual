@@ -25,9 +25,9 @@
 
 declare(strict_types=1);
 
-namespace blugin\lib\lang;
+namespace blugin\lib\translator;
 
-use blugin\lib\lang\convert\LocaleConverter;
+use blugin\lib\translator\convert\LocaleConverter;
 use pocketmine\command\CommandSender;
 use pocketmine\lang\LanguageNotFoundException;
 use pocketmine\player\Player;

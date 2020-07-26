@@ -126,7 +126,7 @@ class Translator{
      * Load all locale file from plugin data folder
      */
     public function loadAllLocale() : void{
-        $path = $this->plugin->getDataFolder() . "locales/";
+        $path = $this->plugin->getDataFolder() . "locale/";
         if(!is_dir($path))
             throw new \RuntimeException("Language directory $path does not exist or is not a directory");
 

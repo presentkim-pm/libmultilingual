@@ -54,7 +54,7 @@ trait TranslatorHolderTrait{
         $this->saveDefaultLocales();
 
         /** @noinspection PhpParamsInspection */
-        $this->translator = new Language($this);
+        $this->translator = new Translator($this);
         if($locale !== null){
             $this->translator->setDefaultLocale($locale);
         }
@@ -62,7 +62,7 @@ trait TranslatorHolderTrait{
 
     public function saveDefaultLocales(){
         foreach($this->getResources() as $filePath => $info){
-            if(preg_match('/^locales\/[a-zA-Z]{3}\.ini$/', $filePath)){
+            if(preg_match('/^locale\/[a-zA-Z]{3}\.ini$/', $filePath)){
                 $this->saveResource($filePath);
             }
         }
@@ -81,7 +81,7 @@ trait TranslatorHolderTrait{
         $resource = $this->getResource("locale/{$this->getServer()->getLanguage()->getLang()}.yml");
         if($resource === null){
             foreach($this->getResources() as $filePath => $info){
-                if(preg_match('/^locales\/[a-zA-Z]{3}\.yml$/', $filePath)){
+                if(preg_match('/^locale\/[a-zA-Z]{3}\.yml$/', $filePath)){
                     $resource = $this->getResource($filePath);
                     break;
                 }

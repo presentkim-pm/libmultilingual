@@ -25,7 +25,7 @@
 
 declare(strict_types=1);
 
-namespace blugin\lib\lang\convert;
+namespace blugin\lib\translator\convert;
 
 use pocketmine\player\Player;
 

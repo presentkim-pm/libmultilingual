@@ -1,8 +1,8 @@
 <p align="center"> <img src="https://i.ibb.co/YfKHnVh/icon.png" width="360"> </p>
 <br> <h1 align="center"> libTranslator :: 자동 번역 라이브러리</h1>
 <p align="right">  
-  <a href="https://github.com/Blugin/libTranslator-PMMP/blob/master/README_KOR.md">  
-    <img src="https://img.shields.io/static/v1?label=%ED%95%9C%EA%B5%AD%EC%96%B4&message=%EB%A1%9C+%EC%9D%BD%EA%B8%B0&labelColor=success">  
+  <a href="https://github.com/Blugin/libTranslator-PMMP/blob/stable/README.md">  
+    <img src="https://img.shields.io/static/v1?label=read%20in&message=English&color=success">
   </a>  
 </p>  
 <p align="center">  
@@ -43,6 +43,7 @@
 ## :package: 다운로드:  
   
 | Version | Phar Download | Updates Note |  
+| :-----: | :-----------: | :----------: |   
 | 1.0.0 | [GitHub](https://github.com/Blugin/libTranslator-PMMP/releases/download/1.0.0/libTranslator_v1.0.0.phar) | **플러그인 게시 (플러그인 기능 구현)** |  
   
 > **모든 출시 버전은 [여기](https://github.com/Blugin/ChatThin-PMMP/releases)에서 확인할 수 있습니다**  

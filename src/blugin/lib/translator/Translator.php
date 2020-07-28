@@ -31,7 +31,6 @@ use blugin\lib\translator\convert\LocaleConverter;
 use pocketmine\command\CommandSender;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
-use pocketmine\utils\TextFormat;
 
 class Translator{
     /** @var PluginBase */
@@ -61,11 +60,21 @@ class Translator{
     public function translate(string $str, array $params = [], ?string $locale = null) : string{
         $lang = $this->getLang($locale);
         if($lang !== null){
-            $cleanedStr = TextFormat::clean($str);
-            if($str === $cleanedStr){
+            if(strpos($str, "%") === false){
                 $str = $lang->get($str);
             }else{
-                $str = str_replace($cleanedStr, $lang->get($cleanedStr), $str);
+                $parts = explode("%", $str);
+                $str = "";
+                $lastTranslated = false;
+                foreach($parts as $_ => $part){
+                    $new = $lang->get($part);
+                    if(strlen($str) > 0 && $part === $new && !$lastTranslated){
+                        $str .= "%";
+                    }
+                    $lastTranslated = $part !== $new;
+
+                    $str .= $new;
+                }
             }
         }
         foreach($params as $i => $param){

@@ -1,4 +1,17 @@
-## :information_source: 어떻게 사용하나요?
+<p align="right">  
+  <a href="https://github.com/Blugin/libTranslator-PMMP/blob/master/README_KOR.md">  
+    <img src="https://img.shields.io/static/v1?label=%ED%95%9C%EA%B5%AD%EC%96%B4&message=%EB%A1%9C+%EC%9D%BD%EA%B8%B0&labelColor=success">  
+  </a>  
+</p>  
+
+
+## :clipboard: 목차  
+- [:books: Intro](https://github.com/Blugin/libTranslator-PMMP/blob/master/README_KOR.md)  
+- :book: 어떻게 사용하나요?
+  
+<br>  
+  
+## :book: 어떻게 사용하나요?
 아래의 기본 사용법 4단계를 따르세요:  
 1. [:zap: 언어 파일 작성하기](#zap-%EC%96%B8%EC%96%B4-%ED%8C%8C%EC%9D%BC-%EC%9E%91%EC%84%B1%ED%95%98%EA%B8%B0)  
 2. [:zap: 기본 언어 파일들 저장하기](#zap-%EA%B8%B0%EB%B3%B8-%EC%96%B8%EC%96%B4-%ED%8C%8C%EC%9D%BC%EB%93%A4-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0)  
@@ -8,7 +21,6 @@
 + [:sparkles: `TranslatorHolderTrait`를 통한 빠르게 사용하기](#sparkles-translatorholdertrait%EB%A5%BC-%ED%86%B5%ED%95%9C-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)
 + [:sparkles: `config.yml`파일 다국어 지원하기](#sparkles-configyml%ED%8C%8C%EC%9D%BC-%EB%8B%A4%EA%B5%AD%EC%96%B4-%EC%A7%80%EC%9B%90%ED%95%98%EA%B8%B0)  
   
-<br>  
 <br>  
   
 #### :zap: 언어 파일 작성하기  

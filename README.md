@@ -50,8 +50,8 @@
   
 <br>  
   
-## :information_source: API Usage
-- [**How to use it?**](https://github.com/Blugin/libTranslator-PMMP/blob/master/doc/eng/HowToUse.md)
+## :books: API Usage
+- [:book: How to use it?](https://github.com/Blugin/libTranslator-PMMP/blob/master/doc/eng/HowToUse.md)
   
 <br>  
   

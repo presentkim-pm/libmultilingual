@@ -51,11 +51,11 @@
 <br>  
   
 ## :information_source: API Usage
-- [**How to use it?**](https://github.com/Blugin/libTranslator-PMMP/blob/stable/doc/eng/HowToUse.md)
+- [**How to use it?**](https://github.com/Blugin/libTranslator-PMMP/blob/master/doc/eng/HowToUse.md)
   
 <br>  
   
 ## :memo: License  
-> You can check out the full license [here](https://github.com/Blugin/libTranslator-PMMP/blob/stable/LICENSE)  
+> You can check out the full license [here](https://github.com/Blugin/libTranslator-PMMP/blob/master/LICENSE)  
   
 This project licensed under the terms of the **LGPL 3.0**  

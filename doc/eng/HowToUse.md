@@ -1,4 +1,17 @@
-## :information_source: How to use it?
+<p align="right">  
+  <a href="https://github.com/Blugin/libTranslator-PMMP/blob/master/README_KOR.md">  
+    <img src="https://img.shields.io/static/v1?label=%ED%95%9C%EA%B5%AD%EC%96%B4&message=%EB%A1%9C+%EC%9D%BD%EA%B8%B0&labelColor=success">  
+  </a>  
+</p>  
+
+
+## :clipboard: Table of Contents  
+- [:books: Intro](https://github.com/Blugin/libTranslator-PMMP/blob/master/README.md)  
+- :book: How to use it?
+  
+<br>  
+  
+## :book: How to use it?
 Follow the four basic steps to use below:  
 1. [:zap: Write language files](#zap-write-language-files)  
 2. [:zap: Save default language files](#zap-save-default-language-files)  
@@ -8,7 +21,6 @@ Follow the four basic steps to use below:
 + [:sparkles: Quick use via `TranslatorHolderTrait`](#sparkles-quick-use-via-translatorholdertrait)
 + [:sparkles: Support multilingual in `config.yml` file](#sparkles-support-multilingual-in-configyml-file)  
   
-<br>  
 <br>  
   
 #### :zap: Write language files

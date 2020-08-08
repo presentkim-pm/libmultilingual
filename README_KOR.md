@@ -1,7 +1,7 @@
 <p align="center"> <img src="https://i.ibb.co/YfKHnVh/icon.png" width="360"> </p>
 <br> <h1 align="center"> libTranslator :: 자동 번역 라이브러리</h1>
 <p align="right">  
-  <a href="https://github.com/Blugin/libTranslator-PMMP/blob/stable/README.md">  
+  <a href="https://github.com/Blugin/libTranslator-PMMP/blob/master/README.md">  
     <img src="https://img.shields.io/static/v1?label=read%20in&message=English&color=success">
   </a>  
 </p>  
@@ -51,11 +51,11 @@
 <br>  
   
 ## :information_source: API 사용법 
-- [**어떻게 사용하나요?**](https://github.com/Blugin/libTranslator-PMMP/blob/stable/doc/kor/HowToUse.md)
+- [**어떻게 사용하나요?**](https://github.com/Blugin/libTranslator-PMMP/blob/master/doc/kor/HowToUse.md)
   
 <br>  
   
 ## :memo: 라이센스 
-> 라이센스 전문은 [여기](https://github.com/Blugin/ChatThin-PMMP/blob/stable/LICENSE)에서 확인할 수 있습니다  
+> 라이센스 전문은 [여기](https://github.com/Blugin/ChatThin-PMMP/blob/master/LICENSE)에서 확인할 수 있습니다  
   
 이 프로젝트는 **LGPL 3.0**에 따라 라이센스가 부여됩니다

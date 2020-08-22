@@ -23,7 +23,7 @@
 
 declare(strict_types=1);
 
-namespace blugin\lib\translator\convert;
+namespace blugin\lib\translator;
 
 use pocketmine\command\CommandSender;
 

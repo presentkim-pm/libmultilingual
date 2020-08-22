@@ -29,7 +29,10 @@ namespace blugin\lib\translator\convert;
 
 use pocketmine\command\CommandSender;
 
-class LocaleConverter{
+final class LocaleConverter{
+    private function __construct(){
+    }
+
     /**
      * @var string[] IETF_language_tag => ISO_639-3 code
      *

@@ -10,13 +10,11 @@
  *                |___/
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * it under the terms of the MIT License.
  *
  * @author  Blugin team
  * @link    https://github.com/Blugin
- * @license https://www.gnu.org/licenses/lgpl-3.0 LGPL-3.0 License
+ * @license https://www.gnu.org/licenses/mit MIT License
  *
  *   (\ /)
  *  ( . .) ♥

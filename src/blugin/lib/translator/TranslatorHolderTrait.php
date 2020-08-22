@@ -36,19 +36,12 @@ trait TranslatorHolderTrait{
     /** @var Translator */
     private $translator;
 
-    /**
-     * Get the Translator
-     *
-     * @return Translator
-     */
     public function getTranslator() : Translator{
         return $this->translator;
     }
 
     /**
      * Load language with save default language resources
-     *
-     * @param string|null $locale
      */
     public function loadLanguage(?string $locale = null) : void{
         $this->saveDefaultLocales();
@@ -60,6 +53,9 @@ trait TranslatorHolderTrait{
         }
     }
 
+    /**
+     * Save default language resources
+     */
     public function saveDefaultLocales(){
         foreach($this->getResources() as $filePath => $info){
             if(preg_match('/^locale\/[a-zA-Z]{3}\.ini$/', $filePath)){

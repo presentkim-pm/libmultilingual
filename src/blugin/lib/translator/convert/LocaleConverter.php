@@ -78,22 +78,16 @@ final class LocaleConverter{
     ];
 
     /**
-     * @param CommandSender $sender
-     * @param string        $default = "eng"
-     *
-     * @return string
+     * @return string the locale name that matches the command sender's language setting, or fallback
      */
-    public static function fromSender(CommandSender $sender, string $default = "eng") : string{
-        return method_exists($sender, 'getLocale') ? self::fromIETF($sender->getLocale(), $default) : $default;
+    public static function fromSender(CommandSender $sender, string $fallback = "eng") : string{
+        return method_exists($sender, 'getLocale') ? self::fromIETF($sender->getLocale(), $fallback) : $fallback;
     }
 
     /**
-     * @param string $ietfTag
-     * @param string $default = "eng"
-     *
-     * @return string
+     * @return string the locale name converted from IETF_language_tag to ISO_639-3 code
      */
-    public static function fromIETF(string $ietfTag, string $default = "eng") : string{
-        return self::LANGUAGES_MAP[$ietfTag] ?? $default;
+    public static function fromIETF(string $ietfTag, string $fallback = "eng") : string{
+        return self::LANGUAGES_MAP[$ietfTag] ?? $fallback;
     }
 }

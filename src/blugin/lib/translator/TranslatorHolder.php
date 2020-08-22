@@ -28,10 +28,5 @@ declare(strict_types=1);
 namespace blugin\lib\translator;
 
 interface TranslatorHolder{
-    /**
-     * Get the Translator
-     *
-     * @return Translator
-     */
     public function getTranslator() : Translator;
 }

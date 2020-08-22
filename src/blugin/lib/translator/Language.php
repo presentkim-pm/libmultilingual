@@ -31,44 +31,28 @@ class Language{
     /** @var string locale name */
     protected $locale;
 
-    /** @var string[] */
+    /** @var string[] id => text */
     protected $map = [];
 
-    /**
-     * @param array  $map
-     * @param string $locale
-     */
     public function __construct(array $map, string $locale){
         $this->map = $map;
         $this->locale = $locale;
     }
 
-    /**
-     * @param string $id
-     *
-     * @return string
-     */
     public function get(string $id) : string{
         return $this->map[$id] ?? $id;
     }
 
-    /** @return string */
     public function getName() : string{
         return $this->get("language.name");
     }
 
-    /** @return string */
     public function getLocale() : string{
         return $this->locale;
     }
 
     /**
-     * Load language file from plugin data folder
-     *
-     * @param string $path
-     * @param string $locale
-     *
-     * @return Language|null
+     * @return Language|null the loaded language from file
      */
     public static function loadFrom(string $path, string $locale) : ?Language{
         if(!file_exists($path))

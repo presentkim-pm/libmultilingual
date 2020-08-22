@@ -35,8 +35,6 @@ use pocketmine\plugin\PluginBase;
 trait MultilingualConfigTrait{
     /**
      * @Override for multilingual support of the config file
-     *
-     * @return bool
      */
     public function saveDefaultConfig() : bool{
         $configFile = "{$this->getDataFolder()}config.yml";

@@ -42,7 +42,6 @@ class Translator{
     /** @var Language[] */
     protected $lang = [];
 
-    /** @param PluginBase $owningPlugin */
     public function __construct(PluginBase $owningPlugin){
         $this->plugin = $owningPlugin;
 
@@ -51,11 +50,11 @@ class Translator{
     }
 
     /**
-     * @param string      $str
-     * @param mixed[]     $params
-     * @param string|null $locale
+     * @param string      $str original string
+     * @param mixed[]     $params translate parameters
+     * @param string|null $locale translate language locale. if null, translate by default language
      *
-     * @return string
+     * @return string the translated string
      */
     public function translate(string $str, array $params = [], ?string $locale = null) : string{
         $lang = $this->getLang($locale);
@@ -84,9 +83,9 @@ class Translator{
     }
 
     /**
-     * @param string             $str
-     * @param mixed[]            $params
-     * @param CommandSender|null $sender = null
+     * @param string             $str original string
+     * @param mixed[]            $params translate parameters
+     * @param CommandSender|null $sender translate target sender. if null, translate by default language
      *
      * @return string
      */
@@ -99,9 +98,7 @@ class Translator{
     }
 
     /**
-     * @param string|null $locale
-     *
-     * @return Language|null
+     * @return Language|null if $locale is null, return default language
      */
     public function getLang(?string $locale = null) : ?Language{
         $locale = $locale === null ? $this->getDefaultLocale() : strtolower($locale);
@@ -113,7 +110,6 @@ class Translator{
         return $this->lang;
     }
 
-    /** @return string */
     public function getDefaultLocale() : string{
         return $this->defaultLocale;
     }
@@ -123,11 +119,6 @@ class Translator{
         return array_keys($this->getLangList());
     }
 
-    /**
-     * @param string $locale
-     *
-     * @return bool
-     */
     public function setDefaultLocale(string $locale) : bool{
         $locale = strtolower($locale);
         if(!isset($this->lang[$locale]))
@@ -153,9 +144,6 @@ class Translator{
         }
     }
 
-    /**
-     * @return PluginBase
-     */
     public function getPlugin() : PluginBase{
         return $this->plugin;
     }

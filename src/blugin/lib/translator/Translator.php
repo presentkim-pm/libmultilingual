@@ -25,7 +25,7 @@ declare(strict_types=1);
 
 namespace blugin\lib\translator;
 
-use blugin\lib\conveter\locale\LocaleConverter;
+use blugin\lib\converter\locale\LocaleConverter;
 use pocketmine\command\CommandSender;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;

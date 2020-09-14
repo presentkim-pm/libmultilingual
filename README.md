@@ -20,7 +20,6 @@
     <img src="http://hits.dwyl.com/Blugin/libTranslator-PMMP.svg">  
   </a>  
   <br> ✔️ Multilingual support for plugin messages
-  <br> ✔️ Multilingual support for plugin config file  
   <br> ✔️ Translation language is set according to the player
   <br> ✔️ Translation setting with According to PMMP settings  
 </p>  

@@ -18,8 +18,7 @@ Follow the four basic steps to use below:
 3. [:zap: Create `Translator` instance](#zap-create-translator-instance)  
 4. [:zap: Use `Translator`](#zap-use-translator)  
   
-+ [:sparkles: Quick use via `TranslatorHolderTrait`](#sparkles-quick-use-via-translatorholdertrait)
-+ [:sparkles: Support multilingual in `config.yml` file](#sparkles-support-multilingual-in-configyml-file)  
++ [:sparkles: Quick use via `TranslatorHolderTrait`](#sparkles-quick-use-via-translatorholdertrait)  
   
 <br>  
   
@@ -143,25 +142,6 @@ Follow the four basic steps to use below:
 >     public function onPlayerJoin(PlayerJoinEvent $event) : void{  
 >         $player = $event->getPlayer();  
 >         $player->sendMessage($this->getTranslator()->translateTo("basic.server.introduction", [], $player));  
->     }  
-> }  
-> ```  
-  
-<br>  
-  
-#### :sparkles: Support multilingual in `config.yml` file
-> This is a separate features using the plugin resource file pattern  
-> The format is almost the same as for existing language files  
-> Just change the extension from `ini` to `yml`
-> This library provide a `MultilingualConfigTrait` for `PluginBase` for multilingual support of the config file  
-> ```php  
-> Examples: 
-> //Roughly, example source that  example source that save default config file with multilingual  
-> class Main extends PluginBase{  
->     use MultilingualConfigTrait;  
-> 
->     public function onLoad() : void{  
->         $this->saveDefaultConfig();  
 >     }  
 > }  
 > ```  

@@ -88,9 +88,9 @@ class Translator{
      * @return string
      */
     public function translateTo(string $str, array $params, ?CommandSender $sender = null) : string{
-        $locale = Server::getInstance()->getLanguage()->getLang();
+        $locale = null;
         if($sender !== null && method_exists($sender, 'getLocale') && !Server::getInstance()->isLanguageForced()){
-            $locale = LocaleConverter::convertIEFT($sender->getLocale()) ?? $locale;
+            $locale = LocaleConverter::convertIEFT($sender->getLocale());
         }
         return $this->translate($str, $params, $locale);
     }
@@ -100,7 +100,7 @@ class Translator{
      */
     public function getLang(?string $locale = null) : ?Language{
         $locale = $locale === null ? $this->getDefaultLocale() : strtolower($locale);
-        return $this->lang[$locale] ?? null;
+        return $this->lang[$locale] ?? $this->lang[Server::getInstance()->getLanguage()->getLang()] ?? $this->lang["eng"] ?? null;
     }
 
     /** @return Language[] */

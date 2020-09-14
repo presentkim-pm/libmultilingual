@@ -20,7 +20,6 @@
     <img src="http://hits.dwyl.com/Blugin/libTranslator-PMMP.svg">  
   </a>  
   <br> ✔️ 플러그인 메시지에 대한 다국어 지원
-  <br> ✔️ 플러그인 콘피그에 대한 다국어 지원
   <br> ✔️ 플레이어에 따라 번역 언어 설정
   <br> ✔️ PMMP 설정에 따른 번역 설정
 </p>  

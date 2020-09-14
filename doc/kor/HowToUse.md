@@ -18,8 +18,7 @@
 3. [:zap: `Translator` 인스턴스 생성하기](#zap-translator-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0)  
 4. [:zap: `Translator` 사용하기](#zap-translator-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)  
   
-+ [:sparkles: `TranslatorHolderTrait`를 통한 빠르게 사용하기](#sparkles-translatorholdertrait%EB%A5%BC-%ED%86%B5%ED%95%9C-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)
-+ [:sparkles: `config.yml`파일 다국어 지원하기](#sparkles-configyml%ED%8C%8C%EC%9D%BC-%EB%8B%A4%EA%B5%AD%EC%96%B4-%EC%A7%80%EC%9B%90%ED%95%98%EA%B8%B0)  
++ [:sparkles: `TranslatorHolderTrait`를 통한 빠르게 사용하기](#sparkles-translatorholdertrait%EB%A5%BC-%ED%86%B5%ED%95%9C-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)  
   
 <br>  
   
@@ -143,25 +142,6 @@
 >     public function onPlayerJoin(PlayerJoinEvent $event) : void{  
 >         $player = $event->getPlayer();  
 >         $player->sendMessage($this->getTranslator()->translateTo("basic.server.introduction", [], $player));  
->     }  
-> }  
-> ```  
-  
-<br>  
-  
-#### :sparkles: `config.yml`파일 다국어 지원하기
-> 이 기능은 플러그인 리소스 파일 패턴을 사용하는 별도의 기능입니다  
-> 파일 이름 형식은 언어 파일과 거의 동일합니다  
-> 그냥 확장자를 `ini`에서 `yml`로 변경하면 됩니다  
-> 이 라이브러리는 `config.yml`파일의 다국어 지원을 위해 'PluginBase'에 대한 'MultilingualConfigTrait'을 제공합니다  
-> ```php  
-> 예시: 
-> //대충, 기본 언어 구성 파일을 다국어로 저장하는 예제 소스
-> class Main extends PluginBase{  
->     use MultilingualConfigTrait;  
-> 
->     public function onLoad() : void{  
->         $this->saveDefaultConfig();  
 >     }  
 > }  
 > ```  

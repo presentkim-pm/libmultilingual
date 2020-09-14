@@ -25,6 +25,7 @@ declare(strict_types=1);
 
 namespace blugin\lib\translator;
 
+use blugin\lib\localeconverter\LocaleConverter;
 use pocketmine\command\CommandSender;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
@@ -88,8 +89,8 @@ class Translator{
      */
     public function translateTo(string $str, array $params, ?CommandSender $sender = null) : string{
         $locale = Server::getInstance()->getLanguage()->getLang();
-        if($sender !== null && !Server::getInstance()->isLanguageForced()){
-            $locale = LocaleConverter::fromSender($sender, $locale);
+        if($sender !== null && method_exists($sender, 'getLocale') && !Server::getInstance()->isLanguageForced()){
+            $locale = LocaleConverter::convertIEFT($sender->getLocale()) ?? $locale;
         }
         return $this->translate($str, $params, $locale);
     }

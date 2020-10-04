@@ -1,7 +1,7 @@
 <p align="center"> <img src="https://i.ibb.co/YfKHnVh/icon.png" width="360"> </p>
 <br> <h1 align="center"> libTranslator :: library for automatic translation</h1>
 <p align="right">  
-  <a href="https://github.com/Blugin/libTranslator-PMMP/blob/master/README_KOR.md">  
+  <a href="https://github.com/Blugin/libTranslator-PMMP/blob/main/README_KOR.md">  
     <img src="https://img.shields.io/static/v1?label=%ED%95%9C%EA%B5%AD%EC%96%B4&message=%EB%A1%9C+%EC%9D%BD%EA%B8%B0&labelColor=success">  
   </a>  
 </p>  
@@ -13,7 +13,7 @@
     <img src="https://img.shields.io/github/downloads/Blugin/libTranslator-PMMP/total.svg?style=flat-square">  
   </a>  
   </a>  
-  <a href="https://github.com/Blugin/libTranslator-PMMP/blob/master/LICENSE">  
+  <a href="https://github.com/Blugin/libTranslator-PMMP/blob/main/LICENSE">  
     <img src="https://img.shields.io/github/license/Blugin/libTranslator-PMMP.svg?style=flat-square">  
   </a>  
   <a href="http://hits.dwyl.com/Blugin/libTranslator-PMMP">  
@@ -50,11 +50,11 @@
 <br>  
   
 ## :books: API Usage
-- [:book: How to use it?](https://github.com/Blugin/libTranslator-PMMP/blob/master/doc/eng/HowToUse.md)
+- [:book: How to use it?](https://github.com/Blugin/libTranslator-PMMP/blob/main/doc/eng/HowToUse.md)
   
 <br>  
   
 ## :memo: License  
-> You can check out the full license [here](https://github.com/Blugin/libTranslator-PMMP/blob/master/LICENSE)  
+> You can check out the full license [here](https://github.com/Blugin/libTranslator-PMMP/blob/main/LICENSE)  
   
 This project licensed under the terms of the **LGPL 3.0**  

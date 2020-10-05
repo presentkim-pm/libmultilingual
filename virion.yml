@@ -1,7 +1,7 @@
 ---
 name: libtranslator
 antigen: blugin\lib\translator
-version: 1.0.7
+version: 1.1.0
 api: 3.0.0
 authors: ['Blugin-team', 'PresentKim']
 description: "Language management library for automatic translation"

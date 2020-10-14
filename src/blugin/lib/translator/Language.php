@@ -26,11 +26,10 @@ declare(strict_types=1);
 namespace blugin\lib\translator;
 
 class Language{
-    /** @var string locale name */
-    protected $locale;
+    protected string $locale;
 
     /** @var string[] id => text */
-    protected $map = [];
+    protected array $map = [];
 
     public function __construct(array $map, string $locale){
         $this->map = $map;
@@ -49,9 +48,7 @@ class Language{
         return $this->locale;
     }
 
-    /**
-     * @return Language|null the loaded language from file
-     */
+    /** @return Language|null the loaded language from file */
     public static function loadFrom(string $path, string $locale) : ?Language{
         if(!file_exists($path))
             return null;

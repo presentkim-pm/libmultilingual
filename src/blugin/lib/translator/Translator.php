@@ -31,14 +31,12 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 
 class Translator{
-    /** @var PluginBase */
-    protected $plugin;
+    protected PluginBase $plugin;
 
-    /** @var string locale name */
-    protected $defaultLocale;
+    protected string $defaultLocale;
 
     /** @var Language[] */
-    protected $lang = [];
+    protected array $lang = [];
 
     public function __construct(PluginBase $owningPlugin){
         $this->plugin = $owningPlugin;
@@ -95,9 +93,7 @@ class Translator{
         return $this->translate($str, $params, $locale);
     }
 
-    /**
-     * @return Language|null if $locale is null, return default language
-     */
+    /** @return Language|null if $locale is null, return default language */
     public function getLang(?string $locale = null) : ?Language{
         $locale = $locale === null ? $this->getDefaultLocale() : strtolower($locale);
         return $this->lang[$locale] ?? $this->lang[Server::getInstance()->getLanguage()->getLang()] ?? $this->lang["eng"] ?? null;

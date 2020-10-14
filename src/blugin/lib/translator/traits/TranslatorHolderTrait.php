@@ -32,8 +32,7 @@ use pocketmine\plugin\PluginBase;
  * This trait override most methods in the {@link PluginBase} abstract class.
  */
 trait TranslatorHolderTrait{
-    /** @var Translator */
-    private $translator;
+    private Translator $translator;
 
     public function getTranslator() : Translator{
         return $this->translator;

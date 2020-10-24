@@ -22,9 +22,9 @@
 
 declare(strict_types=1);
 
-namespace blugin\lib\translator\traits;
+namespace kim\present\lib\translator\traits;
 
-use blugin\lib\translator\Translator;
+use kim\present\lib\translator\Translator;
 use pocketmine\plugin\PluginBase;
 
 /**

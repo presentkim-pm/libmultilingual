@@ -22,9 +22,9 @@
 
 declare(strict_types=1);
 
-namespace blugin\lib\translator;
+namespace kim\present\lib\translator;
 
-use blugin\lib\converter\locale\LocaleConverter;
+use kim\present\converter\locale\LocaleConverter;
 use pocketmine\command\CommandSender;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;

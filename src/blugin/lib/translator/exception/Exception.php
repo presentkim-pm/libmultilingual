@@ -22,9 +22,9 @@
 
 declare(strict_types=1);
 
-namespace blugin\lib\translator\exception;
+namespace kim\present\lib\translator\exception;
 
-use blugin\lib\translator\traits\TranslatableExceptionTrait;
+use kim\present\lib\translator\traits\TranslatableExceptionTrait;
 
 class Exception extends \Exception{
     use TranslatableExceptionTrait;

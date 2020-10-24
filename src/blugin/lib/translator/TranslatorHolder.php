@@ -22,7 +22,7 @@
 
 declare(strict_types=1);
 
-namespace blugin\lib\translator;
+namespace kim\present\lib\translator;
 
 interface TranslatorHolder{
     public function getTranslator() : Translator;

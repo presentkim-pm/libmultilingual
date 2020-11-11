@@ -29,7 +29,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 
-class Translator{
+class Translator implements DefautParams{
     /** @var PluginBase */
     protected $plugin;
 
@@ -54,6 +54,7 @@ class Translator{
      * @return string the translated string
      */
     public function translate(string $str, array $params = [], ?string $locale = null) : string{
+        $params = array_merge($params, self::DEFAULT_PARAMS);
         $lang = $this->getLang($locale);
         if($lang !== null){
             if(strpos($str, "%") === false){

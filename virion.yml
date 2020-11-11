@@ -1,7 +1,7 @@
 ---
 name: libtranslator
 antigen: kim\present\lib\translator
-version: 2.0.0
+version: 2.1.0
 api: 3.0.0
 authors: [PresentKim, Blugin-team]
 description: Language management library for automatic translation

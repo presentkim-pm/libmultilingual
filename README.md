@@ -45,4 +45,4 @@ See [poggit/support/virion](https://github.com/poggit/support/blob/master/virion
 ## :memo: License  
 > You can check out the full license [here](https://github.com/PresentKim/libtranslator/blob/main/LICENSE)  
   
-This project licensed under the terms of the **LGPL 3.0**  
+This project licensed under the terms of **MIT**  

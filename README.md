@@ -4,20 +4,13 @@
   <a href="https://github.com/PresentKim/libtranslator/blob/main/README_KOR.md">  
     <img src="https://img.shields.io/static/v1?label=%ED%95%9C%EA%B5%AD%EC%96%B4&message=%EB%A1%9C+%EC%9D%BD%EA%B8%B0&labelColor=success">  
   </a>  
+  <img src="https://views.whatilearened.today/views/github/PresentKim/libtranslator.svg">  
 </p>  
 <p align="center">  
-  <a href="https://github.com/PresentKim/libtranslator/releases">  
-    <img src="https://img.shields.io/github/release/PresentKim/libtranslator.svg?style=flat-square">  
-  </a>  
-  <a href="https://github.com/PresentKim/libtranslator/releases">  
-    <img src="https://img.shields.io/github/downloads/PresentKim/libtranslator/total.svg?style=flat-square">  
-  </a>  
-  </a>  
-  <a href="https://github.com/PresentKim/libtranslator/blob/main/LICENSE">  
-    <img src="https://img.shields.io/github/license/PresentKim/libtranslator.svg?style=flat-square">  
-  </a>  
-  <a href="http://hits.dwyl.com/PresentKim/libtranslator">  
-    <img src="http://hits.dwyl.com/PresentKim/libtranslator.svg">  
+  <img src="https://img.shields.io/github/stars/PresentKim/libtranslator?style=for-the-badge" height="24">  
+  <img src="https://img.shields.io/github/license/PresentKim/libtranslator.svg?style=for-the-badge" height="24">  
+  <a href="https://poggit.pmmp.io/ci/PresentKim/libtranslator/~">  
+    <img src="https://poggit.pmmp.io/ci.shield/PresentKim/libtranslator/~?style=for-the-badge" height="24">   
   </a>  
   <br> ✔️ Multilingual support for plugin messages
   <br> ✔️ Translation language is set according to the player

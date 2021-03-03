@@ -5,4 +5,5 @@ version: 2.1.0
 api: [ 3.0.0, 4.0.0 ]
 author: PresentKim
 description: Language management library for automatic translation
+php: [ 7.4, 8.0 ]
 ...

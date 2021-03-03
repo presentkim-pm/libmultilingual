@@ -34,12 +34,9 @@ use pocketmine\plugin\PluginBase;
 
 use function preg_match;
 
-/**
- * This trait override most methods in the {@link PluginBase} abstract class.
- */
+/** This trait override most methods in the {@link PluginBase} abstract class. */
 trait TranslatorHolderTrait{
-    /** @var Translator */
-    private $translator;
+    private Translator $translator;
 
     public function getTranslator() : Translator{
         return $this->translator;
@@ -47,9 +44,9 @@ trait TranslatorHolderTrait{
 
     /** Load language with save default language resources */
     public function loadLanguage(?string $locale = null) : void{
+        /** @var PluginBase $this */
         $this->saveDefaultLocales();
 
-        /** @noinspection PhpParamsInspection */
         $this->translator = new Translator($this);
         if($locale !== null){
             $this->translator->setDefaultLocale($locale);
@@ -58,6 +55,7 @@ trait TranslatorHolderTrait{
 
     /** Save default language resources */
     public function saveDefaultLocales(){
+        /** @var PluginBase $this */
         foreach($this->getResources() as $filePath => $info){
             if(preg_match('/^locale\/[a-zA-Z]{3}\.ini$/', $filePath)){
                 $this->saveResource($filePath);

@@ -29,9 +29,13 @@ declare(strict_types=1);
 
 namespace kim\present\lib\translator;
 
-interface DefautParams{
+use function strtolower;
+
+final class DefautParams{
+    private function __construct(){ }
+
     /** @see https://github.com/PresentKim/libtranslator/blob/main/doc/eng/DefaultParams.md */
-    public const DEFAULT_PARAMS = [
+    private const DEFAULTS = [
         "n" => "\n",
         "br" => "\n",
         "tab" => "\t",
@@ -129,4 +133,16 @@ interface DefautParams{
         "rift-x" => "\u{E0E9}",
         "rift-y" => "\u{E0EA}"
     ];
+
+    /** @var string[] */
+    private static array $params = self::DEFAULTS;
+
+    /** @return string[] */
+    public static function getAll() : array{
+        return self::$params;
+    }
+
+    public static function register(string $paramName, string $str) : void{
+        self::$params[strtolower($paramName)] = $str;
+    }
 }

@@ -47,7 +47,7 @@ use function strlen;
 use function strpos;
 use function strtolower;
 
-class Translator implements DefautParams{
+class Translator{
     /** Owner plugin */
     protected PluginBase $plugin;
 
@@ -72,7 +72,7 @@ class Translator implements DefautParams{
      * @return string the translated string
      */
     public function translate(string $str, array $params = [], ?string $locale = null) : string{
-        $params = array_merge($params, self::DEFAULT_PARAMS);
+        $params = array_merge($params, DefautParams::getAll());
         $lang = $this->getLanguage($locale);
         if($lang !== null){
             if(strpos($str, "%") === false){

@@ -19,100 +19,100 @@ libtranslator에서 제공하는 기본 매개 변수들입니다.
   
 ## :zap: 기본 매개 변수 목록
 | 매개 변수 이름                   | 문자        | 인 게임                                                                                                                |
-| :----------------------------: | :--------: | :-------------------------------------------------------------------------------------------------------------------: |
-|   n                            | `\n`       | New line charactor                                                                                                    |
-|   br                           | `\n`       | New line charactor                                                                                                    |
-|   tab                          | `\t`       | Tab charactor                                                                                                         |
-|   t                            | `\t`       | Tab charactor                                                                                                         |
-|   xbox-a                       | `\u{E000}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-a.png)                       |
-|   xbox-b                       | `\u{E001}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-b.png)                       |
-|   xbox-x                       | `\u{E002}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-x.png)                       |
-|   xbox-y                       | `\u{E003}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-y.png)                       |
-|   xbox-lb                      | `\u{E004}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-lb.png)                      |
-|   xbox-rb                      | `\u{E005}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-rb.png)                      |
-|   xbox-lt                      | `\u{E006}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-lt.png)                      |
-|   xbox-rt                      | `\u{E007}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-rt.png)                      |
-|   xbox-select                  | `\u{E008}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-select.png)                  |
-|   xbox-start                   | `\u{E009}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-start.png)                   |
-|   xbox-ls                      | `\u{E00A}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-ls.png)                      |
-|   xbox-rs                      | `\u{E00B}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-rs.png)                      |
-|   xbox-d-up                    | `\u{E00C}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-d-up.png)                    |
-|   xbox-d-left                  | `\u{E00D}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-d-left.png)                  |
-|   xbox-d-down                  | `\u{E00E}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-d-down.png)                  |
-|   xbox-d-right                 | `\u{E00F}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-d-right.png)                 |
-|   ps-x                         | `\u{E020}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-x.png)                         |
-|   ps-o                         | `\u{E021}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-o.png)                         |
-|   ps-square                    | `\u{E022}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-square.png)                    |
-|   ps-triangle                  | `\u{E023}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-triangle.png)                  |
-|   ps-l1                        | `\u{E024}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-l1.png)                        |
-|   ps-r1                        | `\u{E025}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-r1.png)                        |
-|   ps-l2                        | `\u{E026}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-l2.png)                        |
-|   ps-r2                        | `\u{E027}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-r2.png)                        |
-|   ps-select                    | `\u{E028}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-select.png)                    |
-|   ps-start                     | `\u{E029}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-start.png)                     |
-|   ps-l3                        | `\u{E02A}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-l3.png)                        |
-|   ps-r3                        | `\u{E02B}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-r3.png)                        |
-|   ps-d-up                      | `\u{E02C}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-d-up.png)                      |
-|   ps-d-left                    | `\u{E02D}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-d-left.png)                    |
-|   ps-d-down                    | `\u{E02E}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-d-down.png)                    |
-|   ps-d-right                   | `\u{E02F}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-d-right.png)                   |
-|   nintendo-a                   | `\u{E040}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-a.png)                   |
-|   nintendo-b                   | `\u{E041}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-b.png)                   |
-|   nintendo-x                   | `\u{E042}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-x.png)                   |
-|   nintendo-y                   | `\u{E043}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-y.png)                   |
-|   nintendo-l                   | `\u{E044}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-l.png)                   |
-|   nintendo-r                   | `\u{E045}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-r.png)                   |
-|   nintendo-zl                  | `\u{E046}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-zl.png)                  |
-|   nintendo-zr                  | `\u{E047}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-zr.png)                  |
-|   nintendo-minus               | `\u{E048}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-minus.png)               |
-|   nintendo-plus                | `\u{E049}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-plus.png)                |
-|   nintendo-ls                  | `\u{E04A}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-ls.png)                  |
-|   nintendo-rs                  | `\u{E04B}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-rs.png)                  |
-|   nintendo-d-up                | `\u{E04C}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-d-up.png)                |
-|   nintendo-d-left              | `\u{E04D}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-d-left.png)              |
-|   nintendo-d-down              | `\u{E04E}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-d-down.png)              |
-|   nintendo-d-right             | `\u{E04F}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-d-right.png)             |
-|   left-mouse                   | `\u{E060}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/left-mouse.png)                   |
-|   right-mouse                  | `\u{E061}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/right-mouse.png)                  |
-|   middle-mouse                 | `\u{E062}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/middle-mouse.png)                 |
-|   forward-arrow                | `\u{E080}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/forward-arrow.png)                |
-|   left-arrow                   | `\u{E081}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/left-arrow.png)                   |
-|   down-arrow                   | `\u{E082}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/down-arrow.png)                   |
-|   right-arrow                  | `\u{E083}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/right-arrow.png)                  |
-|   jump-button                  | `\u{E084}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/jump-button.png)                  |
-|   crouch-button                | `\u{E085}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/crouch-button.png)                |
-|   fly-up-button                | `\u{E086}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/fly-up-button.png)                |
-|   fly-down-button              | `\u{E087}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/fly-down-button.png)              |
-|   craftable-on                 | `\u{E0A0}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/craftable-on.png)                 |
-|   craftable-off                | `\u{E0A1}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/craftable-off.png)                |
-|   food                         | `\u{E100}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/food.png)                         |
-|   armour                       | `\u{E101}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/armour.png)                       |
-|   minecoin                     | `\u{E102}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/minecoin.png)                     |
-|   code-builder                 | `\u{E103}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/code-builder.png)                 |
-|   immersive-reader-button      | `\u{E104}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/immersive-reader-button.png)      |
-|   token                        | `\u{E105}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/token.png)                        |
-|   mr-lg                        | `\u{E0C0}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-lg.png)                        |
-|   mr-rg                        | `\u{E0C1}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-rg.png)                        |
-|   mr-menu                      | `\u{E0C2}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-menu.png)                      |
-|   mr-ls                        | `\u{E0C3}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-ls.png)                        |
-|   mr-rs                        | `\u{E0C4}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-rs.png)                        |
-|   mr-left-touchpad             | `\u{E0C5}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-left-touchpad.png)             |
-|   mr-left-touchpad-horizontal  | `\u{E0C6}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-left-touchpad-horizontal.png)  |
-|   mr-left-touchpad-vertical    | `\u{E0C7}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-left-touchpad-vertical.png)    |
-|   mr-right-touchpad            | `\u{E0C8}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-right-touchpad.png)            |
-|   mr-right-touchpad-horizontal | `\u{E0C9}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-right-touchpad-horizontal.png) |
-|   mr-right-touchpad-vertical   | `\u{E0CA}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-right-touchpad-vertical.png)   |
-|   mr-lt                        | `\u{E0CB}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-lt.png)                        |
-|   mr-rt                        | `\u{E0CC}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-rt.png)                        |
-|   mr-windows                   | `\u{E0CD}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-windows.png)                   |
-|   rift-zero                    | `\u{E0E0}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-zero.png)                    |
-|   rift-a                       | `\u{E0E1}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-a.png)                       |
-|   rift-b                       | `\u{E0E2}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-b.png)                       |
-|   rift-lg                      | `\u{E0E3}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-lg.png)                      |
-|   rift-rg                      | `\u{E0E4}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-rg.png)                      |
-|   rift-ls                      | `\u{E0E5}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-ls.png)                      |
-|   rift-rs                      | `\u{E0E6}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-rs.png)                      |
-|   rift-lt                      | `\u{E0E7}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-lt.png)                      |
-|   rift-rt                      | `\u{E0E8}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-rt.png)                      |
-|   rift-x                       | `\u{E0E9}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-x.png)                       |
-|   rift-y                       | `\u{E0EA}` | ![](https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-y.png)                       |
+| :----------------------------: | :--------: | :--------------------------------------------------------------------------------------------------------------------------------------: |
+|   n                            | `\n`       | New line charactor                                                                                                                       |
+|   br                           | `\n`       | New line charactor                                                                                                                       |
+|   tab                          | `\t`       | Tab charactor                                                                                                                            |
+|   t                            | `\t`       | Tab charactor                                                                                                                            |
+|   xbox-a                       | `\u{E000}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-a.png" width="50%">                       |
+|   xbox-b                       | `\u{E001}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-b.png" width="50%">                       |
+|   xbox-x                       | `\u{E002}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-x.png" width="50%">                       |
+|   xbox-y                       | `\u{E003}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-y.png" width="50%">                       |
+|   xbox-lb                      | `\u{E004}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-lb.png" width="50%">                      |
+|   xbox-rb                      | `\u{E005}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-rb.png" width="50%">                      |
+|   xbox-lt                      | `\u{E006}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-lt.png" width="50%">                      |
+|   xbox-rt                      | `\u{E007}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-rt.png" width="50%">                      |
+|   xbox-select                  | `\u{E008}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-select.png" width="50%">                  |
+|   xbox-start                   | `\u{E009}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-start.png" width="50%">                   |
+|   xbox-ls                      | `\u{E00A}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-ls.png" width="50%">                      |
+|   xbox-rs                      | `\u{E00B}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-rs.png" width="50%">                      |
+|   xbox-d-up                    | `\u{E00C}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-d-up.png" width="50%">                    |
+|   xbox-d-left                  | `\u{E00D}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-d-left.png" width="50%">                  |
+|   xbox-d-down                  | `\u{E00E}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-d-down.png" width="50%">                  |
+|   xbox-d-right                 | `\u{E00F}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-d-right.png" width="50%">                 |
+|   ps-x                         | `\u{E020}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-x.png" width="50%">                         |
+|   ps-o                         | `\u{E021}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-o.png" width="50%">                         |
+|   ps-square                    | `\u{E022}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-square.png" width="50%">                    |
+|   ps-triangle                  | `\u{E023}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-triangle.png" width="50%">                  |
+|   ps-l1                        | `\u{E024}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-l1.png" width="50%">                        |
+|   ps-r1                        | `\u{E025}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-r1.png" width="50%">                        |
+|   ps-l2                        | `\u{E026}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-l2.png" width="50%">                        |
+|   ps-r2                        | `\u{E027}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-r2.png" width="50%">                        |
+|   ps-select                    | `\u{E028}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-select.png" width="50%">                    |
+|   ps-start                     | `\u{E029}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-start.png" width="50%">                     |
+|   ps-l3                        | `\u{E02A}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-l3.png" width="50%">                        |
+|   ps-r3                        | `\u{E02B}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-r3.png" width="50%">                        |
+|   ps-d-up                      | `\u{E02C}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-d-up.png" width="50%">                      |
+|   ps-d-left                    | `\u{E02D}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-d-left.png" width="50%">                    |
+|   ps-d-down                    | `\u{E02E}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-d-down.png" width="50%">                    |
+|   ps-d-right                   | `\u{E02F}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-d-right.png" width="50%">                   |
+|   nintendo-a                   | `\u{E040}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-a.png" width="50%">                   |
+|   nintendo-b                   | `\u{E041}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-b.png" width="50%">                   |
+|   nintendo-x                   | `\u{E042}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-x.png" width="50%">                   |
+|   nintendo-y                   | `\u{E043}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-y.png" width="50%">                   |
+|   nintendo-l                   | `\u{E044}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-l.png" width="50%">                   |
+|   nintendo-r                   | `\u{E045}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-r.png" width="50%">                   |
+|   nintendo-zl                  | `\u{E046}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-zl.png" width="50%">                  |
+|   nintendo-zr                  | `\u{E047}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-zr.png" width="50%">                  |
+|   nintendo-minus               | `\u{E048}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-minus.png" width="50%">               |
+|   nintendo-plus                | `\u{E049}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-plus.png" width="50%">                |
+|   nintendo-ls                  | `\u{E04A}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-ls.png" width="50%">                  |
+|   nintendo-rs                  | `\u{E04B}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-rs.png" width="50%">                  |
+|   nintendo-d-up                | `\u{E04C}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-d-up.png" width="50%">                |
+|   nintendo-d-left              | `\u{E04D}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-d-left.png" width="50%">              |
+|   nintendo-d-down              | `\u{E04E}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-d-down.png" width="50%">              |
+|   nintendo-d-right             | `\u{E04F}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/nintendo-d-right.png" width="50%">             |
+|   left-mouse                   | `\u{E060}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/left-mouse.png" width="50%">                   |
+|   right-mouse                  | `\u{E061}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/right-mouse.png" width="50%">                  |
+|   middle-mouse                 | `\u{E062}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/middle-mouse.png" width="50%">                 |
+|   forward-arrow                | `\u{E080}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/forward-arrow.png" width="50%">                |
+|   left-arrow                   | `\u{E081}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/left-arrow.png" width="50%">                   |
+|   down-arrow                   | `\u{E082}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/down-arrow.png" width="50%">                   |
+|   right-arrow                  | `\u{E083}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/right-arrow.png" width="50%">                  |
+|   jump-button                  | `\u{E084}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/jump-button.png" width="50%">                  |
+|   crouch-button                | `\u{E085}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/crouch-button.png" width="50%">                |
+|   fly-up-button                | `\u{E086}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/fly-up-button.png" width="50%">                |
+|   fly-down-button              | `\u{E087}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/fly-down-button.png" width="50%">              |
+|   craftable-on                 | `\u{E0A0}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/craftable-on.png" width="50%">                 |
+|   craftable-off                | `\u{E0A1}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/craftable-off.png" width="50%">                |
+|   food                         | `\u{E100}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/food.png" width="50%">                         |
+|   armour                       | `\u{E101}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/armour.png" width="50%">                       |
+|   minecoin                     | `\u{E102}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/minecoin.png" width="50%">                     |
+|   code-builder                 | `\u{E103}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/code-builder.png" width="50%">                 |
+|   immersive-reader-button      | `\u{E104}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/immersive-reader-button.png" width="50%">      |
+|   token                        | `\u{E105}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/token.png" width="50%">                        |
+|   mr-lg                        | `\u{E0C0}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-lg.png" width="50%">                        |
+|   mr-rg                        | `\u{E0C1}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-rg.png" width="50%">                        |
+|   mr-menu                      | `\u{E0C2}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-menu.png" width="50%">                      |
+|   mr-ls                        | `\u{E0C3}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-ls.png" width="50%">                        |
+|   mr-rs                        | `\u{E0C4}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-rs.png" width="50%">                        |
+|   mr-left-touchpad             | `\u{E0C5}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-left-touchpad.png" width="50%">             |
+|   mr-left-touchpad-horizontal  | `\u{E0C6}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-left-touchpad-horizontal.png" width="50%">  |
+|   mr-left-touchpad-vertical    | `\u{E0C7}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-left-touchpad-vertical.png" width="50%">    |
+|   mr-right-touchpad            | `\u{E0C8}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-right-touchpad.png" width="50%">            |
+|   mr-right-touchpad-horizontal | `\u{E0C9}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-right-touchpad-horizontal.png" width="50%"> |
+|   mr-right-touchpad-vertical   | `\u{E0CA}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-right-touchpad-vertical.png" width="50%">   |
+|   mr-lt                        | `\u{E0CB}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-lt.png" width="50%">                        |
+|   mr-rt                        | `\u{E0CC}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-rt.png" width="50%">                        |
+|   mr-windows                   | `\u{E0CD}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-windows.png" width="50%">                   |
+|   rift-zero                    | `\u{E0E0}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-zero.png" width="50%">                    |
+|   rift-a                       | `\u{E0E1}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-a.png" width="50%">                       |
+|   rift-b                       | `\u{E0E2}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-b.png" width="50%">                       |
+|   rift-lg                      | `\u{E0E3}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-lg.png" width="50%">                      |
+|   rift-rg                      | `\u{E0E4}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-rg.png" width="50%">                      |
+|   rift-ls                      | `\u{E0E5}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-ls.png" width="50%">                      |
+|   rift-rs                      | `\u{E0E6}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-rs.png" width="50%">                      |
+|   rift-lt                      | `\u{E0E7}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-lt.png" width="50%">                      |
+|   rift-rt                      | `\u{E0E8}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-rt.png" width="50%">                      |
+|   rift-x                       | `\u{E0E9}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-x.png" width="50%">                       |
+|   rift-y                       | `\u{E0EA}` | <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-y.png" width="50%">                       |

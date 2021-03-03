@@ -32,6 +32,8 @@ namespace kim\present\lib\translator\traits;
 use kim\present\lib\translator\Translator;
 use pocketmine\plugin\PluginBase;
 
+use function preg_match;
+
 /**
  * This trait override most methods in the {@link PluginBase} abstract class.
  */
@@ -43,9 +45,7 @@ trait TranslatorHolderTrait{
         return $this->translator;
     }
 
-    /**
-     * Load language with save default language resources
-     */
+    /** Load language with save default language resources */
     public function loadLanguage(?string $locale = null) : void{
         $this->saveDefaultLocales();
 
@@ -56,9 +56,7 @@ trait TranslatorHolderTrait{
         }
     }
 
-    /**
-     * Save default language resources
-     */
+    /** Save default language resources */
     public function saveDefaultLocales(){
         foreach($this->getResources() as $filePath => $info){
             if(preg_match('/^locale\/[a-zA-Z]{3}\.ini$/', $filePath)){

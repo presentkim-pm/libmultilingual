@@ -29,10 +29,8 @@ declare(strict_types=1);
 
 namespace kim\present\lib\translator;
 
-/**
- * @see https://github.com/PresentKim/libtranslator/blob/main/doc/eng/DefaultParams.md
- */
 interface DefautParams{
+    /** @see https://github.com/PresentKim/libtranslator/blob/main/doc/eng/DefaultParams.md */
     public const DEFAULT_PARAMS = [
         "n" => "\n",
         "br" => "\n",

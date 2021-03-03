@@ -33,6 +33,19 @@ use kim\present\converter\locale\LocaleConverter;
 use pocketmine\command\CommandSender;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
+use RuntimeException;
+
+use function array_keys;
+use function array_merge;
+use function explode;
+use function is_dir;
+use function method_exists;
+use function preg_match;
+use function scandir;
+use function str_replace;
+use function strlen;
+use function strpos;
+use function strtolower;
 
 class Translator implements DefautParams{
     /** @var PluginBase */
@@ -100,9 +113,7 @@ class Translator implements DefautParams{
         return $this->translate($str, $params, $locale);
     }
 
-    /**
-     * @return Language|null if $locale is null, return default language
-     */
+    /** @return Language|null if $locale is null, return default language */
     public function getLang(?string $locale = null) : ?Language{
         $locale = $locale === null ? $this->getDefaultLocale() : strtolower($locale);
         return $this->lang[$locale] ?? $this->lang[Server::getInstance()->getLanguage()->getLang()] ?? $this->lang["eng"] ?? null;
@@ -131,13 +142,11 @@ class Translator implements DefautParams{
         return true;
     }
 
-    /**
-     * Load all locale file from plugin data folder
-     */
+    /** Load all locale file from plugin data folder */
     public function loadAllLocale() : void{
         $path = $this->plugin->getDataFolder() . "locale/";
         if(!is_dir($path))
-            throw new \RuntimeException("Language directory $path does not exist or is not a directory");
+            throw new RuntimeException("Language directory $path does not exist or is not a directory");
 
         foreach(scandir($path, SCANDIR_SORT_NONE) as $_ => $filename){
             if(!preg_match('/^([a-zA-Z]{3})\.ini$/', $filename, $matches) || !isset($matches[1]))

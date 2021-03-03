@@ -29,6 +29,11 @@ declare(strict_types=1);
 
 namespace kim\present\lib\translator;
 
+use function array_map;
+use function file_exists;
+use function parse_ini_file;
+use function strtolower;
+
 class Language{
     /** @var string locale name */
     protected $locale;
@@ -53,9 +58,7 @@ class Language{
         return $this->locale;
     }
 
-    /**
-     * @return Language|null the loaded language from file
-     */
+    /** @return Language|null the loaded language from file */
     public static function loadFrom(string $path, string $locale) : ?Language{
         if(!file_exists($path))
             return null;

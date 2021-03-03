@@ -35,11 +35,11 @@ use function parse_ini_file;
 use function strtolower;
 
 class Language{
-    /** @var string locale name */
-    protected $locale;
+    /** Locale name (ISO_639-3 code) */
+    protected string $locale;
 
     /** @var string[] id => text */
-    protected $map = [];
+    protected array $map = [];
 
     public function __construct(array $map, string $locale){
         $this->map = $map;

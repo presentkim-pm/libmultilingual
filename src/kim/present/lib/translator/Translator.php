@@ -48,14 +48,14 @@ use function strpos;
 use function strtolower;
 
 class Translator implements DefautParams{
-    /** @var PluginBase */
-    protected $plugin;
+    /** Owner plugin */
+    protected PluginBase $plugin;
 
-    /** @var string locale name */
-    protected $defaultLocale;
+    /** Locale name (ISO_639-3 code) */
+    protected string $defaultLocale;
 
-    /** @var Language[] */
-    protected $lang = [];
+    /** @var Language[] Language instances */
+    protected array $languages = [];
 
     public function __construct(PluginBase $owningPlugin){
         $this->plugin = $owningPlugin;
@@ -73,7 +73,7 @@ class Translator implements DefautParams{
      */
     public function translate(string $str, array $params = [], ?string $locale = null) : string{
         $params = array_merge($params, self::DEFAULT_PARAMS);
-        $lang = $this->getLang($locale);
+        $lang = $this->getLanguage($locale);
         if($lang !== null){
             if(strpos($str, "%") === false){
                 $str = $lang->get($str);
@@ -114,14 +114,14 @@ class Translator implements DefautParams{
     }
 
     /** @return Language|null if $locale is null, return default language */
-    public function getLang(?string $locale = null) : ?Language{
+    public function getLanguage(?string $locale = null) : ?Language{
         $locale = $locale === null ? $this->getDefaultLocale() : strtolower($locale);
-        return $this->lang[$locale] ?? $this->lang[Server::getInstance()->getLanguage()->getLang()] ?? $this->lang["eng"] ?? null;
+        return $this->languages[$locale] ?? $this->languages[Server::getInstance()->getLanguage()->getLang()] ?? $this->languages["eng"] ?? null;
     }
 
     /** @return Language[] */
     public function getLangList() : array{
-        return $this->lang;
+        return $this->languages;
     }
 
     public function getDefaultLocale() : string{
@@ -135,7 +135,7 @@ class Translator implements DefautParams{
 
     public function setDefaultLocale(string $locale) : bool{
         $locale = strtolower($locale);
-        if(!isset($this->lang[$locale]))
+        if(!isset($this->languages[$locale]))
             return false;
 
         $this->defaultLocale = strtolower($locale);
@@ -152,7 +152,7 @@ class Translator implements DefautParams{
             if(!preg_match('/^([a-zA-Z]{3})\.ini$/', $filename, $matches) || !isset($matches[1]))
                 continue;
 
-            $this->lang[$matches[1]] = Language::loadFrom($path . $filename, $matches[1]);
+            $this->languages[$matches[1]] = Language::loadFrom($path . $filename, $matches[1]);
         }
     }
 

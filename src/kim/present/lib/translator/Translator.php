@@ -23,6 +23,7 @@
  * @noinspection PhpIllegalPsrClassPathInspection
  * @noinspection SpellCheckingInspection
  * @noinspection PhpDocSignatureInspection
+ * @noinspection RegExpRedundantEscape
  */
 
 declare(strict_types=1);
@@ -37,6 +38,7 @@ use function array_keys;
 use function array_merge;
 use function explode;
 use function method_exists;
+use function preg_match_all;
 use function str_replace;
 use function strlen;
 use function strtolower;
@@ -78,8 +80,13 @@ class Translator{
                 $str .= $new;
             }
         }
-        foreach($params as $i => $param){
-            $str = str_replace("{%$i}", (string) $param, $str);
+
+        if(preg_match_all("/\{%([a-zA-Z0-9]+)\}/", $str, $matches, PREG_SET_ORDER) !== false){
+            foreach($matches as $match){
+                if(isset($params[$match[1]])){
+                    $str = str_replace($match[0], $params[$match[1]], $str);
+                }
+            }
         }
         return $str;
     }

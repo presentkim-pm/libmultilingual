@@ -31,7 +31,7 @@ namespace kim\present\lib\translator;
 
 use function strtolower;
 
-final class DefautParams{
+final class DefaultParams{
     private function __construct(){ }
 
     /** @see https://github.com/PresentKim/libtranslator/blob/main/doc/eng/DefaultParams.md */

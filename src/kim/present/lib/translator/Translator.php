@@ -71,7 +71,7 @@ class Translator{
             $str = "";
             $lastTranslated = false;
             foreach($parts as $_ => $part){
-                $new = $lang->getExact($part) ?? $this->defaultLanguage->get($part);
+                $new = $lang->get($part) ?? $this->defaultLanguage->getNonNull($part);
                 if(strlen($str) > 0 && $part === $new && !$lastTranslated){
                     $str .= "%";
                 }
@@ -106,19 +106,19 @@ class Translator{
         return $this->translate($str, $params, $locale);
     }
 
-    /** @return Language|null if $locale is null, return default language */
-    public function getLanguage(?string $locale = null) : ?Language{
-        return $this->languages[strtolower($locale ?? Server::getInstance()->getLanguage()->getLang())] ?? $this->defaultLanguage;
-    }
-
     /** @return Language[] */
-    public function getLangList() : array{
+    public function getLanguages() : array{
         return $this->languages;
     }
 
     /** @return string[] */
     public function getLocaleList() : array{
-        return array_keys($this->getLangList());
+        return array_keys($this->getLanguages());
+    }
+
+    /** @return Language|null if $locale is null, return default language */
+    public function getLanguage(?string $locale = null) : ?Language{
+        return $this->languages[strtolower($locale ?? Server::getInstance()->getLanguage()->getLang())] ?? $this->defaultLanguage;
     }
 
     public function getDefaultLanguage() : ?Language{

@@ -43,24 +43,24 @@ class Language{
     protected array $map = [];
 
     public function __construct(array $map, string $locale){
-        $this->map = $map;
         $this->locale = $locale;
-    }
-
-    public function get(string $id) : string{
-        return $this->map[$id] ?? $id;
-    }
-
-    public function getExact(string $id) : ?string{
-        return $this->map[$id] ?? null;
-    }
-
-    public function getName() : string{
-        return $this->get("language.name");
+        $this->map = $map;
     }
 
     public function getLocale() : string{
         return $this->locale;
+    }
+
+    public function get(string $id) : ?string{
+        return $this->map[$id] ?? null;
+    }
+
+    public function getNonNull(string $id) : string{
+        return $this->map[$id] ?? $id;
+    }
+
+    public function getName() : string{
+        return $this->getNonNull("language.name");
     }
 
     /** @return Language the loaded language from contents */

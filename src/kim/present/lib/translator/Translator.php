@@ -36,32 +36,54 @@ use pocketmine\Server;
 use RuntimeException;
 
 use function array_keys;
+use function array_map;
 use function array_merge;
 use function explode;
+use function fclose;
 use function is_dir;
 use function method_exists;
+use function parse_ini_string;
 use function preg_match;
 use function scandir;
+use function sprintf;
 use function str_replace;
+use function stream_get_contents;
 use function strlen;
-use function strpos;
 use function strtolower;
 
 class Translator{
     /** Owner plugin */
     protected PluginBase $plugin;
 
-    /** Locale name (ISO_639-3 code) */
-    protected string $defaultLocale;
-
     /** @var Language[] Language instances */
     protected array $languages = [];
+
+    /** Default language */
+    public ?Language $defaultLanguage = null;
 
     public function __construct(PluginBase $owningPlugin){
         $this->plugin = $owningPlugin;
 
         $this->loadAllLocale();
-        $this->defaultLocale = Server::getInstance()->getLanguage()->getLang();
+
+        $locale = $owningPlugin->getServer()->getLanguage()->getLang();
+        $resource = $owningPlugin->getResource(sprintf("locale/%s.ini", $locale));
+        if($resource === null){
+            //Use the first searched file as fallback
+            foreach($owningPlugin->getResources() as $filePath => $info){
+                if(!preg_match("/^locale\/([a-zA-Z]{3})\.ini$/", $filePath, $matches) || !isset($matches[1]))
+                    continue;
+
+                $locale = $matches[1];
+                $resource = $owningPlugin->getResource($filePath);
+                if($resource !== null)
+                    break;
+            }
+        }
+        if($resource !== null){
+            $this->setDefaultLanguage(new Language(array_map("stripcslashes", parse_ini_string(stream_get_contents($resource), false, INI_SCANNER_RAW)), strtolower($locale)));
+            fclose($resource);
+        }
     }
 
     /**
@@ -75,21 +97,17 @@ class Translator{
         $params = array_merge($params, DefautParams::getAll());
         $lang = $this->getLanguage($locale);
         if($lang !== null){
-            if(strpos($str, "%") === false){
-                $str = $lang->get($str);
-            }else{
-                $parts = explode("%", $str);
-                $str = "";
-                $lastTranslated = false;
-                foreach($parts as $_ => $part){
-                    $new = $lang->get($part);
-                    if(strlen($str) > 0 && $part === $new && !$lastTranslated){
-                        $str .= "%";
-                    }
-                    $lastTranslated = $part !== $new;
-
-                    $str .= $new;
+            $parts = explode("%", $str);
+            $str = "";
+            $lastTranslated = false;
+            foreach($parts as $_ => $part){
+                $new = $lang->getExact($part) ?? $this->defaultLanguage->get($part);
+                if(strlen($str) > 0 && $part === $new && !$lastTranslated){
+                    $str .= "%";
                 }
+                $lastTranslated = $part !== $new;
+
+                $str .= $new;
             }
         }
         foreach($params as $i => $param){
@@ -115,8 +133,7 @@ class Translator{
 
     /** @return Language|null if $locale is null, return default language */
     public function getLanguage(?string $locale = null) : ?Language{
-        $locale = $locale === null ? $this->getDefaultLocale() : strtolower($locale);
-        return $this->languages[$locale] ?? $this->languages[Server::getInstance()->getLanguage()->getLang()] ?? $this->languages["eng"] ?? null;
+        return $this->languages[strtolower($locale ?? Server::getInstance()->getLanguage()->getLang())] ?? $this->defaultLanguage;
     }
 
     /** @return Language[] */
@@ -124,22 +141,17 @@ class Translator{
         return $this->languages;
     }
 
-    public function getDefaultLocale() : string{
-        return $this->defaultLocale;
-    }
-
     /** @return string[] */
     public function getLocaleList() : array{
         return array_keys($this->getLangList());
     }
 
-    public function setDefaultLocale(string $locale) : bool{
-        $locale = strtolower($locale);
-        if(!isset($this->languages[$locale]))
-            return false;
+    public function getDefaultLanguage() : ?Language{
+        return $this->defaultLanguage;
+    }
 
-        $this->defaultLocale = strtolower($locale);
-        return true;
+    public function setDefaultLanguage(?Language $defaultLanguage) : void{
+        $this->defaultLanguage = $defaultLanguage;
     }
 
     /** Load all locale file from plugin data folder */

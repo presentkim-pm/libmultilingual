@@ -50,6 +50,10 @@ class Language{
         return $this->map[$id] ?? $id;
     }
 
+    public function getExact(string $id) : ?string{
+        return $this->map[$id] ?? null;
+    }
+
     public function getName() : string{
         return $this->get("language.name");
     }

@@ -43,14 +43,11 @@ trait TranslatorHolderTrait{
     }
 
     /** Load language with save default language resources */
-    public function loadLanguage(?string $locale = null) : void{
-        /** @var PluginBase $this */
+    public function loadLanguage() : void{
+        /** @var PluginBase|TranslatorHolderTrait $this */
         $this->saveDefaultLocales();
 
         $this->translator = new Translator($this);
-        if($locale !== null){
-            $this->translator->setDefaultLocale($locale);
-        }
     }
 
     /** Save default language resources */

@@ -31,7 +31,8 @@ namespace kim\present\lib\translator;
 
 use function array_map;
 use function file_exists;
-use function parse_ini_file;
+use function file_get_contents;
+use function parse_ini_string;
 use function strtolower;
 
 class Language{
@@ -62,11 +63,16 @@ class Language{
         return $this->locale;
     }
 
+    /** @return Language the loaded language from contents */
+    public static function fromContents(string $contents, string $locale) : Language{
+        return new Language(array_map("stripcslashes", parse_ini_string($contents, false, INI_SCANNER_RAW)), strtolower($locale));
+    }
+
     /** @return Language|null the loaded language from file */
-    public static function loadFrom(string $path, string $locale) : ?Language{
+    public static function fromFile(string $path, string $locale) : ?Language{
         if(!file_exists($path))
             return null;
 
-        return new Language(array_map("stripcslashes", parse_ini_file($path, false, INI_SCANNER_RAW)), strtolower($locale));
+        return self::fromContents(file_get_contents($path), $locale);
     }
 }

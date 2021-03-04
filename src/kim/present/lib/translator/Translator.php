@@ -31,59 +31,27 @@ namespace kim\present\lib\translator;
 
 use kim\present\converter\locale\LocaleConverter;
 use pocketmine\command\CommandSender;
-use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
-use RuntimeException;
 
 use function array_keys;
-use function array_map;
 use function array_merge;
 use function explode;
-use function fclose;
-use function is_dir;
 use function method_exists;
-use function parse_ini_string;
-use function preg_match;
-use function scandir;
-use function sprintf;
 use function str_replace;
-use function stream_get_contents;
 use function strlen;
 use function strtolower;
 
 class Translator{
-    /** Owner plugin */
-    protected PluginBase $plugin;
-
     /** @var Language[] Language instances */
     protected array $languages = [];
 
     /** Default language */
     public ?Language $defaultLanguage = null;
 
-    public function __construct(PluginBase $owningPlugin){
-        $this->plugin = $owningPlugin;
-
-        $this->loadAllLocale();
-
-        $locale = $owningPlugin->getServer()->getLanguage()->getLang();
-        $resource = $owningPlugin->getResource(sprintf("locale/%s.ini", $locale));
-        if($resource === null){
-            //Use the first searched file as fallback
-            foreach($owningPlugin->getResources() as $filePath => $info){
-                if(!preg_match("/^locale\/([a-zA-Z]{3})\.ini$/", $filePath, $matches) || !isset($matches[1]))
-                    continue;
-
-                $locale = $matches[1];
-                $resource = $owningPlugin->getResource($filePath);
-                if($resource !== null)
-                    break;
-            }
-        }
-        if($resource !== null){
-            $this->setDefaultLanguage(new Language(array_map("stripcslashes", parse_ini_string(stream_get_contents($resource), false, INI_SCANNER_RAW)), strtolower($locale)));
-            fclose($resource);
-        }
+    /** @param Language[] $languages */
+    public function __construct(array $languages = [], ?Language $defaultLanguage = null){
+        $this->languages = $languages;
+        $this->defaultLanguage = $defaultLanguage;
     }
 
     /**
@@ -152,23 +120,5 @@ class Translator{
 
     public function setDefaultLanguage(?Language $defaultLanguage) : void{
         $this->defaultLanguage = $defaultLanguage;
-    }
-
-    /** Load all locale file from plugin data folder */
-    public function loadAllLocale() : void{
-        $path = $this->plugin->getDataFolder() . "locale/";
-        if(!is_dir($path))
-            throw new RuntimeException("Language directory $path does not exist or is not a directory");
-
-        foreach(scandir($path, SCANDIR_SORT_NONE) as $_ => $filename){
-            if(!preg_match('/^([a-zA-Z]{3})\.ini$/', $filename, $matches) || !isset($matches[1]))
-                continue;
-
-            $this->languages[$matches[1]] = Language::loadFrom($path . $filename, $matches[1]);
-        }
-    }
-
-    public function getPlugin() : PluginBase{
-        return $this->plugin;
     }
 }

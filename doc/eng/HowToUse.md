@@ -18,7 +18,7 @@ Follow the four basic steps to use below:
 3. [:zap: Create `Translator` instance](#zap-create-translator-instance)  
 4. [:zap: Use `Translator`](#zap-use-translator)  
   
-+ [:sparkles: Quick use via `TranslatorHolderTrait`](#sparkles-quick-use-via-translatorholdertrait)  
++ [:sparkles: Quick use via `TranslatablePluginTrait`](#sparkles-quick-use-via-translatableplugintrait)  
   
 <br>  
   
@@ -45,19 +45,18 @@ Follow the four basic steps to use below:
 > This library load language files from the plugin data folder for user can modifying message (not the plugin resources/ folder)  
 > Therefore, need to save the default language file before creating `Translator`  
 > ```php  
-> Examples:  
-> //Roughly, example source that save default language files on plugin load 
+> //Example source that save default language files on plugin load 
 > class Main extends PluginBase{  
->     public function onLoad() : void{  
->         $this->saveDefaultLocales();  
->     }  
->  
->     public function saveDefaultLocales() : void{  
+>     private function saveDefaultLanguages() : void{  
 >         foreach($this->getResources() as $filePath => $info){  
->             if(preg_match('/^locale\/[a-zA-Z]{3}\.ini$/', $filePath)){  
+>             if(preg_match("/^locale\/[a-zA-Z]{3}\.ini$/", $filePath)){  
 >                 $this->saveResource($filePath);  
 >             }  
 >         }  
+>     }  
+> 
+>     public function onLoad() : void{  
+>         $this->saveDefaultLanguages();  
 >     }  
 > }  
 > ```  
@@ -66,24 +65,61 @@ Follow the four basic steps to use below:
   
 #### :zap: Create `Translator` instance  
 > Now you can create `Translator` instances for the plugin  
-> `Translator` constructor requires `PluginBase` argument for load languages from plugin data folder  
-> Language files of the plugin provided as argument is automatically loaded. (no need to write load it yourself)  
+> You need all language files saved above are load  
+> Default language files must also be load from the plugin resource  
 > ```php  
-> Examples:  
-> //Roughly, example source that create `Translator` instance on plugin load
+> //Example source that create `Translator` instance on plugin load
 > class Main extends PluginBase{  
->     /** @var Translator */  
->     private $translator;  
+>     private Translator $translator;  
 >  
 >     public function onLoad() : void{  
->         $this->saveDefaultLocales();  
->         $this->translator = new Translator($this);
+>         $this->saveDefaultLanguages();  
+>         $this->translator = new Translator($this->loadLanguages(), $this->loadDefaultLanguage());  
+>     }  
+> 
+>     private function loadLanguages() : array{  
+>         /** @var PluginBase|TranslatablePluginTrait $this */  
+>         $languages = [];  
+> 
+>         $path = $this->getDataFolder() . "locale/";  
+>         if(!is_dir($path))  
+>             throw new RuntimeException("Language directory {$path} does not exist or is not a directory");  
+> 
+>         foreach(scandir($path, SCANDIR_SORT_NONE) as $_ => $filename){  
+>             if(!preg_match("/^([a-zA-Z]{3})\.ini$/", $filename, $matches) || !isset($matches[1]))  
+>                 continue;  
+> 
+>             $languages[$matches[1]] = Language::fromFile($path . $filename, $matches[1]);  
+>         }  
+>         return $languages;  
+>     }  
+> 
+>     private function loadDefaultLanguage() : ?Language{  
+>         $resource = $this->getResource("locale/{$this->getServer()->getLanguage()->getLang()}.ini"); 
+>         if($resource === null){  
+>             //Use the first searched file as fallback  
+>             foreach($this->getResources() as $filePath => $info){  
+>                 if(!preg_match("/^locale\/([a-zA-Z]{3})\.ini$/", $filePath, $matches) || !isset($matches[1]))  
+>                     continue;  
+> 
+>                 $locale = $matches[1];  
+>                 $resource = $this->getResource($filePath);  
+>                 if($resource !== null)  
+>                     break;  
+>             }  
+>         }  
+>         if($resource !== null){  
+>             $contents = stream_get_contents($resource);  
+>             fclose($resource);  
+>             return Language::fromContents($contents, strtolower($locale));  
+>         }  
+> 
+>         return null;  
 >     }  
 >  
->     ...
-> }
+>     private function saveDefaultLanguages() : void; //Same as above  
+> }  
 > ```  
-> `saveDefaultLocales()` is omitted. See [this](#zap-save-default-language-files)
   
 <br>  
   
@@ -92,16 +128,13 @@ Follow the four basic steps to use below:
 > 1. Use `Translator::translateTo(string, string[], CommandSender) : string` for get translated messages that match the player's language settings  
 > 2. Use `Translator::translateTo(string, string[], CommandSender) : string` for get translated messages that match the server's language settings  
 > ```php  
-> Examples:  
-> //Roughly, example source that sends a basic server introduction when the player join  
+> //Example source that sends a basic server introduction when the player join  
 > class Main extends PluginBase implements Listener{  
->     /** @var Translator */  
->     private $translator;  
+>     private Translator $translator;  
+> 
+>     public function getTranslator() : Translator //Same as above 
 >  
->     public function onLoad() : void{  
->         $this->saveDefaultLocales();  
->         $this->translator = new Translator($this);
->     }  
+>     public function onLoad() : void //Same as above 
 > 
 >     public function onEnable() : void{  
 >       $this->getServer()->getPluginManager()->registerEvents($this, $this);  
@@ -111,9 +144,12 @@ Follow the four basic steps to use below:
 >         $player = $event->getPlayer();  
 >         $player->sendMessage($this->getTranslator()->translateTo("basic.server.introduction", [], $player));  
 >     }  
+> 
+>     private function saveDefaultLanguages() : void;     //Same as above  
+>     private function loadLanguages() : array;           //Same as above  
+>     private function loadDefaultLanguage() : ?Language; //Same as above  
 > }
 > ```  
-> `saveDefaultLocales()` is omitted. See [this](#zap-save-default-language-files)
   
 <br>  
   
@@ -121,19 +157,16 @@ Follow the four basic steps to use below:
   
 <br>  
   
-#### :sparkles: Quick use via `TranslatorHolderTrait`
+#### :sparkles: Quick use via `TranslatablePluginTrait`
 > The `TranslatorHolder` interface means that this class owns the `Translator`  
 > Basically, it is best structured by the main class of the plugin to implement it  
 > Therefore, This library provide a trait for `PluginBase` for quick use  
+> It automatically performs both saving and loading of the main language file when the getTranslator() method called.  
+> And add the translateTo() method to the PluginBase  
 > ```php
-> Examples: 
-> //Roughly, example source that sends a basic server introduction when the player join  
+> //Example source that sends a basic server introduction when the player join  
 > class Main extends PluginBase implements Listener{  
->     use TranslatorHolderTrait;  
->     
->     public function onLoad() : void{  
->         $this->loadTranslator();  
->     }  
+>     use TranslatablePluginTrait;  
 > 
 >     public function onEnable() : void{  
 >       $this->getServer()->getPluginManager()->registerEvents($this, $this);  
@@ -141,7 +174,7 @@ Follow the four basic steps to use below:
 > 
 >     public function onPlayerJoin(PlayerJoinEvent $event) : void{  
 >         $player = $event->getPlayer();  
->         $player->sendMessage($this->getTranslator()->translateTo("basic.server.introduction", [], $player));  
+>         $player->sendMessage($this->translateTo("basic.server.introduction", [], $player));  
 >     }  
 > }  
 > ```  

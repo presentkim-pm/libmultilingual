@@ -34,7 +34,7 @@ use function strtolower;
 final class DefaultParams{
     private function __construct(){ }
 
-    /** @see https://github.com/PresentKim/libtranslator/blob/main/doc/eng/DefaultParams.md */
+    /** @see https://github.com/presentkim-pm/libtranslator/blob/main/doc/eng/DefaultParams.md */
     private const DEFAULTS = [
         "n" => "\n",
         "br" => "\n",

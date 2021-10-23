@@ -45,7 +45,7 @@ use function strtolower;
 /**
  * This trait override most methods in the {@link PluginBase} abstract class.
  *
- * @see https://github.com/PresentKim/libtranslator/blob/main/doc/eng/HowToUse.md#sparkles-quick-use-via-translatorholdertrait
+ * @see https://github.com/presentkim-pm/libtranslator/blob/main/doc/eng/HowToUse.md#sparkles-quick-use-via-translatorholdertrait
  */
 trait TranslatablePluginTrait{
     use TranslatorHolderTrait;

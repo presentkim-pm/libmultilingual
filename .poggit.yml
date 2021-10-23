@@ -1,0 +1,11 @@
+---
+build-by-default: true
+
+branches:
+  - main
+
+projects:
+  libtranslator:
+    model: virion
+    type: library
+...

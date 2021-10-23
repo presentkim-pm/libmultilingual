@@ -8,4 +8,6 @@ projects:
   libtranslator:
     model: virion
     type: library
+    lint:
+      phpstan: false
 ...

@@ -24,6 +24,7 @@
  * @noinspection SpellCheckingInspection
  * @noinspection PhpDocSignatureInspection
  * @noinspection RegExpRedundantEscape
+ * @noinspection PhpUnused
  */
 
 declare(strict_types=1);
@@ -33,6 +34,7 @@ namespace kim\present\lib\translator;
 use kim\present\converter\locale\LocaleConverter;
 use pocketmine\command\CommandSender;
 use pocketmine\Server;
+use Stringable;
 
 use function array_keys;
 use function array_merge;
@@ -44,22 +46,20 @@ use function strlen;
 use function strtolower;
 
 class Translator{
-    /** @var Language[] Language instances */
-    protected array $languages = [];
-
-    /** Default language */
-    public ?Language $defaultLanguage = null;
-
-    /** @param Language[] $languages */
-    public function __construct(array $languages = [], ?Language $defaultLanguage = null){
-        $this->languages = $languages;
-        $this->defaultLanguage = $defaultLanguage;
+    /**
+     * @param $languages Language[] Language instances
+     * @param $defaultLanguage Language|null Default language
+     */
+    public function __construct(
+        protected array $languages = [],
+        protected ?Language $defaultLanguage = null
+    ){
     }
 
     /**
-     * @param string      $str original string
-     * @param mixed[]     $params translate parameters
-     * @param string|null $locale translate language locale. if null, translate by default language
+     * @param string                         $str original string
+     * @param string[]|Stringable[]|number[] $params translate parameters
+     * @param string|null                    $locale translate language locale. if null, translate by default language
      *
      * @return string the translated string
      */
@@ -70,7 +70,7 @@ class Translator{
             $parts = explode("%", $str);
             $str = "";
             $lastTranslated = false;
-            foreach($parts as $_ => $part){
+            foreach($parts as $part){
                 $new = $lang->get($part) ?? $this->defaultLanguage->getNonNull($part);
                 if(strlen($str) > 0 && $part === $new && !$lastTranslated){
                     $str .= "%";
@@ -92,9 +92,9 @@ class Translator{
     }
 
     /**
-     * @param string             $str original string
-     * @param mixed[]            $params translate parameters
-     * @param CommandSender|null $sender translate target sender. if null, translate by default language
+     * @param string                         $str original string
+     * @param string[]|Stringable[]|number[] $params translate parameters
+     * @param CommandSender|null             $sender translate target sender. if null, translate by default language
      *
      * @return string
      */

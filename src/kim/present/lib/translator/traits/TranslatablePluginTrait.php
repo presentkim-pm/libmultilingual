@@ -23,6 +23,7 @@
  * @noinspection PhpIllegalPsrClassPathInspection
  * @noinspection SpellCheckingInspection
  * @noinspection PhpDocSignatureInspection
+ * @noinspection PhpUnused
  */
 
 declare(strict_types=1);
@@ -91,14 +92,14 @@ trait TranslatablePluginTrait{
         $languages = [];
 
         $path = $this->getDataFolder() . "locale/";
-        if(!is_dir($path))
+        if(!is_dir($path)){
             throw new RuntimeException("Language directory $path does not exist or is not a directory");
+        }
 
         foreach(scandir($path, SCANDIR_SORT_NONE) as $_ => $filename){
-            if(!preg_match("/^([a-zA-Z]{3})\.ini$/", $filename, $matches) || !isset($matches[1]))
-                continue;
-
-            $languages[$matches[1]] = Language::fromFile($path . $filename, $matches[1]);
+            if(preg_match("/^([a-zA-Z]{3})\.ini$/", $filename, $matches) || !isset($matches[1])){
+                $languages[$matches[1]] = Language::fromFile($path . $filename, $matches[1]);
+            }
         }
         return $languages;
     }
@@ -111,13 +112,14 @@ trait TranslatablePluginTrait{
         if($resource === null){
             //Use the first searched file as fallback
             foreach($this->getResources() as $filePath => $info){
-                if(!preg_match("/^locale\/([a-zA-Z]{3})\.ini$/", $filePath, $matches) || !isset($matches[1]))
-                    continue;
+                if(preg_match("/^locale\/([a-zA-Z]{3})\.ini$/", $filePath, $matches) || !isset($matches[1])){
+                    $locale = $matches[1];
+                    $resource = $this->getResource($filePath);
 
-                $locale = $matches[1];
-                $resource = $this->getResource($filePath);
-                if($resource !== null)
-                    break;
+                    if($resource !== null){
+                        break;
+                    }
+                }
             }
         }
         if($resource !== null){

@@ -31,10 +31,10 @@ namespace kim\present\lib\translator;
 
 use function strtolower;
 
-final class DefaultParams{
+final class GlobalParams{
     private function __construct(){ }
 
-    /** @see https://github.com/presentkim-pm/libtranslator/blob/main/doc/eng/DefaultParams.md */
+    /** @see https://github.com/presentkim-pm/libtranslator/blob/main/doc/eng/GlobalParams.md */
     private const DEFAULTS = [
         "n" => "\n",
         "br" => "\n",

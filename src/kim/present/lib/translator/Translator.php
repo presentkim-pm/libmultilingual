@@ -64,7 +64,7 @@ class Translator{
      * @return string the translated string
      */
     public function translate(string $str, array $params = [], ?string $locale = null) : string{
-        $params = array_merge($params, DefaultParams::getAll());
+        $params = array_merge($params, GlobalParams::getAll());
         $lang = $this->getLanguage($locale);
         if($lang !== null){
             $parts = explode("%", $str);

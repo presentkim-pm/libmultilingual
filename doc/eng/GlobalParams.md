@@ -1,5 +1,5 @@
 <p align="right">  
-  <a href="https://github.com/PresentKim/libtranslator/blob/main/doc/kor/DefaultParams.md">  
+  <a href="https://github.com/presentkim-pm/libtranslator/blob/main/doc/kor/GlobalParams.md">  
     <img src="https://img.shields.io/static/v1?label=%ED%95%9C%EA%B5%AD%EC%96%B4&message=%EB%A1%9C+%EC%9D%BD%EA%B8%B0&labelColor=success">  
   </a>  
 </p>  

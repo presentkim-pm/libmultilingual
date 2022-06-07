@@ -49,7 +49,7 @@ Follow the four basic steps to use below:
 4. [:zap: Use `Translator`](#zap-use-translator)
 
 + [:sparkles: Quick use via `TranslatablePluginTrait`](#sparkles-quick-use-via-translatableplugintrait)
-+ [:sparkles: Global params](#sparkles-global-params)
++ [:sparkles: Global params](#sparkles-globalparams)
 
 ---- 
 

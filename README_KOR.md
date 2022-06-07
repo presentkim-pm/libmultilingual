@@ -49,7 +49,7 @@ See [Official Poggit Virion Documentation](https://github.com/poggit/support/blo
 4. [:zap: `Translator` 사용하기](#zap-translator-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)
 
 + [:sparkles: `TranslatablePluginTrait`를 통한 빠르게 사용하기](#sparkles-translatableplugintrait%EB%A5%BC-%ED%86%B5%ED%95%9C-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)
-+ [:sparkles: `GlobalParams`](#sparkles-global-params)
++ [:sparkles: `GlobalParams`](#sparkles-globalparams)
 
 ---- 
 

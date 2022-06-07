@@ -5,7 +5,7 @@ branches:
   - main
 
 projects:
-  libtranslator:
+  libMultilingual:
     model: virion
     type: library
     lint:

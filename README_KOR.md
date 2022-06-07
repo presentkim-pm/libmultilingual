@@ -11,15 +11,16 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <img src="https://raw.githubusercontent.com/presentkim-pm/libtranslator/main/assets/icon.png" alt="Logo" width="80" height="80"/>
-  <a href="https://github.com/presentkim-pm/libtranslator/blob/main/README.md">  
-    <img src="https://img.shields.io/static/v1?label=read%20in&message=English&color=success">
-  </a>  
-  <h3>libtranslator</h3>
+  <img src="https://raw.githubusercontent.com/presentkim-pm/libmultilingual/main/assets/icon.png" alt="Logo" width="80" height="80"/>
+  <h3>libmultilingual</h3>
   <p align="center">
     다국어 메시지 지원을 위한 언어 관리 라이브러리!
 
 [Poggit에서 보기][poggit-ci-url] · [오류 신고하기][issues-url] · [기능 요청하기][issues-url]
+
+<a href="https://github.com/presentkim-pm/libmultilingual/blob/main/README.md">  
+  <img align="right" src="https://img.shields.io/static/v1?label=read%20in&message=English&color=success">
+</a>  
 
   </p>
 </div>
@@ -204,7 +205,7 @@ See [Official Poggit Virion Documentation](https://github.com/poggit/support/blo
 
 #### :sparkles: GlobalParams
 
-See [GlobalParams](https://github.com/presentkim-pm/libtranslator/blob/main/GlobalParams.md)
+See [GlobalParams](https://github.com/presentkim-pm/libmultilingual/blob/main/GlobalParams.md)
 
 </details>
 
@@ -214,13 +215,13 @@ See [GlobalParams](https://github.com/presentkim-pm/libtranslator/blob/main/Glob
 LGPL 3.0에 따라 배포됩니다. 자세한 내용은 [LICENSE][license-url]를 참조하십시오.
 
 
-[poggit-ci-badge]: https://poggit.pmmp.io/ci.shield/presentkim-pm/libtranslator/libtranslator?style=for-the-badge
-[stars-badge]: https://img.shields.io/github/stars/presentkim-pm/libtranslator.svg?style=for-the-badge
-[license-badge]: https://img.shields.io/github/license/presentkim-pm/libtranslator.svg?style=for-the-badge
+[poggit-ci-badge]: https://poggit.pmmp.io/ci.shield/presentkim-pm/libmultilingual/libmultilingual?style=for-the-badge
+[stars-badge]: https://img.shields.io/github/stars/presentkim-pm/libmultilingual.svg?style=for-the-badge
+[license-badge]: https://img.shields.io/github/license/presentkim-pm/libmultilingual.svg?style=for-the-badge
 
-[poggit-ci-url]: https://poggit.pmmp.io/ci/presentkim-pm/libtranslator/libtranslator
-[stars-url]: https://github.com/presentkim-pm/libtranslator/stargazers
-[issues-url]: https://github.com/presentkim-pm/libtranslator/issues
-[license-url]: https://github.com/presentkim-pm/libtranslator/blob/main/LICENSE
+[poggit-ci-url]: https://poggit.pmmp.io/ci/presentkim-pm/libmultilingual/libmultilingual
+[stars-url]: https://github.com/presentkim-pm/libmultilingual/stargazers
+[issues-url]: https://github.com/presentkim-pm/libmultilingual/issues
+[license-url]: https://github.com/presentkim-pm/libmultilingual/blob/main/LICENSE
 
-[project-icon]: https://raw.githubusercontent.com/presentkim-pm/libtranslator/main/assets/icon.png
+[project-icon]: https://raw.githubusercontent.com/presentkim-pm/libmultilingual/main/assets/icon.png

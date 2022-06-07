@@ -26,7 +26,7 @@
 
 declare(strict_types=1);
 
-namespace kim\present\lib\translator;
+namespace kim\present\libmultilingual;
 
 use function array_map;
 use function file_exists;

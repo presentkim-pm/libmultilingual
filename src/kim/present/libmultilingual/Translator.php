@@ -29,7 +29,7 @@
 
 declare(strict_types=1);
 
-namespace kim\present\lib\translator;
+namespace kim\present\libmultilingual;
 
 use kim\present\converter\locale\LocaleConverter;
 use pocketmine\command\CommandSender;

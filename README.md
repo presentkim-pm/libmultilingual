@@ -11,15 +11,16 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <img src="https://raw.githubusercontent.com/presentkim-pm/libtranslator/main/assets/icon.png" alt="Logo" width="80" height="80"/>
-  <a href="https://github.com/presentkim-pm/libtranslator/blob/main/README_KOR.md">  
-    <img align="right" src="https://img.shields.io/static/v1?label=%ED%95%9C%EA%B5%AD%EC%96%B4&message=%EB%A1%9C+%EC%9D%BD%EA%B8%B0&labelColor=success"/>  
-  </a>
-  <h3>libtranslator</h3>
+  <img src="https://raw.githubusercontent.com/presentkim-pm/libmultilingual/main/assets/icon.png" alt="Logo" width="80" height="80"/>
+  <h3>libmultilingual</h3>
   <p align="center">
     Language management library for multilingual message support!
 
 [View in Poggit][poggit-ci-url] · [Report a bug][issues-url] · [Request a feature][issues-url]
+
+<a href="https://github.com/presentkim-pm/libmultilingual/blob/main/README_KOR.md">  
+  <img align="right" src="https://img.shields.io/static/v1?label=%ED%95%9C%EA%B5%AD%EC%96%B4&message=%EB%A1%9C+%EC%9D%BD%EA%B8%B0&labelColor=success"/>  
+</a>
 
   </p>
 </div>
@@ -204,7 +205,7 @@ Follow the four basic steps to use below:
 
 #### :sparkles: GlobalParams
 
-See [GlobalParams](https://github.com/presentkim-pm/libtranslator/blob/main/GlobalParams.md)
+See [GlobalParams](https://github.com/presentkim-pm/libmultilingual/blob/main/GlobalParams.md)
 
 </details>
 
@@ -214,13 +215,13 @@ See [GlobalParams](https://github.com/presentkim-pm/libtranslator/blob/main/Glob
 Distributed under the **LGPL 3.0**. See [LICENSE][license-url] for more information
 
 
-[poggit-ci-badge]: https://poggit.pmmp.io/ci.shield/presentkim-pm/libtranslator/libtranslator?style=for-the-badge
-[stars-badge]: https://img.shields.io/github/stars/presentkim-pm/libtranslator.svg?style=for-the-badge
-[license-badge]: https://img.shields.io/github/license/presentkim-pm/libtranslator.svg?style=for-the-badge
+[poggit-ci-badge]: https://poggit.pmmp.io/ci.shield/presentkim-pm/libmultilingual/libmultilingual?style=for-the-badge
+[stars-badge]: https://img.shields.io/github/stars/presentkim-pm/libmultilingual.svg?style=for-the-badge
+[license-badge]: https://img.shields.io/github/license/presentkim-pm/libmultilingual.svg?style=for-the-badge
 
-[poggit-ci-url]: https://poggit.pmmp.io/ci/presentkim-pm/libtranslator/libtranslator
-[stars-url]: https://github.com/presentkim-pm/libtranslator/stargazers
-[issues-url]: https://github.com/presentkim-pm/libtranslator/issues
-[license-url]: https://github.com/presentkim-pm/libtranslator/blob/main/LICENSE
+[poggit-ci-url]: https://poggit.pmmp.io/ci/presentkim-pm/libmultilingual/libmultilingual
+[stars-url]: https://github.com/presentkim-pm/libmultilingual/stargazers
+[issues-url]: https://github.com/presentkim-pm/libmultilingual/issues
+[license-url]: https://github.com/presentkim-pm/libmultilingual/blob/main/LICENSE
 
-[project-icon]: https://raw.githubusercontent.com/presentkim-pm/libtranslator/main/assets/icon.png
+[project-icon]: https://raw.githubusercontent.com/presentkim-pm/libmultilingual/main/assets/icon.png

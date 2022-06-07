@@ -1,12 +1,12 @@
 <p align="right">  
-  <a href="https://github.com/presentkim-pm/libtranslator/blob/main/doc/kor/GlobalParams.md">  
+  <a href="https://github.com/presentkim-pm/libmultilingual/blob/main/doc/kor/GlobalParams.md">  
     <img src="https://img.shields.io/static/v1?label=%ED%95%9C%EA%B5%AD%EC%96%B4&message=%EB%A1%9C+%EC%9D%BD%EA%B8%B0&labelColor=success">  
   </a>  
 </p>  
 
 
 # :book: What is this?
-These are the default parameters provided by libtranslator.  
+These are the default parameters provided by libmultilingual.  
 This feature has been added to allow plugin users to easily use line breaks and Minecraft emojis.  
 You can also add them through plugins!  
 
@@ -19,7 +19,7 @@ If you enter `{%ParamName}` in the language configuration file, it is automatica
 -----
 
 ## :book: How to register my parameters?
-> libtranslator provide `GlobalParams` class for that features.  
+> libmultilingual provide `GlobalParams` class for that features.  
 > You can always add parameters via the `GlobalParams::register` static method.
 > ```php
 > //Example source that register {%server-name} parameter

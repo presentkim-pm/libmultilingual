@@ -27,14 +27,14 @@
 
 declare(strict_types=1);
 
-namespace kim\present\lib\translator;
+namespace kim\present\libmultilingual;
 
 use function strtolower;
 
 final class GlobalParams{
     private function __construct(){ }
 
-    /** @see https://github.com/presentkim-pm/libtranslator/blob/main/GlobalParams.md */
+    /** @see https://github.com/presentkim-pm/libmultilingual/blob/main/GlobalParams.md */
     private const DEFAULTS = [
         "n" => "\n",
         "br" => "\n",

@@ -22,12 +22,22 @@
  *
  * @noinspection PhpIllegalPsrClassPathInspection
  * @noinspection SpellCheckingInspection
+ * @noinspection PhpDocSignatureInspection
+ * @noinspection PhpUnused
  */
 
 declare(strict_types=1);
 
-namespace kim\present\lib\translator;
+namespace kim\present\libmultilingual\traits;
 
-interface TranslatorHolder{
-    public function getTranslator() : Translator;
+use kim\present\libmultilingual\Translator;
+use kim\present\libmultilingual\TranslatorHolder;
+
+/** This trait override most methods in the {@link TranslatorHolder} interface. */
+trait TranslatorHolderTrait{
+    private Translator $translator;
+
+    public function getTranslator() : Translator{
+        return $this->translator;
+    }
 }

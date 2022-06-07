@@ -28,10 +28,10 @@
 
 declare(strict_types=1);
 
-namespace kim\present\lib\translator\traits;
+namespace kim\present\libmultilingual\traits;
 
-use kim\present\lib\translator\Language;
-use kim\present\lib\translator\Translator;
+use kim\present\libmultilingual\Language;
+use kim\present\libmultilingual\Translator;
 use pocketmine\command\CommandSender;
 use pocketmine\plugin\PluginBase;
 use RuntimeException;
@@ -46,7 +46,7 @@ use function strtolower;
 /**
  * This trait override most methods in the {@link PluginBase} abstract class.
  *
- * @see https://github.com/presentkim-pm/libtranslator/blob/main/README.md#sparkles-quick-use-via-translatableplugintrait
+ * @see https://github.com/presentkim-pm/libmultilingual/blob/main/README.md#sparkles-quick-use-via-translatableplugintrait
  */
 trait TranslatablePluginTrait{
     use TranslatorHolderTrait;

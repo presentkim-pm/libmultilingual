@@ -34,7 +34,7 @@ use function strtolower;
 final class GlobalParams{
     private function __construct(){ }
 
-    /** @see https://github.com/presentkim-pm/libtranslator/blob/main/doc/eng/GlobalParams.md */
+    /** @see https://github.com/presentkim-pm/libtranslator/blob/main/GlobalParams.md */
     private const DEFAULTS = [
         "n" => "\n",
         "br" => "\n",

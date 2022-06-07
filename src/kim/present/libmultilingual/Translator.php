@@ -31,7 +31,7 @@ declare(strict_types=1);
 
 namespace kim\present\libmultilingual;
 
-use kim\present\converter\locale\LocaleConverter;
+use kim\present\libmultilingual\utils\LocaleConverter;
 use pocketmine\command\CommandSender;
 use pocketmine\Server;
 use Stringable;

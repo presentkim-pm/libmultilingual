@@ -46,7 +46,7 @@ use function strtolower;
 /**
  * This trait override most methods in the {@link PluginBase} abstract class.
  *
- * @see https://github.com/presentkim-pm/libtranslator/blob/main/doc/eng/HowToUse.md#sparkles-quick-use-via-translatorholdertrait
+ * @see https://github.com/presentkim-pm/libtranslator/blob/main/README.md#sparkles-quick-use-via-translatableplugintrait
  */
 trait TranslatablePluginTrait{
     use TranslatorHolderTrait;
@@ -63,7 +63,7 @@ trait TranslatablePluginTrait{
 
     /**
      * @param string             $str original string
-     * @param mixed[]            $params translate parameters
+     * @param array              $params translate parameters
      * @param CommandSender|null $sender translate target sender. if null, translate by default language
      *
      * @return string
@@ -96,7 +96,7 @@ trait TranslatablePluginTrait{
             throw new RuntimeException("Language directory $path does not exist or is not a directory");
         }
 
-        foreach(scandir($path, SCANDIR_SORT_NONE) as $_ => $filename){
+        foreach(scandir($path, SCANDIR_SORT_NONE) as $filename){
             if(preg_match("/^([a-zA-Z]{3})\.ini$/", $filename, $matches) || !isset($matches[1])){
                 $languages[$matches[1]] = Language::fromFile($path . $filename, $matches[1]);
             }
@@ -108,7 +108,7 @@ trait TranslatablePluginTrait{
     private function loadDefaultLanguage() : ?Language{
         /** @var PluginBase|TranslatablePluginTrait $this */
         $locale = $this->getServer()->getLanguage()->getLang();
-        $resource = $this->getResource("locale/{$locale}.ini");
+        $resource = $this->getResource("locale/$locale.ini");
         if($resource === null){
             //Use the first searched file as fallback
             foreach($this->getResources() as $filePath => $info){

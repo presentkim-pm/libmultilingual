@@ -20,7 +20,7 @@
  *  ( . .) ♥
  *  c(")(")
  *
- * @noinspection PhpIllegalPsrClassPathInspection
+ * @noinspection PhpUnused
  * @noinspection SpellCheckingInspection
  * @noinspection PhpDocSignatureInspection
  * @noinspection RegExpRedundantEscape
@@ -42,7 +42,6 @@ use function explode;
 use function method_exists;
 use function preg_match_all;
 use function str_replace;
-use function strlen;
 use function strtolower;
 
 class Translator{
@@ -72,7 +71,7 @@ class Translator{
             $lastTranslated = false;
             foreach($parts as $part){
                 $new = $lang->get($part) ?? $this->defaultLanguage->getNonNull($part);
-                if(strlen($str) > 0 && $part === $new && !$lastTranslated){
+                if($str !== '' && $part === $new && !$lastTranslated){
                     $str .= "%";
                 }
                 $lastTranslated = $part !== $new;

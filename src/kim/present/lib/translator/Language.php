@@ -20,9 +20,8 @@
  *  ( . .) ♥
  *  c(")(")
  *
- * @noinspection PhpIllegalPsrClassPathInspection
+ * @noinspection PhpUnused
  * @noinspection SpellCheckingInspection
- * @noinspection PhpDocSignatureInspection
  */
 
 declare(strict_types=1);
@@ -71,8 +70,8 @@ class Language{
     public static function fromFile(string $path, string $locale) : ?Language{
         if(file_exists($path)){
             return self::fromContents(file_get_contents($path), $locale);
-        }else{
-            return null;
         }
+
+        return null;
     }
 }

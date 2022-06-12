@@ -61,13 +61,13 @@ trait DelegatedTranslatorHolderTrait{
         return $this->getTranslator()->getLocaleList();
     }
 
-    /** @return Language|null if $locale is null, return default language */
-    public function getLanguage(?string $locale = null) : ?Language{
+    /** @return Language if $locale is null, return default language */
+    public function getLanguage(?string $locale = null) : Language{
         /** @var TranslatorHolder $this */
         return $this->getTranslator()->getLanguage($locale);
     }
 
-    public function getFallbackLanguage() : ?Language{
+    public function getFallbackLanguage() : Language{
         /** @var TranslatorHolder $this */
         return $this->getTranslator()->getFallbackLanguage();
     }

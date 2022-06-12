@@ -35,14 +35,18 @@ use function parse_ini_string;
 use function strtolower;
 
 class Language{
+    /** @var string Locale name (ISO_639-3 code) */
+    protected string $locale;
+
     /**
      * @param $map array<string, string> id => text
      * @param $locale string Locale name (ISO_639-3 code)
      */
     public function __construct(
         protected array $map,
-        protected string $locale
+        string $locale
     ){
+        $this->locale = strtolower($locale);
     }
 
     public function getLocale() : string{
@@ -63,7 +67,7 @@ class Language{
 
     /** @return Language the loaded language from contents */
     public static function fromContents(string $contents, string $locale) : Language{
-        return new Language(array_map("stripcslashes", parse_ini_string($contents, false, INI_SCANNER_RAW)), strtolower($locale));
+        return new Language(array_map("stripcslashes", parse_ini_string($contents, false, INI_SCANNER_RAW)), $locale);
     }
 
     /** @return Language|null the loaded language from file */

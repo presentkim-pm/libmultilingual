@@ -47,20 +47,29 @@ use function str_replace;
 use function strtolower;
 
 class Translator{
-    protected ?Language $fallbackLanguage;
+    /** @var Language[] Language instances */
+    protected array $languages = [];
+
+    /** @var Language Language|null Fallback language */
+    protected Language $fallbackLanguage;
 
     /**
      * @param $languages Language[] Language instances
-     * @param $fallbackLanguage Language|null Fallback language
+     * @param $fallbackLanguage Language Fallback language
      */
     public function __construct(
-        protected array $languages = [],
+        array $languages = [],
         ?Language $fallbackLanguage = null
     ){
-        $this->fallbackLanguage = $fallbackLanguage ?? $this->languages[PMLanguage::FALLBACK_LANGUAGE] ?? null;
-        if($this->fallbackLanguage === null){
+        foreach($languages as $language){
+            $this->languages[strtolower($language->getLocale())] = $language;
+        }
+
+        if($fallbackLanguage === null && !isset($this->languages[PMLanguage::FALLBACK_LANGUAGE])){
             throw new RuntimeException("Fallback language is not provided. You must provides a fallback language(" . PMLanguage::FALLBACK_LANGUAGE . ")");
         }
+
+        $this->fallbackLanguage = $fallbackLanguage ?? $this->languages[PMLanguage::FALLBACK_LANGUAGE];
     }
 
     /**
@@ -76,19 +85,17 @@ class Translator{
             $locale = LocaleConverter::convertIEFT($locale->getLocale());
         }
         $lang = $this->getLanguage($locale);
-        if($lang !== null){
-            $parts = explode("%", $str);
-            $str = "";
-            $lastTranslated = false;
-            foreach($parts as $part){
-                $new = $lang->get($part) ?? $this->fallbackLanguage->getNonNull($part);
-                if($str !== '' && $part === $new && !$lastTranslated){
-                    $str .= "%";
-                }
-                $lastTranslated = $part !== $new;
-
-                $str .= $new;
+        $parts = explode("%", $str);
+        $str = "";
+        $lastTranslated = false;
+        foreach($parts as $part){
+            $new = $lang->get($part) ?? $this->fallbackLanguage->getNonNull($part);
+            if($str !== '' && $part === $new && !$lastTranslated){
+                $str .= "%";
             }
+            $lastTranslated = $part !== $new;
+
+            $str .= $new;
         }
 
         if(preg_match_all("/\{%([a-zA-Z0-9]+)\}/", $str, $matches, PREG_SET_ORDER) !== false){
@@ -111,12 +118,12 @@ class Translator{
         return array_keys($this->getLanguages());
     }
 
-    /** @return Language|null if $locale is null, return default language */
-    public function getLanguage(?string $locale = null) : ?Language{
+    /** @return Language if $locale is null, return default language */
+    public function getLanguage(?string $locale = null) : Language{
         return $this->languages[strtolower($locale ?? Server::getInstance()->getLanguage()->getLang())] ?? $this->fallbackLanguage;
     }
 
-    public function getFallbackLanguage() : ?Language{
+    public function getFallbackLanguage() : Language{
         return $this->fallbackLanguage;
     }
 

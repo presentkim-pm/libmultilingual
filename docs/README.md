@@ -36,9 +36,29 @@ See [Official Poggit Virion Documentation](https://github.com/poggit/support/blo
 -----
 
 ## How to use?
-See [Main Document](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/README.md)
+> - If you want implement multilingual support by provided traits:
+> > See [this guide](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/plugin-translation-trait.md)
+
+> - If you want implement multilingual support in your self:
+> > See [this guide](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/plugin-translation-self.md)
 
 -----
+
+## More documentations
+- [**LocalConverter**](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/locale-converter.md)
+    cross-convert `IETF` and `ISO 639-3` locale codes.
+
+- [**GlobalParams**](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/global-params.md)
+    global parameters for translation.
+
+- [**Translator**](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/translator.md)
+    The translator of this library.
+
+- [**MultilingualResourceTrait**](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/multilingual-resource-trait.md)
+    Implements multilingual support for resource files.
+
+- [**TranslatorHolderTrait**](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/translator-holder-trait.md)
+    Implements `TranslatorHolder` interface.
 
 ## License
 Distributed under the **LGPL 3.0**. See [LICENSE][license-url] for more information

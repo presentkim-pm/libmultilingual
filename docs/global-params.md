@@ -1,50 +1,19 @@
-<p align="right">  
-  <a href="https://github.com/presentkim-pm/libmultilingual/blob/main/doc/kor/GlobalParams.md">  
-    <img src="https://img.shields.io/static/v1?label=%ED%95%9C%EA%B5%AD%EC%96%B4&message=%EB%A1%9C+%EC%9D%BD%EA%B8%B0&labelColor=success">  
-  </a>  
-</p>  
+<div align="center">
+  <a href="https://github.com/presentkim-pm/libmultilingual" target="_blank">
+    <img src="https://raw.githubusercontent.com/presentkim-pm/libmultilingual/main/assets/icon.png" alt="Logo" width="80" height="80"/>
+  </a>
+  <h1>libmultilingual :: GlobalParams</h1>
+</div>
 
+## :tada: Overview
+This library given `GlobalParams` which manage default translation parameters.  
+This global parameter list is used common to all translations.  
+This feature was added to make it easier to use line breaks and Minecraft emojis.  
+You can also add them through plugins!
 
-# :book: What is this?
-These are the default parameters provided by libmultilingual.  
-This feature has been added to allow plugin users to easily use line breaks and Minecraft emojis.  
-You can also add them through plugins!  
+<details>
+<summary>Default global params list</summary>
 
------
-
-## :book: How to use it?
-If you enter `{%ParamName}` in the language configuration file, it is automatically replaced.
-> ex) `{%n}`, `{%minecoin}`
-
------
-
-## :book: How to register my parameters?
-> libmultilingual provide `GlobalParams` class for that features.  
-> You can always add parameters via the `GlobalParams::register` static method.
-> ```php
-> //Example source that register {%server-name} parameter
-> class Main extends PluginBase{
->     public function onEnable() : void{  
->         GlobalParams::register("server-name", $this->getServer()->getName()); 
->     }
-> }  
-> ```
-> 
-> It can update parameters in real time to create dynamic messages.
-> ```php
-> //Example source that register {%player-count} parameter
-> class Main extends PluginBase{
->     public function onEnable() : void{  
->        $this->getScheduler()->scheduleRepeatingTask(new ClosureTask(function() : void{
->            GlobalParams::register("player-count", (string) count($this->getServer()->getOnlinePlayers()));
->        }), 1);
->     }
-> }  
-> ```   
-
------
-
-## :zap: Default params list
 |          Param name          | Character  |                                                                 In game                                                                  |
 |:----------------------------:|:----------:|:----------------------------------------------------------------------------------------------------------------------------------------:|
 |              n               |    `\n`    |                                                            New line charactor                                                            |
@@ -143,3 +112,67 @@ If you enter `{%ParamName}` in the language configuration file, it is automatica
 |           rift-rt            | `\u{E0E8}` |           <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-rt.png" width="50%">            |
 |            rift-x            | `\u{E0E9}` |            <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-x.png" width="50%">            |
 |            rift-y            | `\u{E0EA}` |            <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-y.png" width="50%">            |
+
+[See also source](https://github.com/presentkim-pm/libmultilingual/blob/main/src/kim/present/libmultilingual/GlobalParams.php)
+</details>
+
+-----
+<br/>
+
+## :book: What does provides?  
+This class provides the following static methods:
+```php
+/** @return array<string, string> The list of global translate parameters */
+public static function getAll() : array
+
+/**
+ * Sets a global translate parameter
+ *
+ * @param string $paramName The parameter name
+ * @param string $contents The parameter's replacement contents
+ */
+public static function set(string $paramName, string $contents) : void
+
+/**
+ * Removes a global translate parameter
+ *
+ * @param string $paramName The parameter name
+ */
+public static function remove(string $paramName) : void
+```
+[See source](https://github.com/presentkim-pm/libmultilingual/blob/main/src/kim/present/libmultilingual/GlobalParams.php)
+
+-----
+<br/>
+
+## :book: How to use parameter?
+If you enter `{%ParamName}` in the language configuration file, it is automatically replaced at translate.
+> ex) `{%n}`, `{%minecoin}`
+
+-----
+<br/>
+
+## :book: How to register my custom parameters?
+You can always add parameters via the `GlobalParams::register()` static method.
+```php
+use kim\present\libmultilingual\GlobalParams;
+
+//Example source that set {%server-name} parameter
+public function onEnable() : void{  
+    GlobalParams::set("server-name", $this->getServer()->getName()); 
+}
+```
+
+Also can update parameters in real time to create dynamic messages.
+```php
+use kim\present\libmultilingual\GlobalParams;
+
+//Example source that set {%player-count} parameter
+public function onEnable() : void{  
+   $this->getScheduler()->scheduleRepeatingTask(new ClosureTask(function() : void{
+       GlobalParams::set("player-count", (string) count($this->getServer()->getOnlinePlayers()));
+   }), 1);
+}
+```   
+
+-----

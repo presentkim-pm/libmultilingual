@@ -41,7 +41,7 @@ use function mkdir;
 use function sprintf;
 use function stream_copy_to_stream;
 
-/** This trait override most methods in the {@link PluginBase} abstract class. */
+/** This trait add localization of resources to {@link PluginBase} */
 trait MultilingualResourceTrait{
     /**
      * It works like getResource(), but automatically convert resource path according to server language.

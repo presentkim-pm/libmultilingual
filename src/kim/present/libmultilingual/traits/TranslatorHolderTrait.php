@@ -33,7 +33,7 @@ namespace kim\present\libmultilingual\traits;
 use kim\present\libmultilingual\Translator;
 use kim\present\libmultilingual\TranslatorHolder;
 
-/** This trait override most methods in the {@link TranslatorHolder} interface. */
+/** This trait adds the $translator property to implement the {@link TranslatorHolder} interface. */
 trait TranslatorHolderTrait{
     protected Translator $translator;
 

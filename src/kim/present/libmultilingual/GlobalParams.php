@@ -31,10 +31,12 @@ namespace kim\present\libmultilingual;
 
 use function strtolower;
 
+/**
+ * This class manages the global parameters used for the Translator's translation.
+ */
 final class GlobalParams{
     private function __construct(){ }
 
-    /** @see https://github.com/presentkim-pm/libmultilingual/blob/main/GlobalParams.md */
     private const DEFAULTS = [
         "n" => "\n",
         "br" => "\n",

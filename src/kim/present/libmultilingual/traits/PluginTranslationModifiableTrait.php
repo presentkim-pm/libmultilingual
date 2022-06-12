@@ -44,7 +44,8 @@ use function stream_get_contents;
 use function strtolower;
 
 /**
- * This trait create translator from {@link PluginBase} data folder.
+ * This trait implements the {@link TranslatorHolder} interface.
+ * Automatically create translators from {@link PluginBase} data folder.
  * Since it is imported from the data folder, the user can modify the message.
  *
  * However, the fallback language is created from the 'eng.ini' of the resource.

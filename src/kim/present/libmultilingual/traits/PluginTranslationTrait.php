@@ -39,7 +39,8 @@ use function preg_match;
 use function stream_get_contents;
 
 /**
- * This trait create translator from {@link PluginBase} resources.
+ * This trait implements the {@link TranslatorHolder} interface.
+ * Automatically create translators from {@link PluginBase} resources.
  */
 trait PluginTranslationTrait{
     use TranslatorHolderTrait;

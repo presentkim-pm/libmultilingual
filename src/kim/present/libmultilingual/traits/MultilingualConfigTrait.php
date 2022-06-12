@@ -24,6 +24,7 @@
  * @noinspection SpellCheckingInspection
  * @noinspection PhpDocSignatureInspection
  * @noinspection PhpUnused
+ * @noinspection PhpRedundantVariableDocTypeInspection
  */
 
 declare(strict_types=1);
@@ -32,7 +33,7 @@ namespace kim\present\libmultilingual\traits;
 
 use pocketmine\plugin\PluginBase;
 
-/** This trait override most methods in the {@link PluginBase} abstract class. */
+/** This trait add localization of config.yml file to {@link PluginBase} */
 trait MultilingualConfigTrait{
     use MultilingualResourceTrait;
 

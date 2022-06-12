@@ -122,7 +122,7 @@ class Translator{
         return array_keys($this->getLanguages());
     }
 
-    /** @return Language if $locale is null, return default language */
+    /** @return Language if $locale is null, return fallback language */
     public function getLanguage(?string $locale = null) : Language{
         return $this->languages[strtolower($locale ?? Server::getInstance()->getLanguage()->getLang())] ?? $this->fallbackLanguage;
     }

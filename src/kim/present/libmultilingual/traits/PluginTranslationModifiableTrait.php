@@ -32,11 +32,9 @@ namespace kim\present\libmultilingual\traits;
 
 use kim\present\libmultilingual\Language;
 use kim\present\libmultilingual\Translator;
-use pocketmine\command\CommandSender;
 use pocketmine\lang\Language as PMLanguage;
 use pocketmine\plugin\PluginBase;
 use RuntimeException;
-use Stringable;
 
 use function fclose;
 use function is_dir;
@@ -46,26 +44,28 @@ use function stream_get_contents;
 use function strtolower;
 
 /**
- * This trait override most methods in the {@link PluginBase} abstract class.
+ * This trait create translator from {@link PluginBase} data folder.
+ * Since it is imported from the data folder, the user can modify the message.
  *
- * @see https://github.com/presentkim-pm/libmultilingual/blob/main/README.md#sparkles-quick-use-via-translatableplugintrait
+ * However, the fallback language is created from the 'eng.ini' of the resource.
+ * Because problems may occur due to plugin updates or incorrect modifying by users.
  */
-trait PluginTranslatorHolderTrait{
-    use TranslatorHolderTrait;
+trait PluginTranslationModifiableTrait{
+    use PluginTranslationTrait;
 
-    public function getTranslator() : Translator{
-        /** @var PluginBase|PluginTranslatorHolderTrait $this */
-        if(empty($this->translator)){
-            $this->saveDefaultLanguages();
-            $this->translator = new Translator($this->loadLanguages(), $this->loadFallbackLanguage());
-        }
-
-        return $this->translator;
+    /**
+     * Generate a new translator instance from the language files of plugin data folder.
+     *
+     * @return Translator
+     */
+    private function initTranslator() : Translator{
+        $this->saveDefaultLanguages();
+        return new Translator($this->loadLanguages(), $this->loadFallbackLanguage());
     }
 
     /** Save default language resources */
     private function saveDefaultLanguages() : void{
-        /** @var PluginBase|PluginTranslatorHolderTrait $this */
+        /** @var PluginBase $this */
         foreach($this->getResources() as $filePath => $info){
             if(preg_match('/^locale\/[a-zA-Z]{3}\.ini$/', $filePath)){
                 $this->saveResource($filePath);
@@ -79,7 +79,7 @@ trait PluginTranslatorHolderTrait{
      * @return Language[]
      */
     private function loadLanguages() : array{
-        /** @var PluginBase|PluginTranslatorHolderTrait $this */
+        /** @var PluginBase $this */
         $languages = [];
 
         $path = $this->getDataFolder() . "locale/";
@@ -97,7 +97,7 @@ trait PluginTranslatorHolderTrait{
 
     /** Load fallback language from plugin resources */
     private function loadFallbackLanguage() : ?Language{
-        /** @var PluginBase|PluginTranslatorHolderTrait $this */
+        /** @var PluginBase $this */
         $locale = $this->getServer()->getLanguage()->getLang();
         $resource = $this->getResource("locale/" . PMLanguage::FALLBACK_LANGUAGE . ".ini");
         if($resource !== null){

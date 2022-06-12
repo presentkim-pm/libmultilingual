@@ -34,7 +34,7 @@ Therefore, need to `eng` locale file must exist for normal use.
 -----
 <br/>
 
-## :book: What does provides?
+## :book: How to use?
 The `TranslatorHolder` interface means that this class owns the `Translator`  
 Basically, it is best structured by the main class of the plugin to implement it.  
 Therefore, This library provide a traits for `PluginBase` for quick use.  

@@ -151,4 +151,13 @@ final class GlobalParams{
     public static function set(string $paramName, string $contents) : void{
         self::$params[strtolower($paramName)] = $contents;
     }
+
+    /**
+     * Removes a global translate parameter
+     *
+     * @param string $paramName The parameter name
+     */
+    public static function remove(string $paramName) : void{
+        unset(self::$params[strtolower($paramName)]);
+    }
 }

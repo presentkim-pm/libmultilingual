@@ -36,6 +36,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\lang\Language as PMLanguage;
 use pocketmine\plugin\PluginBase;
 use RuntimeException;
+use Stringable;
 
 use function fclose;
 use function is_dir;
@@ -60,17 +61,6 @@ trait TranslatablePluginTrait{
         }
 
         return $this->translator;
-    }
-
-    /**
-     * @param string             $str original string
-     * @param array              $params translate parameters
-     * @param CommandSender|null $sender translate target sender. if null, translate by default language
-     *
-     * @return string
-     */
-    public function translateTo(string $str, array $params, ?CommandSender $sender = null) : string{
-        return $this->getTranslator()->translateTo($str, $params, $sender);
     }
 
     /** Save default language resources */
@@ -103,6 +93,17 @@ trait TranslatablePluginTrait{
             }
         }
         return $languages;
+    }
+
+    /**
+     * @param string                         $str original string
+     * @param string[]|Stringable[]|number[] $params translate parameters
+     * @param string|CommandSender|null      $locale translate language locale or translate target. if null, translate by default language
+     *
+     * @return string the translated string
+     */
+    public function translate(string $str, array $params = [], string|CommandSender|null $locale = null) : string{
+        return $this->getTranslator()->translate($str, $params, $locale);
     }
 
     /** Load fallback language from plugin resources */

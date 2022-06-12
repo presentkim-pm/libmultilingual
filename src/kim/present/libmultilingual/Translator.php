@@ -66,12 +66,15 @@ class Translator{
     /**
      * @param string                         $str original string
      * @param string[]|Stringable[]|number[] $params translate parameters
-     * @param string|null                    $locale translate language locale. if null, translate by default language
+     * @param string|CommandSender|null      $locale translate language locale or translate target. if null, translate by default language
      *
      * @return string the translated string
      */
-    public function translate(string $str, array $params = [], ?string $locale = null) : string{
+    public function translate(string $str, array $params = [], string|CommandSender|null $locale = null) : string{
         $params = array_merge($params, GlobalParams::getAll());
+        if($locale instanceof CommandSender && method_exists($locale, "getLocale") && !Server::getInstance()->isLanguageForced()){
+            $locale = LocaleConverter::convertIEFT($locale->getLocale());
+        }
         $lang = $this->getLanguage($locale);
         if($lang !== null){
             $parts = explode("%", $str);
@@ -96,21 +99,6 @@ class Translator{
             }
         }
         return $str;
-    }
-
-    /**
-     * @param string                         $str original string
-     * @param string[]|Stringable[]|number[] $params translate parameters
-     * @param CommandSender|null             $sender translate target sender. if null, translate by default language
-     *
-     * @return string
-     */
-    public function translateTo(string $str, array $params, ?CommandSender $sender = null) : string{
-        $locale = null;
-        if($sender !== null && method_exists($sender, 'getLocale') && !Server::getInstance()->isLanguageForced()){
-            $locale = LocaleConverter::convertIEFT($sender->getLocale());
-        }
-        return $this->translate($str, $params, $locale);
     }
 
     /** @return Language[] */

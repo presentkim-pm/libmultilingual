@@ -50,11 +50,11 @@ use function strtolower;
  *
  * @see https://github.com/presentkim-pm/libmultilingual/blob/main/README.md#sparkles-quick-use-via-translatableplugintrait
  */
-trait TranslatablePluginTrait{
+trait PluginTranslatorHolderTrait{
     use TranslatorHolderTrait;
 
     public function getTranslator() : Translator{
-        /** @var PluginBase|TranslatablePluginTrait $this */
+        /** @var PluginBase|PluginTranslatorHolderTrait $this */
         if(empty($this->translator)){
             $this->saveDefaultLanguages();
             $this->translator = new Translator($this->loadLanguages(), $this->loadFallbackLanguage());
@@ -65,7 +65,7 @@ trait TranslatablePluginTrait{
 
     /** Save default language resources */
     private function saveDefaultLanguages() : void{
-        /** @var PluginBase|TranslatablePluginTrait $this */
+        /** @var PluginBase|PluginTranslatorHolderTrait $this */
         foreach($this->getResources() as $filePath => $info){
             if(preg_match('/^locale\/[a-zA-Z]{3}\.ini$/', $filePath)){
                 $this->saveResource($filePath);
@@ -79,7 +79,7 @@ trait TranslatablePluginTrait{
      * @return Language[]
      */
     private function loadLanguages() : array{
-        /** @var PluginBase|TranslatablePluginTrait $this */
+        /** @var PluginBase|PluginTranslatorHolderTrait $this */
         $languages = [];
 
         $path = $this->getDataFolder() . "locale/";
@@ -95,20 +95,9 @@ trait TranslatablePluginTrait{
         return $languages;
     }
 
-    /**
-     * @param string                         $str original string
-     * @param string[]|Stringable[]|number[] $params translate parameters
-     * @param string|CommandSender|null      $locale translate language locale or translate target. if null, translate by default language
-     *
-     * @return string the translated string
-     */
-    public function translate(string $str, array $params = [], string|CommandSender|null $locale = null) : string{
-        return $this->getTranslator()->translate($str, $params, $locale);
-    }
-
     /** Load fallback language from plugin resources */
     private function loadFallbackLanguage() : ?Language{
-        /** @var PluginBase|TranslatablePluginTrait $this */
+        /** @var PluginBase|PluginTranslatorHolderTrait $this */
         $locale = $this->getServer()->getLanguage()->getLang();
         $resource = $this->getResource("locale/" . PMLanguage::FALLBACK_LANGUAGE . ".ini");
         if($resource !== null){

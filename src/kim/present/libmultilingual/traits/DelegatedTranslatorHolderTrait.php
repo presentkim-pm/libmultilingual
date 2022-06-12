@@ -37,6 +37,8 @@ use Stringable;
 
 /** A trait that makes the {@link TranslatorHolder} implementation class to delegate the Translator method. */
 trait DelegatedTranslatorHolderTrait{
+    use TranslatorHolderTrait;
+
     /**
      * @param string                          $str original string
      * @param array<string|Stringable|number> $params translate parameters

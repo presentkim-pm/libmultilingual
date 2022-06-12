@@ -78,18 +78,28 @@ final class LocaleConverter{
         "uk_UA" => "ukr", //Українська (Україна)
     ];
 
-    /** @return string|null the locale name converted from IETF_language_tag to ISO_639-3 code */
-    public static function convertIEFT(string $tag) : ?string{
-        return self::LANGUAGES_MAP[$tag] ?? null;
+    /**
+     * Convert IETF language tag to ISO 639-3 code
+     *
+     * @param string $locale The locale code in IETF format. ex) `en_US`
+     * @return string|null the locale code in ISO 639-3 format. ex) `eng`
+     */
+    public static function convertIEFT(string $locale) : ?string{
+        return self::LANGUAGES_MAP[$locale] ?? null;
     }
 
-    /** @return string|null the locale name converted from ISO_639-3 code to IETF_language_tag */
-    public static function convertCode(string $code) : ?string{
+    /**
+     * Convert ISO 639-3 code to IETF language tag
+     *
+     * @param string $locale the locale code in ISO 639-3 format. ex) `eng`
+     * @return string|null The locale code in IETF format. ex) `en_US`
+     */
+    public static function convertCode(string $locale) : ?string{
         static $flippedMap;
         if(empty($flippedMap)){
             $flippedMap = array_flip(self::LANGUAGES_MAP);
         }
 
-        return $flippedMap[$code] ?? null;
+        return $flippedMap[$locale] ?? null;
     }
 }

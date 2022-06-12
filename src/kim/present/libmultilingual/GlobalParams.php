@@ -134,15 +134,21 @@ final class GlobalParams{
         "rift-y" => "\u{E0EA}"
     ];
 
-    /** @var string[] */
+    /** @var string[] The list of global translate parameters */
     private static array $params = self::DEFAULTS;
 
-    /** @return string[] */
+    /** @return array<string, string> The list of global translate parameters */
     public static function getAll() : array{
         return self::$params;
     }
 
-    public static function register(string $paramName, string $str) : void{
-        self::$params[strtolower($paramName)] = $str;
+    /**
+     * Sets a global translate parameter
+     *
+     * @param string $paramName The parameter name
+     * @param string $contents The parameter's replacement contents
+     */
+    public static function set(string $paramName, string $contents) : void{
+        self::$params[strtolower($paramName)] = $contents;
     }
 }

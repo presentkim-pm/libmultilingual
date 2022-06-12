@@ -33,6 +33,7 @@ namespace kim\present\libmultilingual\traits;
 use kim\present\libmultilingual\Language;
 use kim\present\libmultilingual\Translator;
 use pocketmine\command\CommandSender;
+use pocketmine\lang\Language as PMLanguage;
 use pocketmine\plugin\PluginBase;
 use RuntimeException;
 
@@ -55,7 +56,7 @@ trait TranslatablePluginTrait{
         /** @var PluginBase|TranslatablePluginTrait $this */
         if(empty($this->translator)){
             $this->saveDefaultLanguages();
-            $this->translator = new Translator($this->loadLanguages(), $this->loadDefaultLanguage());
+            $this->translator = new Translator($this->loadLanguages(), $this->loadFallbackLanguage());
         }
 
         return $this->translator;
@@ -104,24 +105,11 @@ trait TranslatablePluginTrait{
         return $languages;
     }
 
-    /** Load default language from plugin resources */
-    private function loadDefaultLanguage() : ?Language{
+    /** Load fallback language from plugin resources */
+    private function loadFallbackLanguage() : ?Language{
         /** @var PluginBase|TranslatablePluginTrait $this */
         $locale = $this->getServer()->getLanguage()->getLang();
-        $resource = $this->getResource("locale/$locale.ini");
-        if($resource === null){
-            //Use the first searched file as fallback
-            foreach($this->getResources() as $filePath => $info){
-                if(preg_match("/^locale\/([a-zA-Z]{3})\.ini$/", $filePath, $matches) || !isset($matches[1])){
-                    $locale = $matches[1];
-                    $resource = $this->getResource($filePath);
-
-                    if($resource !== null){
-                        break;
-                    }
-                }
-            }
-        }
+        $resource = $this->getResource("locale/" . PMLanguage::FALLBACK_LANGUAGE . ".ini");
         if($resource !== null){
             $contents = stream_get_contents($resource);
             fclose($resource);

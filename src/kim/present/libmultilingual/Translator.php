@@ -33,7 +33,9 @@ namespace kim\present\libmultilingual;
 
 use kim\present\libmultilingual\utils\LocaleConverter;
 use pocketmine\command\CommandSender;
+use pocketmine\lang\Language as PMLanguage;
 use pocketmine\Server;
+use RuntimeException;
 use Stringable;
 
 use function array_keys;
@@ -45,14 +47,20 @@ use function str_replace;
 use function strtolower;
 
 class Translator{
+    protected ?Language $fallbackLanguage;
+
     /**
      * @param $languages Language[] Language instances
-     * @param $defaultLanguage Language|null Default language
+     * @param $fallbackLanguage Language|null Fallback language
      */
     public function __construct(
         protected array $languages = [],
-        protected ?Language $defaultLanguage = null
+        ?Language $fallbackLanguage = null
     ){
+        $this->fallbackLanguage = $fallbackLanguage ?? $this->languages[PMLanguage::FALLBACK_LANGUAGE] ?? null;
+        if($this->fallbackLanguage === null){
+            throw new RuntimeException("Fallback language is not provided. You must provides a fallback language(" . PMLanguage::FALLBACK_LANGUAGE . ")");
+        }
     }
 
     /**
@@ -70,7 +78,7 @@ class Translator{
             $str = "";
             $lastTranslated = false;
             foreach($parts as $part){
-                $new = $lang->get($part) ?? $this->defaultLanguage->getNonNull($part);
+                $new = $lang->get($part) ?? $this->fallbackLanguage->getNonNull($part);
                 if($str !== '' && $part === $new && !$lastTranslated){
                     $str .= "%";
                 }
@@ -117,14 +125,14 @@ class Translator{
 
     /** @return Language|null if $locale is null, return default language */
     public function getLanguage(?string $locale = null) : ?Language{
-        return $this->languages[strtolower($locale ?? Server::getInstance()->getLanguage()->getLang())] ?? $this->defaultLanguage;
+        return $this->languages[strtolower($locale ?? Server::getInstance()->getLanguage()->getLang())] ?? $this->fallbackLanguage;
     }
 
-    public function getDefaultLanguage() : ?Language{
-        return $this->defaultLanguage;
+    public function getFallbackLanguage() : ?Language{
+        return $this->fallbackLanguage;
     }
 
-    public function setDefaultLanguage(?Language $defaultLanguage) : void{
-        $this->defaultLanguage = $defaultLanguage;
+    public function setFallbackLanguage(Language $fallbackLanguage) : void{
+        $this->fallbackLanguage = $fallbackLanguage;
     }
 }

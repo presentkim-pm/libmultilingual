@@ -32,7 +32,6 @@ declare(strict_types=1);
 namespace kim\present\libmultilingual;
 
 use kim\present\libmultilingual\utils\LocaleConverter;
-use pocketmine\command\CommandSender;
 use pocketmine\lang\Language as PMLanguage;
 use pocketmine\Server;
 use RuntimeException;
@@ -41,6 +40,7 @@ use Stringable;
 use function array_keys;
 use function array_merge;
 use function explode;
+use function is_object;
 use function method_exists;
 use function preg_match_all;
 use function str_replace;
@@ -73,16 +73,20 @@ class Translator{
     }
 
     /**
-     * @param string                         $str original string
-     * @param string[]|Stringable[]|number[] $params translate parameters
-     * @param string|CommandSender|null      $locale translate language locale or translate target. if null, translate by default language
+     * @param string                          $str original string
+     * @param array<string|Stringable|number> $params translate parameters
+     * @param string|object|null              $locale translate language locale or translate target. if null, translate by default language
      *
      * @return string the translated string
      */
-    public function translate(string $str, array $params = [], string|CommandSender|null $locale = null) : string{
+    public function translate(string $str, array $params = [], string|object|null $locale = null) : string{
         $params = array_merge($params, GlobalParams::getAll());
-        if($locale instanceof CommandSender && method_exists($locale, "getLocale") && !Server::getInstance()->isLanguageForced()){
-            $locale = LocaleConverter::convertIEFT($locale->getLocale());
+        if(is_object($locale)){
+            if(method_exists($locale, "getLocale") && !Server::getInstance()->isLanguageForced()){
+                $locale = LocaleConverter::convertIEFT($locale->getLocale());
+            }else{
+                $locale = null;
+            }
         }
         $lang = $this->getLanguage($locale);
         $parts = explode("%", $str);

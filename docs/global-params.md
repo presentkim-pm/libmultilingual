@@ -145,13 +145,6 @@ public static function remove(string $paramName) : void
 -----
 <br/>
 
-## :book: How to use parameter?
-If you enter `{%ParamName}` in the language configuration file, it is automatically replaced at translate.
-> ex) `{%n}`, `{%minecoin}`
-
------
-<br/>
-
 ## :book: How to register my custom parameters?
 You can always add parameters via the `GlobalParams::register()` static method.
 ```php

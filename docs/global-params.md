@@ -150,7 +150,7 @@ You can always add parameters via the `GlobalParams::register()` static method.
 ```php
 use kim\present\libmultilingual\GlobalParams;
 
-//Example source that set {%server-name} parameter
+//Example source that set `server-name` parameter
 public function onEnable() : void{  
     GlobalParams::set("server-name", $this->getServer()->getName()); 
 }
@@ -160,7 +160,7 @@ Also can update parameters in real time to create dynamic messages.
 ```php
 use kim\present\libmultilingual\GlobalParams;
 
-//Example source that set {%player-count} parameter
+//Example source that set `player-count` parameter
 public function onEnable() : void{  
    $this->getScheduler()->scheduleRepeatingTask(new ClosureTask(function() : void{
        GlobalParams::set("player-count", (string) count($this->getServer()->getOnlinePlayers()));

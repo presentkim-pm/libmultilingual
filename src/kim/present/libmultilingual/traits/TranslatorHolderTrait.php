@@ -35,7 +35,7 @@ use kim\present\libmultilingual\TranslatorHolder;
 
 /** This trait override most methods in the {@link TranslatorHolder} interface. */
 trait TranslatorHolderTrait{
-    private Translator $translator;
+    protected Translator $translator;
 
     public function getTranslator() : Translator{
         return $this->translator;

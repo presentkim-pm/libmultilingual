@@ -58,6 +58,21 @@ final class GlobalParams{
         "xbox-d-left" => "\u{E00D}",
         "xbox-d-down" => "\u{E00E}",
         "xbox-d-right" => "\u{E00F}",
+        "xbox-a-bright" => "\u{E010}",
+        "xbox-b-bright" => "\u{E011}",
+        "xbox-x-bright" => "\u{E012}",
+        "xbox-y-bright" => "\u{E013}",
+        "jump" => "\u{E014}",
+        "attack" => "\u{E015}",
+        "joystick" => "\u{E016}",
+        "crosshair" => "\u{E017}",
+        "interact" => "\u{E018}",
+        "crouch" => "\u{E019}",
+        "sprint" => "\u{E01A}",
+        "fly-up" => "\u{E01B}",
+        "fly-down" => "\u{E01C}",
+        "dismount" => "\u{E01D}",
+        // U+E01E - U+E01F
         "ps-x" => "\u{E020}",
         "ps-o" => "\u{E021}",
         "ps-square" => "\u{E022}",
@@ -74,6 +89,7 @@ final class GlobalParams{
         "ps-d-left" => "\u{E02D}",
         "ps-d-down" => "\u{E02E}",
         "ps-d-right" => "\u{E02F}",
+        // U+E030 - U+E03F
         "nintendo-a" => "\u{E040}",
         "nintendo-b" => "\u{E041}",
         "nintendo-x" => "\u{E042}",
@@ -90,10 +106,28 @@ final class GlobalParams{
         "nintendo-d-left" => "\u{E04D}",
         "nintendo-d-down" => "\u{E04E}",
         "nintendo-d-right" => "\u{E04F}",
+        // U+E050 - U+E05F
         "left-mouse" => "\u{E060}",
         "right-mouse" => "\u{E061}",
         "middle-mouse" => "\u{E062}",
-        "forward-arrow" => "\u{E080}",
+        "mouse" => "\u{E063}",
+        // U+E064
+        "forward-arrow-new" => "\u{E065}",
+        "left-arrow-new" => "\u{E066}",
+        "down-arrow-new" => "\u{E067}",
+        "right-arrow-new" => "\u{E068}",
+        "jump-button-new" => "\u{E069}",
+        "crouch-button-new" => "\u{E06A}",
+        "inventory-button" => "\u{E06B}",
+        "fly-up-button-new" => "\u{E06C}",
+        "fly-down-button-new" => "\u{E06D}",
+        // U+E06E - U+E06F
+        "left-mouse-new" => "\u{E070}",
+        "right-mouse-new" => "\u{E071}",
+        "middle-mouse-new" => "\u{E072}",
+        "mouse-new" => "\u{E073}",
+        // U+E074 - U+E07F
+        "forward-arrow-arrow" => "\u{E080}",
         "left-arrow" => "\u{E081}",
         "down-arrow" => "\u{E082}",
         "right-arrow" => "\u{E083}",
@@ -101,14 +135,10 @@ final class GlobalParams{
         "crouch-button" => "\u{E085}",
         "fly-up-button" => "\u{E086}",
         "fly-down-button" => "\u{E087}",
+        // U+E088 - U+E09F
         "craftable-on" => "\u{E0A0}",
         "craftable-off" => "\u{E0A1}",
-        "food" => "\u{E100}",
-        "armour" => "\u{E101}",
-        "minecoin" => "\u{E102}",
-        "code-builder" => "\u{E103}",
-        "immersive-reader-button" => "\u{E104}",
-        "token" => "\u{E105}",
+        // U+E0A2 - U+E0BF
         "mr-lg" => "\u{E0C0}",
         "mr-rg" => "\u{E0C1}",
         "mr-menu" => "\u{E0C2}",
@@ -123,6 +153,7 @@ final class GlobalParams{
         "mr-lt" => "\u{E0CB}",
         "mr-rt" => "\u{E0CC}",
         "mr-windows" => "\u{E0CD}",
+        // U+E0CE - U+E0DF
         "rift-zero" => "\u{E0E0}",
         "rift-a" => "\u{E0E1}",
         "rift-b" => "\u{E0E2}",
@@ -133,7 +164,21 @@ final class GlobalParams{
         "rift-lt" => "\u{E0E7}",
         "rift-rt" => "\u{E0E8}",
         "rift-x" => "\u{E0E9}",
-        "rift-y" => "\u{E0EA}"
+        "rift-y" => "\u{E0EA}",
+        // U+E0EB - U+E0FF
+        "food" => "\u{E100}",
+        "armour" => "\u{E101}",
+        "minecoin" => "\u{E102}",
+        "code-builder" => "\u{E103}",
+        "immersive-reader-button" => "\u{E104}",
+        "token" => "\u{E105}",
+        "hollow-star" => "\u{E106}",
+        "solid-star" => "\u{E107}",
+        "wooden-pickaxe" => "\u{E108}",
+        "wooden-sword" => "\u{E109}",
+        "crafting-table" => "\u{E10A}",
+        "furnace" => "\u{E10B}",
+        "heart" => "\u{E10C}"
     ];
 
     /** @var string[] The list of global translate parameters */

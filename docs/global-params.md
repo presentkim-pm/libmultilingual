@@ -36,6 +36,20 @@ You can also add them through plugins!
 |         xbox-d-left          | `\u{E00D}` |         <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-d-left.png" width="50%">          |
 |         xbox-d-down          | `\u{E00E}` |         <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-d-down.png" width="50%">          |
 |         xbox-d-right         | `\u{E00F}` |         <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-d-right.png" width="50%">         |
+|        xbox-a-bright         | `\u{E010}` |        <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-a-bright.png" width="50%">         |
+|        xbox-b-bright         | `\u{E011}` |        <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-b-bright.png" width="50%">         |
+|        xbox-x-bright         | `\u{E012}` |        <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-x-bright.png" width="50%">         |
+|        xbox-y-bright         | `\u{E013}` |        <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/xbox-y-bright.png" width="50%">         |
+|             jump             | `\u{E014}` |             <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/jump.png" width="50%">             |
+|            attack            | `\u{E015}` |            <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/attack.png" width="50%">            |
+|           joystick           | `\u{E016}` |           <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/joystick.png" width="50%">           |
+|          crosshair           | `\u{E017}` |          <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/crosshair.png" width="50%">           |
+|           interact           | `\u{E018}` |           <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/interact.png" width="50%">           |
+|            crouch            | `\u{E019}` |            <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/crouch.png" width="50%">            |
+|            sprint            | `\u{E01A}` |            <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/sprint.png" width="50%">            |
+|            fly-up            | `\u{E01B}` |            <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/fly-up.png" width="50%">            |
+|           fly-down           | `\u{E01C}` |           <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/fly-down.png" width="50%">           |
+|           dismount           | `\u{E01D}` |           <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/dismount.png" width="50%">           |
 |             ps-x             | `\u{E020}` |             <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-x.png" width="50%">             |
 |             ps-o             | `\u{E021}` |             <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-o.png" width="50%">             |
 |          ps-square           | `\u{E022}` |          <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/ps-square.png" width="50%">           |
@@ -71,7 +85,21 @@ You can also add them through plugins!
 |          left-mouse          | `\u{E060}` |          <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/left-mouse.png" width="50%">          |
 |         right-mouse          | `\u{E061}` |         <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/right-mouse.png" width="50%">          |
 |         middle-mouse         | `\u{E062}` |         <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/middle-mouse.png" width="50%">         |
-|        forward-arrow         | `\u{E080}` |        <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/forward-arrow.png" width="50%">         |
+|            mouse             | `\u{E063}` |            <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mouse.png" width="50%">             |
+|      forward-arrow-new       | `\u{E065}` |      <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/forward-arrow-new.png" width="50%">       |
+|        left-arrow-new        | `\u{E066}` |        <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/left-arrow-new.png" width="50%">        |
+|        down-arrow-new        | `\u{E067}` |        <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/down-arrow-new.png" width="50%">        |
+|       right-arrow-new        | `\u{E068}` |       <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/right-arrow-new.png" width="50%">        |
+|       jump-button-new        | `\u{E069}` |       <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/jump-button-new.png" width="50%">        |
+|      crouch-button-new       | `\u{E06A}` |      <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/crouch-button-new.png" width="50%">       |
+|       inventory-button       | `\u{E06B}` |       <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/inventory-button.png" width="50%">       |
+|      fly-up-button-new       | `\u{E06C}` |      <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/fly-up-button-new.png" width="50%">       |
+|     fly-down-button-new      | `\u{E06D}` |     <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/fly-down-button-new.png" width="50%">      |
+|        left-mouse-new        | `\u{E070}` |        <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/left-mouse-new.png" width="50%">        |
+|       right-mouse-new        | `\u{E071}` |       <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/right-mouse-new.png" width="50%">        |
+|       middle-mouse-new       | `\u{E072}` |       <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/middle-mouse-new.png" width="50%">       |
+|          mouse-new           | `\u{E073}` |          <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mouse-new.png" width="50%">           |
+|     forward-arrow-arrow      | `\u{E080}` |     <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/forward-arrow-arrow.png" width="50%">      |
 |          left-arrow          | `\u{E081}` |          <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/left-arrow.png" width="50%">          |
 |          down-arrow          | `\u{E082}` |          <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/down-arrow.png" width="50%">          |
 |         right-arrow          | `\u{E083}` |         <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/right-arrow.png" width="50%">          |
@@ -81,12 +109,6 @@ You can also add them through plugins!
 |       fly-down-button        | `\u{E087}` |       <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/fly-down-button.png" width="50%">        |
 |         craftable-on         | `\u{E0A0}` |         <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/craftable-on.png" width="50%">         |
 |        craftable-off         | `\u{E0A1}` |        <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/craftable-off.png" width="50%">         |
-|             food             | `\u{E100}` |             <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/food.png" width="50%">             |
-|            armour            | `\u{E101}` |            <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/armour.png" width="50%">            |
-|           minecoin           | `\u{E102}` |           <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/minecoin.png" width="50%">           |
-|         code-builder         | `\u{E103}` |         <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/code-builder.png" width="50%">         |
-|   immersive-reader-button    | `\u{E104}` |   <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/immersive-reader-button.png" width="50%">    |
-|            token             | `\u{E105}` |            <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/token.png" width="50%">             |
 |            mr-lg             | `\u{E0C0}` |            <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-lg.png" width="50%">             |
 |            mr-rg             | `\u{E0C1}` |            <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-rg.png" width="50%">             |
 |           mr-menu            | `\u{E0C2}` |           <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mr-menu.png" width="50%">            |
@@ -112,6 +134,19 @@ You can also add them through plugins!
 |           rift-rt            | `\u{E0E8}` |           <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-rt.png" width="50%">            |
 |            rift-x            | `\u{E0E9}` |            <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-x.png" width="50%">            |
 |            rift-y            | `\u{E0EA}` |            <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/rift-y.png" width="50%">            |
+|             food             | `\u{E100}` |             <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/food.png" width="50%">             |
+|            armour            | `\u{E101}` |            <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/armour.png" width="50%">            |
+|           minecoin           | `\u{E102}` |           <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/minecoin.png" width="50%">           |
+|         code-builder         | `\u{E103}` |         <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/code-builder.png" width="50%">         |
+|   immersive-reader-button    | `\u{E104}` |   <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/immersive-reader-button.png" width="50%">    |
+|            token             | `\u{E105}` |            <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/token.png" width="50%">             |
+|         hollow-star          | `\u{E106}` |         <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/hollow-star.png" width="50%">          |
+|          solid-star          | `\u{E107}` |          <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/solid-star.png" width="50%">          |
+|        wooden-pickaxe        | `\u{E108}` |        <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/wooden-pickaxe.png" width="50%">        |
+|         wooden-sword         | `\u{E109}` |         <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/wooden-sword.png" width="50%">         |
+|        crafting-table        | `\u{E10A}` |        <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/crafting-table.png" width="50%">        |
+|           furnace            | `\u{E10B}` |           <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/furnace.png" width="50%">            |
+|            heart             | `\u{E10C}` |            <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/heart.png" width="50%">             |
 
 [See also source](https://github.com/presentkim-pm/libmultilingual/blob/main/src/kim/present/libmultilingual/GlobalParams.php)
 </details>

@@ -31,7 +31,6 @@ namespace kim\present\libmultilingual\traits;
 
 use pocketmine\lang\Language;
 use pocketmine\plugin\PluginBase;
-use pocketmine\utils\AssumptionFailedError;
 
 use function dirname;
 use function fclose;
@@ -44,18 +43,22 @@ use function stream_copy_to_stream;
 /** This trait add localization of resources to {@link PluginBase} */
 trait MultilingualResourceTrait{
     /**
-     * It works like getResource(), but automatically convert resource path according to server language.
+     * It works like getResourcePath(), but automatically convert resource path according to server language.
      *
      * @param string $resourcePattern The resource path string containing %s (it will replace to locale code)
      *
-     * @return resource|null Resource data, or null
+     * @return string Resource path
      *
-     * @see PluginBase::getResource()
+     * @see PluginBase::getResourcePath()
      */
-    public function getResourceByLanguage(string $resourcePattern){
+    public function getResourcePathByLanguage(string $resourcePattern) : string{
         /** @var PluginBase $this */
-        return $this->getResource(sprintf($resourcePattern, $this->getServer()->getLanguage()->getLang()))
-            ?? $this->getResource(sprintf($resourcePattern, Language::FALLBACK_LANGUAGE));
+        $path = $this->getResourcePath(sprintf($resourcePattern, $this->getServer()->getLanguage()->getLang()));
+        if(file_exists($path)){
+            return $path;
+        }else{
+            return $this->getResourcePath(sprintf($resourcePattern, Language::FALLBACK_LANGUAGE));
+        }
     }
 
     /**
@@ -69,29 +72,21 @@ trait MultilingualResourceTrait{
      */
     public function saveResourceByLanguage(string $filename, string $resourcePattern, bool $replace = false) : bool{
         /** @var PluginBase $this */
-        $out = $this->getDataFolder() . $filename;
-        if(file_exists($out) && !$replace){
+        $outPath = $this->getDataFolder() . $filename;
+        if(file_exists($outPath) && !$replace){
             return false;
         }
 
-        $resource = $this->getResourceByLanguage($resourcePattern);
-        if($resource === null){
+        $resourcePath = $this->getResourcePathByLanguage($resourcePattern);
+        if(!file_exists($resourcePath)){
             return false;
         }
 
-        $dir = dirname($out);
+        $dir = dirname($outPath);
         if(!file_exists($dir) && !mkdir($dir, 0777, true)){
             return false;
         }
 
-        $fp = fopen($out, "wb");
-        if($fp === false){
-            throw new AssumptionFailedError("fopen() should not fail with wb flags");
-        }
-
-        $ret = stream_copy_to_stream($resource, $fp) > 0;
-        fclose($fp);
-        fclose($resource);
-        return $ret;
+        return copy($resourcePath, $outPath);
     }
 }

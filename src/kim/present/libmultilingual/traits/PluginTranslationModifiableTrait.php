@@ -100,10 +100,9 @@ trait PluginTranslationModifiableTrait{
     private function loadFallbackLanguage() : ?Language{
         /** @var PluginBase $this */
         $locale = $this->getServer()->getLanguage()->getLang();
-        $resource = $this->getResource("locale/" . PMLanguage::FALLBACK_LANGUAGE . ".ini");
-        if($resource !== null){
-            $contents = stream_get_contents($resource);
-            fclose($resource);
+        $resourcePath = $this->getResourcePath("locale/" . PMLanguage::FALLBACK_LANGUAGE . ".ini");
+        if(file_exists($resourcePath)){
+            $contents = file_get_contents($resourcePath);
             return Language::fromContents($contents, strtolower($locale));
         }
 

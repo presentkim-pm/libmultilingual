@@ -38,11 +38,11 @@ Therefore, need to `eng` locale file must exist for normal use.
 This trait provides the following methods:
 ```php
 /**
- * It works like getResource(), but automatically convert resource path according to server language.
+ * It works like getResourcePath(), but automatically convert resource path according to server language.
  *
  * @param string $resourcePattern The resource path string containing %s (it will replace to locale code)
  */
-public function getResourceByLanguage(string $resourcePattern) : ?resource;
+public function getResourcePathByLanguage(string $resourcePattern) : string;
 
 /**
  * It works like saveResource(), but automatically convert resource path according to server language.

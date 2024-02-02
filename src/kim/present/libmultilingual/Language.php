@@ -21,7 +21,6 @@
  *  c(")(")
  *
  * @noinspection PhpUnused
- * @noinspection SpellCheckingInspection
  */
 
 declare(strict_types=1);

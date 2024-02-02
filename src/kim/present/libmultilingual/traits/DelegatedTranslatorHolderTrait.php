@@ -20,9 +20,6 @@
  *  ( . .) ♥
  *  c(")(")
  *
- * @noinspection PhpIllegalPsrClassPathInspection
- * @noinspection SpellCheckingInspection
- * @noinspection PhpDocSignatureInspection
  * @noinspection PhpUnused
  */
 

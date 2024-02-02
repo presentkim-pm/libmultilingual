@@ -20,9 +20,6 @@
  *  ( . .) ♥
  *  c(")(")
  *
- * @noinspection PhpIllegalPsrClassPathInspection
- * @noinspection SpellCheckingInspection
- * @noinspection PhpDocSignatureInspection
  * @noinspection PhpUnused
  */
 
@@ -58,6 +55,8 @@ trait PluginTranslationModifiableTrait{
      * Generate a new translator instance from the language files of plugin data folder.
      *
      * @return Translator
+     *
+     * @noinspection PhpUnusedPrivateMethodInspection
      */
     private function initTranslator() : Translator{
         $this->saveDefaultLanguages();

@@ -21,10 +21,6 @@
  *  c(")(")
  *
  * @noinspection PhpUnused
- * @noinspection SpellCheckingInspection
- * @noinspection PhpDocSignatureInspection
- * @noinspection RegExpRedundantEscape
- * @noinspection PhpUnused
  */
 
 declare(strict_types=1);

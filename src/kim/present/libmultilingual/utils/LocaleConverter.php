@@ -20,7 +20,6 @@
  *  ( . .) ♥
  *  c(")(")
  *
- * @noinspection SpellCheckingInspection
  * @noinspection PhpUnused
  */
 

@@ -20,8 +20,7 @@
  *  ( . .) ♥
  *  c(")(")
  *
- * @noinspection PhpIllegalPsrClassPathInspection
- * @noinspection SpellCheckingInspection
+ * @noinspection PhpUnused
  */
 
 declare(strict_types=1);

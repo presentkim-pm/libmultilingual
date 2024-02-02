@@ -27,12 +27,6 @@ declare(strict_types=1);
 
 namespace kim\present\libmultilingual;
 
-use function array_map;
-use function file_exists;
-use function file_get_contents;
-use function parse_ini_string;
-use function strtolower;
-
 class Language{
     /** @var string Locale name (ISO_639-3 code) */
     protected string $locale;

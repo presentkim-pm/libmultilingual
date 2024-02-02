@@ -33,15 +33,6 @@ use pocketmine\Server;
 use RuntimeException;
 use Stringable;
 
-use function array_keys;
-use function array_merge;
-use function explode;
-use function is_object;
-use function method_exists;
-use function preg_match_all;
-use function str_replace;
-use function strtolower;
-
 class Translator{
     /** @var Language[] Language instances */
     protected array $languages = [];
@@ -51,7 +42,7 @@ class Translator{
 
     /**
      * @param $languages Language[] Language instances
-     * @param $fallbackLanguage Language Fallback language
+     * @param $fallbackLanguage Language|null Fallback language
      */
     public function __construct(
         array $languages = [],

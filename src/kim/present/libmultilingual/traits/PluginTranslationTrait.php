@@ -31,10 +31,6 @@ use kim\present\libmultilingual\Language;
 use kim\present\libmultilingual\Translator;
 use pocketmine\plugin\PluginBase;
 
-use function fclose;
-use function preg_match;
-use function stream_get_contents;
-
 /**
  * This trait implements the {@link TranslatorHolder} interface.
  * Automatically create translators from {@link PluginBase} resources.

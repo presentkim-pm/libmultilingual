@@ -27,8 +27,6 @@ declare(strict_types=1);
 
 namespace kim\present\libmultilingual\utils;
 
-use function array_flip;
-
 final class LocaleConverter{
     private function __construct(){
     }
@@ -81,6 +79,7 @@ final class LocaleConverter{
      * Convert IETF language tag to ISO 639-3 code
      *
      * @param string $locale The locale code in IETF format. ex) `en_US`
+     *
      * @return string|null the locale code in ISO 639-3 format. ex) `eng`
      */
     public static function convertIEFT(string $locale) : ?string{
@@ -91,6 +90,7 @@ final class LocaleConverter{
      * Convert ISO 639-3 code to IETF language tag
      *
      * @param string $locale the locale code in ISO 639-3 format. ex) `eng`
+     *
      * @return string|null The locale code in IETF format. ex) `en_US`
      */
     public static function convertCode(string $locale) : ?string{

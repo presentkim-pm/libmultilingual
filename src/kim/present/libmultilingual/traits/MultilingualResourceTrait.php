@@ -30,14 +30,6 @@ namespace kim\present\libmultilingual\traits;
 use pocketmine\lang\Language;
 use pocketmine\plugin\PluginBase;
 
-use function dirname;
-use function fclose;
-use function file_exists;
-use function fopen;
-use function mkdir;
-use function sprintf;
-use function stream_copy_to_stream;
-
 /** This trait add localization of resources to {@link PluginBase} */
 trait MultilingualResourceTrait{
     /**

@@ -33,13 +33,6 @@ use pocketmine\lang\Language as PMLanguage;
 use pocketmine\plugin\PluginBase;
 use RuntimeException;
 
-use function fclose;
-use function is_dir;
-use function preg_match;
-use function scandir;
-use function stream_get_contents;
-use function strtolower;
-
 /**
  * This trait implements the {@link TranslatorHolder} interface.
  * Automatically create translators from {@link PluginBase} data folder.

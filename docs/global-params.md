@@ -99,7 +99,7 @@ You can also add them through plugins!
 |       right-mouse-new        | `\u{E071}` |       <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/right-mouse-new.png" width="50%">        |
 |       middle-mouse-new       | `\u{E072}` |       <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/middle-mouse-new.png" width="50%">       |
 |          mouse-new           | `\u{E073}` |          <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/mouse-new.png" width="50%">           |
-|     forward-arrow-arrow      | `\u{E080}` |     <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/forward-arrow-arrow.png" width="50%">      |
+|      forward-arrow-new       | `\u{E080}` |        <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/forward-arrow.png" width="50%">         |
 |          left-arrow          | `\u{E081}` |          <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/left-arrow.png" width="50%">          |
 |          down-arrow          | `\u{E082}` |          <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/down-arrow.png" width="50%">          |
 |         right-arrow          | `\u{E083}` |         <img src="https://github.com/TwistedAsylumMC/bedrock-unicode-characters/raw/master/images/right-arrow.png" width="50%">          |

@@ -123,7 +123,7 @@ final class GlobalParams{
         "middle-mouse-new" => "\u{E072}",
         "mouse-new" => "\u{E073}",
         // U+E074 - U+E07F
-        "forward-arrow-arrow" => "\u{E080}",
+        "forward-arrow" => "\u{E080}",
         "left-arrow" => "\u{E081}",
         "down-arrow" => "\u{E082}",
         "right-arrow" => "\u{E083}",

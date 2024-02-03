@@ -89,10 +89,18 @@ class Translator{
             $str .= $new;
         }
 
-        if(preg_match_all("/\{%([a-zA-Z0-9]+)\}/", $str, $matches, PREG_SET_ORDER) !== false){
-            foreach($matches as $match){
-                if(isset($params[$match[1]])){
-                    $str = str_replace($match[0], $params[$match[1]], $str);
+        if(preg_match_all("/\{%([a-zA-Z0-9]+)\}/", $str, $paramMatches, PREG_SET_ORDER) !== false){
+            foreach($paramMatches as [$matches, $param]){
+                if(isset($params[$param])){
+                    $str = str_replace($matches, $params[$param], $str);
+                }elseif(preg_match("/u[A-Fa-f0-9]+/", $param)){
+                    $binary = hex2bin(substr($param, 1));
+                    $unicodeChar = mb_convert_encoding($binary, "UTF-8", "UTF-16BE");
+
+                    $str = str_replace($matches, $unicodeChar, $str);
+
+                    // Caching unicode charactor to GlobalParams
+                    GlobalParams::set($param, $unicodeChar);
                 }
             }
         }

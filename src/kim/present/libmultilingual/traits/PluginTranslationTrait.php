@@ -54,7 +54,7 @@ trait PluginTranslationTrait{
         $languages = [];
 
         foreach($this->getResources() as $filePath => $info){
-            if(preg_match('/^locale\/[a-zA-Z]{3}\.ini$/', $filePath, $matches)){
+            if(preg_match("/^locale\/[a-zA-Z]{3}\.ini$/", $filePath, $matches)){
                 $resourcePath = $this->getResourcePath($filePath);
                 $language = Language::fromContents(file_get_contents($resourcePath), $matches[1]);
 

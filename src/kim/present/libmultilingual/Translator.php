@@ -81,7 +81,7 @@ class Translator{
         $lastTranslated = false;
         foreach($parts as $part){
             $new = $lang->get($part) ?? $this->fallbackLanguage->getNonNull($part);
-            if($str !== '' && $part === $new && !$lastTranslated){
+            if($str !== "" && $part === $new && !$lastTranslated){
                 $str .= "%";
             }
             $lastTranslated = $part !== $new;

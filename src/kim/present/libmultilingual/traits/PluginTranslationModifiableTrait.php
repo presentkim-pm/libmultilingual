@@ -60,7 +60,7 @@ trait PluginTranslationModifiableTrait{
     private function saveDefaultLanguages() : void{
         /** @var PluginBase $this */
         foreach($this->getResources() as $filePath => $info){
-            if(preg_match('/^locale\/[a-zA-Z]{3}\.ini$/', $filePath)){
+            if(preg_match("/^locale\/[a-zA-Z]{3}\.ini$/", $filePath)){
                 $this->saveResource($filePath);
             }
         }

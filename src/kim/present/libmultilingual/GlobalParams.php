@@ -12,9 +12,9 @@
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author  PresentKim (debe3721@gmail.com)
- * @link    https://github.com/PresentKim
- * @license https://www.gnu.org/licenses/lgpl-3.0 LGPL-3.0 License
+ * @author       PresentKim (debe3721@gmail.com)
+ * @link         https://github.com/PresentKim
+ * @license      https://www.gnu.org/licenses/lgpl-3.0 LGPL-3.0 License
  *
  *   (\ /)
  *  ( . .) ♥
@@ -31,7 +31,8 @@ namespace kim\present\libmultilingual;
  * This class manages the global parameters used for the Translator's translation.
  */
 final class GlobalParams{
-    private function __construct(){ }
+
+    private function __construct(){}
 
     private const DEFAULTS = [
         "n" => "\n",
@@ -52,7 +53,7 @@ final class GlobalParams{
      * Sets a global translate parameter
      *
      * @param string $paramName The parameter name
-     * @param string $contents The parameter's replacement contents
+     * @param string $contents  The parameter's replacement contents
      */
     public static function set(string $paramName, string $contents) : void{
         self::$params[$paramName] = $contents;

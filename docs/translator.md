@@ -7,14 +7,15 @@
 
 ## :tada: Overview
 
-
 > This document describes how to use it based on the implementation class of TranslatorHolder.
 
 -----
 <br/>
 
 ## :book: What does provides?
+
 This trait provides the following methods:
+
 ```php
 /**
  * @param string                          $str original string
@@ -47,25 +48,27 @@ public function getFallbackLanguage() : Language
 
 public function setFallbackLanguage(Language $fallbackLanguage) : void
 ```
+
 [See source](https://github.com/presentkim-pm/libmultilingual/blob/main/src/kim/present/libmultilingual/Translator.php)
 
 -----
 <br/>
 
 ## :book: How to use?
-If you have implemented TranslatorHolder or creating Translator, you are all set.  
-Now it remains only to use the translator.  
 
-> **Note** `Translator::translate` has three usages.  
-> 
+If you have implemented TranslatorHolder or creating Translator, you are all set.  
+Now it remains only to use the translator.
+
+> **Note** `Translator::translate` has three usages.
+>
 > 1. `translate(string, string[]) : string`  
->     translate messages that match the server's language settings  
-> <br/>
+     > translate messages that match the server's language settings  
+     > <br/>
 > 2. `translate(string, string[], object $user) : string`  
->    translate messages that match the player's language settings  
->    <br/>
+     > translate messages that match the player's language settings  
+     > <br/>
 > 3. `translate(string, string[], string $locale) : string`  
->    translate messages that match the given locale code
+     > translate messages that match the given locale code
 
 You can use any of the methods above.
 

@@ -12,9 +12,9 @@
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author  PresentKim (debe3721@gmail.com)
- * @link    https://github.com/PresentKim
- * @license https://www.gnu.org/licenses/lgpl-3.0 LGPL-3.0 License
+ * @author       PresentKim (debe3721@gmail.com)
+ * @link         https://github.com/PresentKim
+ * @license      https://www.gnu.org/licenses/lgpl-3.0 LGPL-3.0 License
  *
  *   (\ /)
  *  ( . .) ♥
@@ -34,6 +34,7 @@ use RuntimeException;
 use Stringable;
 
 class Translator{
+
     /** @var Language[] Language instances */
     protected array $languages = [];
 
@@ -41,7 +42,7 @@ class Translator{
     protected Language $fallbackLanguage;
 
     /**
-     * @param $languages Language[] Language instances
+     * @param $languages        Language[] Language instances
      * @param $fallbackLanguage Language|null Fallback language
      */
     public function __construct(
@@ -53,16 +54,18 @@ class Translator{
         }
 
         if($fallbackLanguage === null && !isset($this->languages[PMLanguage::FALLBACK_LANGUAGE])){
-            throw new RuntimeException("Fallback language is not provided. You must provides a fallback language(" . PMLanguage::FALLBACK_LANGUAGE . ")");
+            throw new RuntimeException("Fallback language is not provided. You must provides a fallback language("
+                . PMLanguage::FALLBACK_LANGUAGE . ")");
         }
 
         $this->fallbackLanguage = $fallbackLanguage ?? $this->languages[PMLanguage::FALLBACK_LANGUAGE];
     }
 
     /**
-     * @param string                          $str original string
+     * @param string                          $str    original string
      * @param array<string|Stringable|number> $params translate parameters
-     * @param string|object|null              $locale translate language locale or translate target. if null, translate by default language
+     * @param string|object|null              $locale translate language locale or translate target. if null, translate
+     *                                                by default language
      *
      * @return string the translated string
      */
@@ -119,7 +122,8 @@ class Translator{
 
     /** @return Language if $locale is null, return fallback language */
     public function getLanguage(?string $locale = null) : Language{
-        return $this->languages[strtolower($locale ?? Server::getInstance()->getLanguage()->getLang())] ?? $this->fallbackLanguage;
+        return $this->languages[strtolower($locale ?? Server::getInstance()->getLanguage()->getLang())] ??
+            $this->fallbackLanguage;
     }
 
     public function getFallbackLanguage() : Language{

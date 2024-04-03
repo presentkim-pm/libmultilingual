@@ -1,18 +1,18 @@
 {
-    "name": "presentkim/libmultilingual",
-    "description": "Provides various features for multi-language support for PocketMine-MP",
-    "type": "library",
-    "license": "LGPL-3.0",
-    "require": {
-        "pocketmine/pocketmine-mp": "^5.0.0"
-    },
-    "autoload": {
-        "psr-4": {"kim\\present\\libmultilingual\\": ["src/kim/present/libmultilingual/"]}
-    },
-    "extra": {
-        "virion": {
-            "spec": "3.0",
-            "namespace-root": "kim\\present\\libmultilingual"
-        }
+  "name": "presentkim/libmultilingual",
+  "description": "Provides various features for multi-language support for PocketMine-MP",
+  "type": "library",
+  "license": "LGPL-3.0",
+  "require": {
+    "pocketmine/pocketmine-mp": "^5.0.0"
+  },
+  "autoload": {
+    "psr-4": {"kim\\present\\libmultilingual\\": ["src/kim/present/libmultilingual/"]}
+  },
+  "extra": {
+    "virion": {
+      "spec": "3.0",
+      "namespace-root": "kim\\present\\libmultilingual"
     }
+  }
 }

@@ -2,12 +2,12 @@
 build-by-default: true
 
 branches:
-    - main
+  - main
 
 projects:
-    libmultilingual:
-        model: virion
-        type: library
-        lint:
-            phpstan: false
+  libmultilingual:
+    model: virion
+    type: library
+    lint:
+      phpstan: false
 ...

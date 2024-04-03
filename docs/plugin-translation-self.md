@@ -6,22 +6,26 @@
 </div>
 
 ## :tada: Overview
+
 This document is for developers who want to implement their own without using the traits of the plugin.  
-We recommend implementing it by following the instructions below.  
+We recommend implementing it by following the instructions below.
 
 -----
 <br/>
 
 ## :bulb: Prerequisite knowledge
+
 ### Locale name rules
-This library uses locale codes according to [`ISO_639-3`](https://en.wikipedia.org/wiki/ISO_639-3) standard, likes PMMP.  
+
+This library uses locale codes according to [`ISO_639-3`](https://en.wikipedia.org/wiki/ISO_639-3) standard, likes PMMP.
 
 ### Required locale value
+
 This library uses fallback local code of PMMP.  
 Therefore, need to `eng` locale file must exist for normal use.
 
 > Rules:  
-> /resources/locale/{$locale}.ini  
+> /resources/locale/{$locale}.ini
 
 
 > Examples:
@@ -35,8 +39,10 @@ Therefore, need to `eng` locale file must exist for normal use.
 <br/>
 
 ## :book: How to implement?
+
 #### :zap: Write language files
-> Need to name the language resource file according to the established rules.  
+
+> Need to name the language resource file according to the established rules.
 > ```php  
 > Examples:  
 > /resources/locale/eng.ini  
@@ -47,7 +53,9 @@ Therefore, need to `eng` locale file must exist for normal use.
 > ```  
 
 #### :zap: Save default language files
-> This library load language files from the plugin data folder for user can modifying message (not the plugin resources/ folder)  
+
+> This library load language files from the plugin data folder for user can modifying message (not the plugin resources/
+> folder)  
 > Therefore, need to save the default language file before creating `Translator`
 > ```php  
 > //Example source that save default language files on plugin load 
@@ -67,6 +75,7 @@ Therefore, need to `eng` locale file must exist for normal use.
 > ```  
 
 #### :zap: Create `Translator` instance
+
 > Now you can create `Translator` instances for the plugin  
 > You need all language files saved above are load  
 > Default language files must also be load from the plugin resource
@@ -125,10 +134,14 @@ Therefore, need to `eng` locale file must exist for normal use.
 > ```  
 
 #### :zap: Use `Translator`
+
 > Now it remains only to use the translator
-> 1. Use `Translator::translate(string, string[], CommandSender) : string` for get translated messages that match the player's language settings
-> 2. Use `Translator::translate(string, string[]) : string` for get translated messages that match the server's language settings
-> 3. Use `Translator::translate(string, string[], string $locale) : string` for get translated messages that match the given locale code
+> 1. Use `Translator::translate(string, string[], CommandSender) : string` for get translated messages that match the
+     player's language settings
+> 2. Use `Translator::translate(string, string[]) : string` for get translated messages that match the server's language
+     settings
+> 3. Use `Translator::translate(string, string[], string $locale) : string` for get translated messages that match the
+     given locale code
 > ```php  
 > //Example source that sends a basic server introduction when the player join
 > public function onPlayerJoin(PlayerJoinEvent $event) : void{  

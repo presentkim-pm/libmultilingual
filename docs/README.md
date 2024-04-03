@@ -23,7 +23,9 @@
 
 
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
+
 :heavy_check_mark: Multilingual support for plugin messages  
 :heavy_check_mark: Translation language is set according to the player  
 :heavy_check_mark: Translation setting with According to PMMP settings
@@ -31,11 +33,13 @@
 -----
 
 ## Installation
+
 See [Official Poggit Virion Documentation](https://github.com/poggit/support/blob/master/virion.md)
 
 -----
 
 ## How to use?
+
 > - If you want implement multilingual support by provided traits:
 > > See [this guide](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/plugin-translation-trait.md)
 
@@ -45,32 +49,41 @@ See [Official Poggit Virion Documentation](https://github.com/poggit/support/blo
 -----
 
 ## More documentations
+
 - [**LocalConverter**](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/locale-converter.md)
-    cross-convert `IETF` and `ISO 639-3` locale codes.
+  cross-convert `IETF` and `ISO 639-3` locale codes.
 
 - [**GlobalParams**](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/global-params.md)
-    global parameters for translation.
+  global parameters for translation.
 
 - [**Translator**](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/translator.md)
-    The translator of this library.
+  The translator of this library.
 
-- [**MultilingualResourceTrait**](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/multilingual-resource-trait.md)
-    Implements multilingual support for resource files.
+- [**MultilingualResourceTrait
+  **](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/multilingual-resource-trait.md)
+  Implements multilingual support for resource files.
 
-- [**TranslatorHolderTrait**](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/translator-holder-trait.md)
-    Implements `TranslatorHolder` interface.
+- [**TranslatorHolderTrait
+  **](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/translator-holder-trait.md)
+  Implements `TranslatorHolder` interface.
 
 ## License
+
 Distributed under the **LGPL 3.0**. See [LICENSE][license-url] for more information
 
 
 [poggit-ci-badge]: https://poggit.pmmp.io/ci.shield/presentkim-pm/libmultilingual/libmultilingual?style=for-the-badge
+
 [stars-badge]: https://img.shields.io/github/stars/presentkim-pm/libmultilingual.svg?style=for-the-badge
+
 [license-badge]: https://img.shields.io/github/license/presentkim-pm/libmultilingual.svg?style=for-the-badge
 
 [poggit-ci-url]: https://poggit.pmmp.io/ci/presentkim-pm/libmultilingual/libmultilingual
+
 [stars-url]: https://github.com/presentkim-pm/libmultilingual/stargazers
+
 [issues-url]: https://github.com/presentkim-pm/libmultilingual/issues
+
 [license-url]: https://github.com/presentkim-pm/libmultilingual/blob/main/LICENSE
 
 [project-icon]: https://raw.githubusercontent.com/presentkim-pm/libmultilingual/main/assets/icon.png

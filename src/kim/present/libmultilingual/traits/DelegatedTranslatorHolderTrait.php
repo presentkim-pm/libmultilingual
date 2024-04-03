@@ -12,9 +12,9 @@
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author  PresentKim (debe3721@gmail.com)
- * @link    https://github.com/PresentKim
- * @license https://www.gnu.org/licenses/lgpl-3.0 LGPL-3.0 License
+ * @author       PresentKim (debe3721@gmail.com)
+ * @link         https://github.com/PresentKim
+ * @license      https://www.gnu.org/licenses/lgpl-3.0 LGPL-3.0 License
  *
  *   (\ /)
  *  ( . .) ♥
@@ -37,9 +37,10 @@ trait DelegatedTranslatorHolderTrait{
     use TranslatorHolderTrait;
 
     /**
-     * @param string                          $str original string
+     * @param string                          $str    original string
      * @param array<string|Stringable|number> $params translate parameters
-     * @param string|CommandSender|null       $locale translate language locale or translate target. if null, translate by default language
+     * @param string|CommandSender|null       $locale translate language locale or translate target. if null, translate
+     *                                                by default language
      *
      * @return string the translated string
      */

@@ -6,6 +6,7 @@
 </div>
 
 ## :tada: Overview
+
 This library given `GlobalParams` which manage default translation parameters.  
 This global parameter list is used common to all translations.  
 This feature was added to make it easier to use line breaks and Minecraft emojis.  
@@ -21,15 +22,18 @@ You can also add them through plugins!
 |    {%t}    |     `\t`     |         Tab charactor         |
 | {%u[CODE]} | `\u{[CODE]}` | Unicode character from [CODE] | 
 
-The `Unicode character` feature is supported for representing [emoji characters](https://wiki.bedrock.dev/concepts/emojis.html).  
-ex) `{%uE100}` => `` => <code><img src="https://wiki.bedrock.dev/assets/images/concepts/emojis/hud/food.png" width="16px"></code>  
+The `Unicode character` feature is supported for
+representing [emoji characters](https://wiki.bedrock.dev/concepts/emojis.html).  
+ex) `{%uE100}` => `` => <code><img src="https://wiki.bedrock.dev/assets/images/concepts/emojis/hud/food.png" width="16px"></code>
 
 
 -----
 <br/>
 
-## :book: What does provides?  
+## :book: What does provides?
+
 This class provides the following static methods:
+
 ```php
 /** @return array<string, string> The list of global translate parameters */
 public static function getAll() : array
@@ -49,13 +53,16 @@ public static function set(string $paramName, string $contents) : void
  */
 public static function remove(string $paramName) : void
 ```
+
 [See source](https://github.com/presentkim-pm/libmultilingual/blob/main/src/kim/present/libmultilingual/GlobalParams.php)
 
 -----
 <br/>
 
 ## :book: How to register my custom parameters?
+
 You can always add parameters via the `GlobalParams::register()` static method.
+
 ```php
 use kim\present\libmultilingual\GlobalParams;
 
@@ -66,6 +73,7 @@ public function onEnable() : void{
 ```
 
 Also can update parameters in real time to create dynamic messages.
+
 ```php
 use kim\present\libmultilingual\GlobalParams;
 

@@ -6,6 +6,7 @@
 </div>
 
 ## :tada: Overview
+
 This library given `TranslatorHolderTrait` which implements TranslatorHolder interface.  
 It provides simplify the usage of `TranslatorHolder` interface.
 
@@ -13,19 +14,24 @@ It provides simplify the usage of `TranslatorHolder` interface.
 <br/>
 
 ## :book: What does provides?
+
 This trait provides the following methods:
+
 ```php
 protected Translator $translator;
 
 public function getTranslator() : Translator
 ```
+
 [See source](https://github.com/presentkim-pm/libmultilingual/blob/main/src/kim/present/libmultilingual/traits/TranslatorHolderTrait.php)
 
 -----
 <br/>
 
 ## :book: How to use?
+
 Just add this trait to your class and set the `$translator` property.
+
 ```php  
 use kim\present\libmultilingual\traits\TranslatorHolderTrait;  
 
@@ -43,17 +49,20 @@ class Main extends PluginBase{
     private function loadLanguages() : array // implements
 }  
 ````
+
 -----
 <br/>
 
 ## :sparkles: Use `DelegatedTranslatorHolderTrait`
-If you want delegate the `Translator` methods, you can use `DelegatedTranslatorHolderTrait`.  
+
+If you want delegate the `Translator` methods, you can use `DelegatedTranslatorHolderTrait`.
 
 This trait provides the all of `Translator` methods.  
-[See source](https://github.com/presentkim-pm/libmultilingual/blob/main/src/kim/present/libmultilingual/traits/DelegatedTranslatorHolderTrait.php)  
+[See source](https://github.com/presentkim-pm/libmultilingual/blob/main/src/kim/present/libmultilingual/traits/DelegatedTranslatorHolderTrait.php)
 
 Just add this trait to your class and set the `$translator` property.  
-And then use the `Translator` methods.  
+And then use the `Translator` methods.
+
 ```php  
 use kim\present\libmultilingual\traits\DelegatedTranslatorHolderTrait;  
 

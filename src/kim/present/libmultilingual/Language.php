@@ -33,8 +33,8 @@ class Language{
     protected string $locale;
 
     /**
-     * @param $map    array<string, string> id => text
-     * @param $locale string Locale name (ISO_639-3 code)
+     * @param array<string, string> $map    id => text
+     * @param string                $locale Locale name (ISO_639-3 code)
      */
     public function __construct(
         protected array $map,
@@ -59,15 +59,21 @@ class Language{
         return $this->getNonNull("language.name");
     }
 
-    /** @return Language the loaded language from contents */
     public static function fromContents(string $contents, string $locale) : Language{
-        return new Language(array_map("stripcslashes", parse_ini_string($contents, false, INI_SCANNER_RAW)), $locale);
+        $parsed = parse_ini_string($contents, false, INI_SCANNER_RAW);
+        if($parsed === false){
+            return new Language([], $locale);
+        }
+        return new Language(array_map("stripcslashes", $parsed), $locale);
     }
 
-    /** @return Language|null the loaded language from file */
     public static function fromFile(string $path, string $locale) : ?Language{
         if(file_exists($path)){
-            return self::fromContents(file_get_contents($path), $locale);
+            $contents = file_get_contents($path);
+            if($contents === false){
+                return null;
+            }
+            return self::fromContents($contents, $locale);
         }
 
         return null;

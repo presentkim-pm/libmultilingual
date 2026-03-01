@@ -42,8 +42,8 @@ class Translator{
     protected Language $fallbackLanguage;
 
     /**
-     * @param $languages        Language[] Language instances
-     * @param $fallbackLanguage Language|null Fallback language
+     * @param Language[]    $languages        Language instances
+     * @param Language|null $fallbackLanguage Fallback language
      */
     public function __construct(
         array $languages = [],
@@ -92,17 +92,19 @@ class Translator{
             $str .= $new;
         }
 
-        if(preg_match_all("/\{%([a-zA-Z0-9]+)\}/", $str, $paramMatches, PREG_SET_ORDER) !== false){
+        if(preg_match_all("/\{%([a-zA-Z0-9]+)\}/", $str, $paramMatches, PREG_SET_ORDER) > 0){
             foreach($paramMatches as [$matches, $param]){
                 if(isset($params[$param])){
-                    $str = str_replace($matches, $params[$param], $str);
-                }elseif(preg_match("/u[A-Fa-f0-9]+/", $param)){
+                    $str = str_replace($matches, (string) $params[$param], $str);
+                }elseif(preg_match("/^u[A-Fa-f0-9]+$/", $param) === 1){
                     $binary = hex2bin(substr($param, 1));
+                    if($binary === false){
+                        continue;
+                    }
                     $unicodeChar = mb_convert_encoding($binary, "UTF-8", "UTF-16BE");
 
                     $str = str_replace($matches, $unicodeChar, $str);
 
-                    // Caching unicode charactor to GlobalParams
                     GlobalParams::set($param, $unicodeChar);
                 }
             }

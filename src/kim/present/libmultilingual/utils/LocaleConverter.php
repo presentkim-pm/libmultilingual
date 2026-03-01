@@ -94,8 +94,9 @@ final class LocaleConverter{
      * @return string|null The locale code in IETF format. ex) `en_US`
      */
     public static function convertCode(string $locale) : ?string{
-        static $flippedMap;
-        if(empty($flippedMap)){
+        /** @var array<string, string>|null $flippedMap */
+        static $flippedMap = null;
+        if($flippedMap === null){
             $flippedMap = array_flip(self::LANGUAGES_MAP);
         }
 

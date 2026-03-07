@@ -47,6 +47,12 @@ public function getLanguage(?string $locale = null) : Language
 public function getFallbackLanguage() : Language
 
 public function setFallbackLanguage(Language $fallbackLanguage) : void
+
+public function addLanguage(Language $language) : void
+
+public function removeLanguage(string $locale) : void
+
+public function hasKey(string $key, ?string $locale = null) : bool
 ```
 
 [See source](https://github.com/presentkim-pm/libmultilingual/blob/main/src/kim/present/libmultilingual/Translator.php)

@@ -135,4 +135,35 @@ class Translator{
     public function setFallbackLanguage(Language $fallbackLanguage) : void{
         $this->fallbackLanguage = $fallbackLanguage;
     }
+
+    /**
+     * Add or replace a language in the translator.
+     *
+     * @see Translator::removeLanguage()
+     */
+    public function addLanguage(Language $language) : void{
+        $this->languages[strtolower($language->getLocale())] = $language;
+    }
+
+    /**
+     * Remove a language by locale.
+     * Does not remove the fallback language reference; getLanguage() will still return fallback for unknown locales.
+     *
+     * @see Translator::addLanguage()
+     */
+    public function removeLanguage(string $locale) : void{
+        unset($this->languages[strtolower($locale)]);
+    }
+
+    /**
+     * Check if a translation key exists in the given locale (or server default if null).
+     *
+     * @param string      $key    Translation key to look up
+     * @param string|null $locale Locale code, or null for server language
+     *
+     * @return bool true if the key exists in the language
+     */
+    public function hasKey(string $key, ?string $locale = null) : bool{
+        return $this->getLanguage($locale)->get($key) !== null;
+    }
 }

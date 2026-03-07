@@ -10,7 +10,7 @@
 This library given `LocaleConverter` which cross-convert `IETF` and `ISO 639-3` locale codes.  
 Useful for convert the player's locale code to pocketmine-mp locale code.
 
-- [`IETF`](https://en.wikipedia.org/wiki/IETF_language_tag) is the language code used by Minecraft. ex) `en_KR`
+- [`IETF`](https://en.wikipedia.org/wiki/IETF_language_tag) is the language code used by Minecraft. ex) `ko_KR`
 - [`ISO 639-3`](https://en.wikipedia.org/wiki/ISO_639-3) is the language code used by pocketmine-mp language files.
   ex) `eng`
 
@@ -83,7 +83,7 @@ public static function convertIEFT(string $locale) : ?string
 public static function convertCode(string $locale) : ?string
 ```
 
-[See source](https://github.com/presentkim-pm/libmultilingual/blob/main/src/kim/present/libmultilingual/utils/LocalConverter.php)
+[See source](https://github.com/presentkim-pm/libmultilingual/blob/main/src/kim/present/libmultilingual/utils/LocaleConverter.php)
 
 -----
 <br/>

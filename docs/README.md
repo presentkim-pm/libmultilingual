@@ -40,8 +40,11 @@ See [Official Poggit Virion Documentation](https://github.com/poggit/support/blo
 
 ## How to use?
 
-> - If you want implement multilingual support by provided traits:
-> > See [this guide](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/plugin-translation-trait.md)
+> - **Quick start (recommended)**: Use `MultilingualPluginTrait` or `MultilingualPluginModifiableTrait` for a single-trait setup.
+> > See [MultilingualPluginTrait guide](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/multilingual-plugin-trait.md)
+
+> - If you want more control with individual traits:
+> > See [PluginTranslationTrait guide](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/plugin-translation-trait.md)
 
 > - If you want implement multilingual support in your self:
 > > See [this guide](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/plugin-translation-self.md)
@@ -50,8 +53,11 @@ See [Official Poggit Virion Documentation](https://github.com/poggit/support/blo
 
 ## More documentations
 
-- [**LocalConverter**](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/locale-converter.md)
-  cross-convert `IETF` and `ISO 639-3` locale codes.
+- [**MultilingualPluginTrait**](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/multilingual-plugin-trait.md)
+  One-trait entry point for the simplest setup.
+
+- [**LocaleConverter**](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/locale-converter.md)
+  Cross-convert `IETF` and `ISO 639-3` locale codes.
 
 - [**GlobalParams**](https://github.com/presentkim-pm/libmultilingual/blob/main/docs/global-params.md)
   global parameters for translation.

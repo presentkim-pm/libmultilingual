@@ -44,5 +44,7 @@ use kim\present\libmultilingual\TranslatorHolder;
  * @see MultilingualPluginTrait For resource-only (non-modifiable) messages
  */
 trait MultilingualPluginModifiableTrait{
-    use PluginTranslationModifiableTrait, DelegatedTranslatorHolderTrait;
+    use PluginTranslationModifiableTrait, DelegatedTranslatorHolderTrait{
+        PluginTranslationModifiableTrait::getTranslator insteadof DelegatedTranslatorHolderTrait;
+    }
 }

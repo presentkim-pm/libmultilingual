@@ -59,8 +59,14 @@ trait PluginTranslationModifiableTrait{
     /** Save default language resources */
     private function saveDefaultLanguages() : void{
         /** @var PluginBase $this */
+        $basePath = rtrim($this->getLocaleResourcePath(), "/") . "/";
         foreach($this->getResources() as $filePath => $info){
-            if(preg_match("/^locale\/[a-zA-Z]{3}\.ini$/", $filePath)){
+            if(!str_starts_with($filePath, $basePath)){
+                continue;
+            }
+
+            $relativePath = substr($filePath, strlen($basePath));
+            if(preg_match($this->getLocaleFilePattern(), $relativePath)){
                 $this->saveResource($filePath);
             }
         }
@@ -75,13 +81,13 @@ trait PluginTranslationModifiableTrait{
         /** @var PluginBase $this */
         $languages = [];
 
-        $path = $this->getDataFolder() . "locale/";
+        $path = $this->getDataFolder() . rtrim($this->getLocaleResourcePath(), "/") . "/";
         if(!is_dir($path)){
             throw new RuntimeException("Language directory $path does not exist or is not a directory");
         }
 
         foreach(scandir($path, SCANDIR_SORT_NONE) as $filename){
-            if(preg_match("/^([a-zA-Z]{3})\.ini$/", $filename, $matches)){
+            if(preg_match($this->getLocaleFilePattern(), $filename, $matches)){
                 $language = Language::fromFile($path . $filename, $matches[1]);
                 if($language !== null){
                     $languages[$matches[1]] = $language;
@@ -95,7 +101,8 @@ trait PluginTranslationModifiableTrait{
     private function loadFallbackLanguage() : ?Language{
         /** @var PluginBase $this */
         $locale = $this->getServer()->getLanguage()->getLang();
-        $resourcePath = $this->getResourcePath("locale/" . PMLanguage::FALLBACK_LANGUAGE . ".ini");
+        $resourceBasePath = rtrim($this->getLocaleResourcePath(), "/");
+        $resourcePath = $this->getResourcePath($resourceBasePath . "/" . PMLanguage::FALLBACK_LANGUAGE . ".ini");
         if(file_exists($resourcePath)){
             $contents = file_get_contents($resourcePath);
             return Language::fromContents($contents, strtolower($locale));

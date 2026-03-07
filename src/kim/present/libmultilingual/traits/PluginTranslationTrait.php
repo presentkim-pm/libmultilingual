@@ -45,6 +45,25 @@ trait PluginTranslationTrait{
     }
 
     /**
+     * Returns the base path (relative to plugin resources) where locale files are stored.
+     *
+     * @return string Resource path without leading or trailing slash. Example: "locale"
+     */
+    protected function getLocaleResourcePath() : string{
+        return "locale";
+    }
+
+    /**
+     * Returns the regex pattern used to match locale file names.
+     * The first capturing group must be the locale code.
+     *
+     * @return string PCRE pattern. Example: "/^([a-zA-Z]{3})\.ini$/"
+     */
+    protected function getLocaleFilePattern() : string{
+        return "/^([a-zA-Z]{3})\.ini$/";
+    }
+
+    /**
      * Generate a new translator instance from the language files of plugin resources.
      *
      * @return Translator
@@ -53,8 +72,14 @@ trait PluginTranslationTrait{
         /** @var PluginBase $this */
         $languages = [];
 
+        $basePath = rtrim($this->getLocaleResourcePath(), "/") . "/";
         foreach($this->getResources() as $filePath => $info){
-            if(preg_match("/^locale\/([a-zA-Z]{3})\.ini$/", $filePath, $matches)){
+            if(!str_starts_with($filePath, $basePath)){
+                continue;
+            }
+
+            $relativePath = substr($filePath, strlen($basePath));
+            if(preg_match($this->getLocaleFilePattern(), $relativePath, $matches)){
                 $resourcePath = $this->getResourcePath($filePath);
                 $language = Language::fromFile($resourcePath, $matches[1]);
                 if($language !== null){

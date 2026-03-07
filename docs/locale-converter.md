@@ -72,7 +72,7 @@ This class provides the following static methods:
  * @param string $locale The locale code in IETF format. ex) `en_US`
  * @return string|null the locale code in ISO 639-3 format. ex) `eng`
  */
-public static function convertIEFT(string $locale) : ?string
+public static function convertIETF(string $locale) : ?string
 
 /**
  * Convert ISO 639-3 code to IETF language tag
@@ -81,6 +81,11 @@ public static function convertIEFT(string $locale) : ?string
  * @return string|null The locale code in IETF format. ex) `en_US`
  */
 public static function convertCode(string $locale) : ?string
+
+/**
+ * @deprecated Use convertIETF() instead (correct spelling)
+ */
+public static function convertIEFT(string $locale) : ?string
 ```
 
 [See source](https://github.com/presentkim-pm/libmultilingual/blob/main/src/kim/present/libmultilingual/utils/LocaleConverter.php)
@@ -90,7 +95,7 @@ public static function convertCode(string $locale) : ?string
 
 ## :book: How to use?
 
-You can always use `LocaleConverter::convertIEFT()` static method.
+You can always use `LocaleConverter::convertIETF()` static method.
 
 ```php
 //Example source that convert player locale code to pocketmine-mp locale code.  
@@ -98,7 +103,7 @@ use kim\present\libmultilingual\utils\LocaleConverter;
 
 public function onPlayerJoin(PlayerJoinEvent $event) {
     $player = $event->getPlayer();
-    $locale3char = LocaleConverter::convertIEFT($player->getLocale());
+    $locale3char = LocaleConverter::convertIETF($player->getLocale());
     // Do something...
 }
 ```

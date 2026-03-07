@@ -73,7 +73,7 @@ class Translator{
         $params = array_merge($params, GlobalParams::getAll());
         if(is_object($locale)){
             if(method_exists($locale, "getLocale") && !Server::getInstance()->isLanguageForced()){
-                $locale = LocaleConverter::convertIEFT($locale->getLocale());
+                $locale = LocaleConverter::convertIETF($locale->getLocale());
             }else{
                 $locale = null;
             }

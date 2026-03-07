@@ -82,8 +82,20 @@ final class LocaleConverter{
      *
      * @return string|null the locale code in ISO 639-3 format. ex) `eng`
      */
-    public static function convertIEFT(string $locale) : ?string{
+    public static function convertIETF(string $locale) : ?string{
         return self::LANGUAGES_MAP[$locale] ?? null;
+    }
+
+    /**
+     * Convert IETF language tag to ISO 639-3 code
+     *
+     * @deprecated Use {@see LocaleConverter::convertIETF()} instead (correct spelling)
+     * @param string $locale The locale code in IETF format. ex) `en_US`
+     *
+     * @return string|null the locale code in ISO 639-3 format. ex) `eng`
+     */
+    public static function convertIEFT(string $locale) : ?string{
+        return self::convertIETF($locale);
     }
 
     /**

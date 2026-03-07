@@ -82,7 +82,10 @@ trait PluginTranslationModifiableTrait{
 
         foreach(scandir($path, SCANDIR_SORT_NONE) as $filename){
             if(preg_match("/^([a-zA-Z]{3})\.ini$/", $filename, $matches)){
-                $languages[$matches[1]] = Language::fromFile($path . $filename, $matches[1]);
+                $language = Language::fromFile($path . $filename, $matches[1]);
+                if($language !== null){
+                    $languages[$matches[1]] = $language;
+                }
             }
         }
         return $languages;

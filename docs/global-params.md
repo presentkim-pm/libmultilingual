@@ -20,7 +20,7 @@ You can also add them through plugins!
 |   {%br}    |     `\n`     |      New line charactor       |
 |   {%tab}   |     `\t`     |         Tab charactor         |
 |    {%t}    |     `\t`     |         Tab charactor         |
-| {%u[CODE]} | `\u{[CODE]}` | Unicode character from [CODE] | 
+| {%u[CODE]} | `\u{[CODE]}` | Unicode character from [CODE] (1-6 hex digits, up to `10FFFF`, no surrogates) | 
 
 The `Unicode character` feature is supported for
 representing [emoji characters](https://wiki.bedrock.dev/concepts/emojis.html).  
@@ -61,14 +61,14 @@ public static function remove(string $paramName) : void
 
 ## :book: How to register my custom parameters?
 
-You can always add parameters via the `GlobalParams::register()` static method.
+You can always add parameters via the `GlobalParams::set()` static method.
 
 ```php
 use kim\present\libmultilingual\GlobalParams;
 
-//Example source that set `server-name` parameter
+//Example source that set `serverName` parameter
 public function onEnable() : void{  
-    GlobalParams::set("server-name", $this->getServer()->getName()); 
+    GlobalParams::set("serverName", $this->getServer()->getName()); 
 }
 ```
 
@@ -77,12 +77,16 @@ Also can update parameters in real time to create dynamic messages.
 ```php
 use kim\present\libmultilingual\GlobalParams;
 
-//Example source that set `player-count` parameter
+//Example source that set `playerCount` parameter
 public function onEnable() : void{  
    $this->getScheduler()->scheduleRepeatingTask(new ClosureTask(function() : void{
-       GlobalParams::set("player-count", (string) count($this->getServer()->getOnlinePlayers()));
+       GlobalParams::set("playerCount", (string) count($this->getServer()->getOnlinePlayers()));
    }), 1);
 }
 ```   
 
 -----
+
+Parameters passed to `translate()` take precedence over global parameters of the same name.
+Invalid `{%u[CODE]}` placeholders are left untouched.
+Parameter names may contain only letters and digits.

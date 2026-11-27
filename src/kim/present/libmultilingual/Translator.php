@@ -65,14 +65,16 @@ class Translator{
      * @param string                          $str    original string
      * @param array<string|Stringable|number> $params translate parameters
      * @param string|object|null              $locale translate language locale or translate target. if null, translate
-     *                                                by default language
+     *                                                by default language (fallback language when no server is running)
      *
      * @return string the translated string
      */
     public function translate(string $str, array $params = [], string|object|null $locale = null) : string{
-        $params = array_merge($params, GlobalParams::getAll());
+        // Caller's params take precedence over the global params, and keys (including numeric ones) are preserved
+        $params += GlobalParams::getAll();
         if(is_object($locale)){
-            if(method_exists($locale, "getLocale") && !Server::getInstance()->isLanguageForced()){
+            $server = self::getServer();
+            if($server !== null && method_exists($locale, "getLocale") && !$server->isLanguageForced()){
                 $locale = LocaleConverter::convertIETF($locale->getLocale());
             }else{
                 $locale = null;
@@ -92,24 +94,45 @@ class Translator{
             $str .= $new;
         }
 
-        if(preg_match_all("/\{%([a-zA-Z0-9]+)\}/", $str, $paramMatches, PREG_SET_ORDER) > 0){
-            foreach($paramMatches as [$matches, $param]){
+        // Replace in a single pass, so that a replaced value is never scanned for placeholders again
+        return preg_replace_callback(
+            "/\{%([a-zA-Z0-9]+)\}/",
+            static function(array $matches) use ($params) : string{
+                $param = $matches[1];
                 if(isset($params[$param])){
-                    $str = str_replace($matches, (string) $params[$param], $str);
-                }elseif(preg_match("/^u[A-Fa-f0-9]+$/", $param) === 1){
-                    $binary = hex2bin(substr($param, 1));
-                    if($binary === false){
-                        continue;
-                    }
-                    $unicodeChar = mb_convert_encoding($binary, "UTF-8", "UTF-16BE");
-
-                    $str = str_replace($matches, $unicodeChar, $str);
-
-                    GlobalParams::set($param, $unicodeChar);
+                    return (string) $params[$param];
                 }
-            }
+                return self::decodeUnicodeParam($param) ?? $matches[0];
+            },
+            $str
+        ) ?? $str;
+    }
+
+    /**
+     * Decodes a `u` + 1~6 hex digits unicode code point parameter name (ex: `u1F600`) to a UTF-8 character.
+     *
+     * @return string|null null if the name is not a valid unicode code point parameter
+     */
+    private static function decodeUnicodeParam(string $param) : ?string{
+        if(preg_match("/^u([0-9A-Fa-f]{1,6})$/", $param, $matches) !== 1){
+            return null;
         }
-        return $str;
+
+        $codePoint = hexdec($matches[1]);
+        if($codePoint > 0x10FFFF || ($codePoint >= 0xD800 && $codePoint <= 0xDFFF)){
+            return null;
+        }
+        $char = mb_chr((int) $codePoint, "UTF-8");
+        return $char === false ? null : $char;
+    }
+
+    /** Returns the running server, or null when there is none (unit tests, tools, other threads) */
+    private static function getServer() : ?Server{
+        try{
+            return Server::getInstance();
+        }catch(RuntimeException){
+            return null;
+        }
     }
 
     /** @return Language[] */
@@ -124,8 +147,15 @@ class Translator{
 
     /** @return Language if $locale is null, return fallback language */
     public function getLanguage(?string $locale = null) : Language{
-        return $this->languages[strtolower($locale ?? Server::getInstance()->getLanguage()->getLang())] ??
-            $this->fallbackLanguage;
+        $locale ??= self::getServer()?->getLanguage()->getLang();
+        if($locale === null){
+            return $this->fallbackLanguage;
+        }
+
+        $locale = strtolower($locale);
+        return $this->languages[$locale]
+            ?? $this->languages[LocaleConverter::LEGACY_ALIASES[$locale] ?? ""]
+            ?? $this->fallbackLanguage;
     }
 
     public function getFallbackLanguage() : Language{

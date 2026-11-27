@@ -59,8 +59,9 @@ trait PluginTranslationModifiableTrait{
     /** Save default language resources */
     private function saveDefaultLanguages() : void{
         /** @var PluginBase $this */
-        $basePath = rtrim($this->getLocaleResourcePath(), "/") . "/";
+        $basePath = trim(str_replace("\\", "/", $this->getLocaleResourcePath()), "/") . "/";
         foreach($this->getResources() as $filePath => $info){
+            $filePath = str_replace("\\", "/", (string) $filePath);
             if(!str_starts_with($filePath, $basePath)){
                 continue;
             }
@@ -81,12 +82,18 @@ trait PluginTranslationModifiableTrait{
         /** @var PluginBase $this */
         $languages = [];
 
-        $path = $this->getDataFolder() . rtrim($this->getLocaleResourcePath(), "/") . "/";
+        $localePath = trim(str_replace("\\", "/", $this->getLocaleResourcePath()), "/");
+        $path = rtrim($this->getDataFolder(), "/\\") . "/" . $localePath . "/";
         if(!is_dir($path)){
             throw new RuntimeException("Language directory $path does not exist or is not a directory");
         }
 
-        foreach(scandir($path, SCANDIR_SORT_NONE) as $filename){
+        $filenames = scandir($path, SCANDIR_SORT_NONE);
+        if($filenames === false){
+            throw new RuntimeException("Failed to read language directory $path");
+        }
+
+        foreach($filenames as $filename){
             if(preg_match($this->getLocaleFilePattern(), $filename, $matches)){
                 $language = Language::fromFile($path . $filename, $matches[1]);
                 if($language !== null){
@@ -100,12 +107,16 @@ trait PluginTranslationModifiableTrait{
     /** Load fallback language from plugin resources */
     private function loadFallbackLanguage() : ?Language{
         /** @var PluginBase $this */
-        $locale = $this->getServer()->getLanguage()->getLang();
-        $resourceBasePath = rtrim($this->getLocaleResourcePath(), "/");
-        $resourcePath = $this->getResourcePath($resourceBasePath . "/" . PMLanguage::FALLBACK_LANGUAGE . ".ini");
-        if(file_exists($resourcePath)){
-            $contents = file_get_contents($resourcePath);
-            return Language::fromContents($contents, strtolower($locale));
+        $resourceBasePath = trim(str_replace("\\", "/", $this->getLocaleResourcePath()), "/");
+        foreach($this->getResources() as $filePath => $info){
+            $filePath = str_replace("\\", "/", (string) $filePath);
+            if(
+                str_starts_with($filePath, $resourceBasePath . "/") &&
+                preg_match($this->getLocaleFilePattern(), substr($filePath, strlen($resourceBasePath) + 1), $matches) &&
+                strtolower($matches[1]) === PMLanguage::FALLBACK_LANGUAGE
+            ){
+                return Language::fromFile($this->getResourcePath($filePath), PMLanguage::FALLBACK_LANGUAGE);
+            }
         }
 
         return null;

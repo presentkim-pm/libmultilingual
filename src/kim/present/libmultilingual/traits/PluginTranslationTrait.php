@@ -72,8 +72,10 @@ trait PluginTranslationTrait{
         /** @var PluginBase $this */
         $languages = [];
 
-        $basePath = rtrim($this->getLocaleResourcePath(), "/") . "/";
+        $basePath = trim(str_replace("\\", "/", $this->getLocaleResourcePath()), "/") . "/";
         foreach($this->getResources() as $filePath => $info){
+            // getResources() keys always use "/" as the separator, but normalize just in case
+            $filePath = str_replace("\\", "/", (string) $filePath);
             if(!str_starts_with($filePath, $basePath)){
                 continue;
             }

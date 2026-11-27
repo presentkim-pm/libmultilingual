@@ -21,11 +21,11 @@ Useful for convert the player's locale code to pocketmine-mp locale code.
 |:----------------------------:|:-----:|:---------:|
 |         English (US)         | en_US |    eng    |
 |         English (UK)         | en_GB |    eng    |
-|    Deutsch (Deutschland)     | de_DE |    ger    |
+|    Deutsch (Deutschland)     | de_DE |    deu    |
 |       Español (España)       | es_ES |    spa    |
 |       Español (México)       | es_MX |    spa    |
-|      Français (France)       | fr_FR |    fre    |
-|      Français (Canada)       | fr_CA |    fre    |
+|      Français (France)       | fr_FR |    fra    |
+|      Français (Canada)       | fr_CA |    fra    |
 |      Italiano (Italia)       | it_IT |    ita    |
 |           日本語 (日本)           | ja_JP |    jpn    |
 |          한국어 (대한민국)          | ko_KR |    kor    |
@@ -33,7 +33,7 @@ Useful for convert the player's locale code to pocketmine-mp locale code.
 |     Português (Portugal)     | pt_PT |    por    |
 |       Русский (Россия)       | ru_RU |    rus    |
 |             简体中文             | zh_CN |    chs    |
-|             繁體中文             | zh_TW |    chs    |
+|        繁體中文 (*)        | zh_TW |    chs    |
 |    Nederlands (Nederland)    | nl_NL |    nld    |
 |        Български (BG)        | bg_BG |    bul    |
 |  Čeština (Česká republika)   | cs_CZ |    cze    |
@@ -48,6 +48,14 @@ Useful for convert the player's locale code to pocketmine-mp locale code.
 |      Svenska (Sverige)       | sv_SE |    swe    |
 |       Türkçe (Türkiye)       | tr_TR |    tur    |
 |     Українська (Україна)     | uk_UA |    ukr    |
+|     Latviešu (Latvija)       | lv_LV |    lav    |
+|    Tiếng Việt (Việt Nam)     | vi_VN |    vie    |
+
+(*) PocketMine does not ship a Traditional Chinese language file, so `zh_TW` maps to Simplified Chinese (`chs`).
+
+The codes of the languages PocketMine ships (`bul`, `chs`, `deu`, `eng`, `fra`, `ita`, `jpn`, `kor`, `lav`, `nld`, `rus`, `spa`, `tur`, `vie`) match its language file names.
+The previously used legacy codes `ger` and `fre` are still found by `Translator` when no `deu`/`fra` language is registered.
+When several tags share a code, `convertCode()` returns the first listed tag (ex: `eng` => `en_US`).
 
 The list was taken from language_names.json in the Minecraft resource.
 >

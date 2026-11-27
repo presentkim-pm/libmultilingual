@@ -44,12 +44,12 @@ trait MultilingualResourceTrait{
      */
     public function getResourcePathByLanguage(string $resourcePattern) : string{
         /** @var PluginBase $this */
-        $path = $this->getResourcePath(sprintf($resourcePattern, $this->getServer()->getLanguage()->getLang()));
+        $path = $this->getResourcePath(str_replace("%s", $this->getServer()->getLanguage()->getLang(), $resourcePattern));
         if(file_exists($path)){
             return $path;
         }
 
-        return $this->getResourcePath(sprintf($resourcePattern, Language::FALLBACK_LANGUAGE));
+        return $this->getResourcePath(str_replace("%s", Language::FALLBACK_LANGUAGE, $resourcePattern));
     }
 
     /**
@@ -64,20 +64,20 @@ trait MultilingualResourceTrait{
     public function saveResourceByLanguage(string $filename, string $resourcePattern, bool $replace = false) : bool{
         /** @var PluginBase $this */
         $outPath = $this->getDataFolder() . $filename;
-        if(file_exists($outPath) && !$replace){
+        if(!$replace && file_exists($outPath)){
             return false;
         }
 
         $resourcePath = $this->getResourcePathByLanguage($resourcePattern);
-        if(!file_exists($resourcePath)){
+        if(!is_file($resourcePath)){
             return false;
         }
 
         $dir = dirname($outPath);
-        if(!file_exists($dir) && !mkdir($dir, 0777, true)){
+        if(!is_dir($dir) && !@mkdir($dir, 0777, true) && !is_dir($dir)){
             return false;
         }
 
-        return copy($resourcePath, $outPath);
+        return @copy($resourcePath, $outPath);
     }
 }

@@ -59,23 +59,42 @@ class Language{
         return $this->getNonNull("language.name");
     }
 
+    /**
+     * Parses INI contents. Malformed contents never emit warnings or throw; the lines that cannot be parsed result in
+     * an empty language.
+     * Quoted values lose their surrounding double quotes, and C-style escapes (e.g. `\n`) are unescaped.
+     * Section headers and array-style keys (`a[b] = c`) are not supported, such entries are ignored.
+     */
     public static function fromContents(string $contents, string $locale) : Language{
-        $parsed = parse_ini_string($contents, false, INI_SCANNER_RAW);
+        // parse_ini_string() emits a warning on syntax errors, which PocketMine's error handler turns into an exception
+        set_error_handler(static fn() : bool => true);
+        try{
+            $parsed = parse_ini_string($contents, false, INI_SCANNER_RAW);
+        }finally{
+            restore_error_handler();
+        }
         if($parsed === false){
             return new Language([], $locale);
         }
-        return new Language(array_map("stripcslashes", $parsed), $locale);
+
+        $map = [];
+        foreach($parsed as $key => $value){
+            if(is_string($value)){
+                $map[(string) $key] = stripcslashes($value);
+            }
+        }
+        return new Language($map, $locale);
     }
 
     public static function fromFile(string $path, string $locale) : ?Language{
-        if(file_exists($path)){
-            $contents = file_get_contents($path);
-            if($contents === false){
-                return null;
-            }
-            return self::fromContents($contents, $locale);
+        if(!is_file($path)){
+            return null;
         }
 
-        return null;
+        $contents = @file_get_contents($path);
+        if($contents === false){
+            return null;
+        }
+        return self::fromContents($contents, $locale);
     }
 }

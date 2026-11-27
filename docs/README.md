@@ -1,7 +1,6 @@
 <!-- PROJECT BADGES -->
 <div align="center">
 
-[![Poggit CI][poggit-ci-badge]][poggit-ci-url]
 [![Stars][stars-badge]][stars-url]
 [![License][license-badge]][license-url]
 
@@ -16,7 +15,7 @@
   <p align="center">
     Language management library for multilingual message support!
 
-[View in Poggit][poggit-ci-url] · [Report a bug][issues-url] · [Request a feature][issues-url]
+[Report a bug][issues-url] · [Request a feature][issues-url]
 
   </p>
 </div>
@@ -34,7 +33,11 @@
 
 ## Installation
 
-See [Official Poggit Virion Documentation](https://github.com/poggit/support/blob/master/virion.md)
+```
+composer require presentkim/libmultilingual
+```
+
+Requires PHP 8.4+ and `ext-mbstring`. Targets axolotl-pm/PocketMine-MP 5.51 and above.
 
 -----
 
@@ -78,13 +81,9 @@ See [Official Poggit Virion Documentation](https://github.com/poggit/support/blo
 Distributed under the **LGPL 3.0**. See [LICENSE][license-url] for more information
 
 
-[poggit-ci-badge]: https://poggit.pmmp.io/ci.shield/presentkim-pm/libmultilingual/libmultilingual?style=for-the-badge
-
 [stars-badge]: https://img.shields.io/github/stars/presentkim-pm/libmultilingual.svg?style=for-the-badge
 
 [license-badge]: https://img.shields.io/github/license/presentkim-pm/libmultilingual.svg?style=for-the-badge
-
-[poggit-ci-url]: https://poggit.pmmp.io/ci/presentkim-pm/libmultilingual/libmultilingual
 
 [stars-url]: https://github.com/presentkim-pm/libmultilingual/stargazers
 

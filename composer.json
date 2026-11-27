@@ -1,18 +1,31 @@
 {
   "name": "presentkim/libmultilingual",
-  "description": "Provides various features for multi-language support for PocketMine-MP",
+  "description": "Multilingual message support for axolotl-pm/PocketMine-MP plugins",
   "type": "library",
-  "license": "LGPL-3.0",
+  "license": "LGPL-3.0-or-later",
   "require": {
-    "pocketmine/pocketmine-mp": "^5.0.0"
+    "php": "^8.4",
+    "ext-mbstring": "*",
+    "pocketmine/pocketmine-mp": "^5.0"
+  },
+  "require-dev": {
+    "axolotl-pm/pocketmine-mp": "^5.51",
+    "phpunit/phpunit": "^12.0"
   },
   "autoload": {
-    "psr-4": {"kim\\present\\libmultilingual\\": ["src/kim/present/libmultilingual/"]}
-  },
-  "extra": {
-    "virion": {
-      "spec": "3.0",
-      "namespace-root": "kim\\present\\libmultilingual"
+    "psr-4": {
+      "kim\\present\\libmultilingual\\": "src/kim/present/libmultilingual/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "kim\\present\\libmultilingual\\tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  },
+  "config": {
+    "sort-packages": true
   }
 }

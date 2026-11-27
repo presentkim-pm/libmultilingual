@@ -40,17 +40,21 @@ final class LocaleConverter{
      * The list was taken from language_names.json in the Minecraft resource.
      * @link https://github.com/ZtechNetwork/MCBVanillaResourcePack/blob/cd647b3/texts/language_names.json
      *
+     * Codes of languages that PocketMine ships (bul, chs, deu, eng, fra, ita, jpn, kor, lav, nld, rus, spa, tur, vie)
+     * follow PocketMine's file names, so they match {@see \pocketmine\lang\Language::getLang()} of the server.
+     * Where several tags share a code, {@see LocaleConverter::convertCode()} returns the first one listed.
+     *
      * I created this mapping data by referring to the dataset on the site below.
      * @link http://github.com/datasets/language-codes/blob/d8f5a13/data/language-codes-3b2.csv
      */
     public const LANGUAGES_MAP = [
         "en_US" => "eng", //English (US)
         "en_GB" => "eng", //English (UK)
-        "de_DE" => "ger", //Deutsch (Deutschland)
+        "de_DE" => "deu", //Deutsch (Deutschland)
         "es_ES" => "spa", //Español (España)
         "es_MX" => "spa", //Español (México)
-        "fr_FR" => "fre", //Français (France)
-        "fr_CA" => "fre", //Français (Canada)
+        "fr_FR" => "fra", //Français (France)
+        "fr_CA" => "fra", //Français (Canada)
         "it_IT" => "ita", //Italiano (Italia)
         "ja_JP" => "jpn", //日本語 (日本)
         "ko_KR" => "kor", //한국어 (대한민국)
@@ -58,7 +62,7 @@ final class LocaleConverter{
         "pt_PT" => "por", //Português (Portugal)
         "ru_RU" => "rus", //Русский (Россия)
         "zh_CN" => "chs", //简体中文
-        "zh_TW" => "chs", //繁體中文
+        "zh_TW" => "chs", //繁體中文 (PocketMine ships no Traditional Chinese file, so it falls back to Simplified)
         "nl_NL" => "nld", //Nederlands (Nederland)
         "bg_BG" => "bul", //Български (BG)
         "cs_CZ" => "cze", //Čeština (Česká republika)
@@ -73,6 +77,19 @@ final class LocaleConverter{
         "sv_SE" => "swe", //Svenska (Sverige)
         "tr_TR" => "tur", //Türkçe (Türkiye)
         "uk_UA" => "ukr", //Українська (Україна)
+        "lv_LV" => "lav", //Latviešu (Latvija)
+        "vi_VN" => "vie", //Tiếng Việt (Việt Nam)
+    ];
+
+    /**
+     * Previously used codes that differ from PocketMine's language file names (current code => legacy code).
+     * Translator falls back to the legacy code when a language of the current code is not registered.
+     *
+     * @var array<string, string> current code => legacy code
+     */
+    public const LEGACY_ALIASES = [
+        "deu" => "ger",
+        "fra" => "fre",
     ];
 
     /**
@@ -109,7 +126,8 @@ final class LocaleConverter{
         /** @var array<string, string>|null $flippedMap */
         static $flippedMap = null;
         if($flippedMap === null){
-            $flippedMap = array_flip(self::LANGUAGES_MAP);
+            // array_flip() keeps the last key of duplicated values, but the first listed tag is the primary one
+            $flippedMap = array_flip(array_reverse(self::LANGUAGES_MAP, true));
         }
 
         return $flippedMap[$locale] ?? null;
